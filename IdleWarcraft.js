@@ -1,3 +1,14 @@
+var ressourceBois;
+var ressourcePierre;
+var ressourceOr;
+var soldat;
+var batimentBase;
+var batimentCaserne;
+var batimentMine; 
+var batimentBucheron;
+var rempart;
+var piege;
+var ennemi;
 var nbTotal = 0;		// Nombre total de clicks enmagasiné
 var click = 1;			// Nombre de click obtenu par click
 var priceAuto = 10;		// Prix du clicker auto
