@@ -1,61 +1,73 @@
-var ressourceBois;
-var ressourcePierre;
+var ressourceBois = 0; // Nombre total de clicks enmagasiné pour le bois.
+var ressourcePierre = 0; // Nombre total de clicks enmagasiné pour la pierre.
+var PrixBatimentBucheron = 10; // Prix du clicker auto (Cabane de bucherons) Bois.
+var clickBois = 1;			// Nombre de click obtenu par click sur le Bois.
+var autoClickBois = 0;		// Nombre de clicker auto
+var priceClickBoisUpgrade = 75;	// Prix de l'amélioration du click
 var ressourceOr;
 var soldat;
 var batimentBase;
 var batimentCaserne;
 var batimentMine; 
-var batimentBucheron;
 var rempart;
 var piege;
 var ennemi;
-var nbTotal = 0;		// Nombre total de clicks enmagasiné
-var click = 1;			// Nombre de click obtenu par click
-var priceAuto = 10;		// Prix du clicker auto
-var autoClick = 0;		// Nombre de clicker auto
-var priceUpgrade = 75;	// Prix de l'amélioration du click
+
 
 // Fonction cliquer sur une div
 function checkDiv(e) {
 	alert(e.target.id);
 }
 
-// Fonction mise à jour de l'affichage des compteurs
-function updateNb() {
-	document.getElementById('nbClick').innerHTML = 'Compte de $clicks$: '+nbTotal;
-	document.getElementById('autoClick').innerHTML = 'Acheter clicker auto $'+priceAuto+'clicks$';
-	document.getElementById('clickerAuto').innerHTML = 'Nombre de clicker auto (1 click/s): '+autoClick;
-	document.getElementById('btnClick').innerHTML = click+' $clicks$';
-	document.getElementById('upgradeClick').innerHTML = 'Améliorer clicks $'+priceUpgrade+'clicks$';
+// Fonction mise à jour de l'affichage des compteurs Pour le bois.
+function Affichage() {
+	document.getElementById('nbClickBois').innerHTML = 'Compte de $clicks$: '+ressourceBois;
+	document.getElementById('autoClickBois').innerHTML = 'Acheter clicker auto $'+PrixBatimentBucheron+'clicks$';
+	document.getElementById('clickerAutoBois').innerHTML = 'Nombre de clicker auto (1 click/s): '+autoClickBois;
+	document.getElementById('btnClickManuelBois').innerHTML = clickBois+' $clicks$';
+	document.getElementById('upgradeClickBois').innerHTML = 'Améliorer clicks $'+priceClickBoisUpgrade+'clicks$';
 }
 
+
+
+
+
+
+//Compteur et Bonus BOIS.
+
+
+
+
+
+
+
 // Fonction click manuel
-function addClick() {
-	nbTotal = nbTotal + click;
-	updateNb();
+function ClickManuelBois() {
+	ressourceBois = ressourceBois + clickBois;
+	Affichage();
 }
 
 // Fonction amélioration du click (multiplicateur)
-function upgradeClick() {
-	if (nbTotal >= priceUpgrade) {
-		click++;
-		nbTotal = (nbTotal - priceUpgrade);
-		priceUpgrade = priceUpgrade*2;
-		updateNb();
+function UpgradeBois() {
+	if (ressourceBois >= priceClickBoisUpgrade) {
+		clickBois++;
+		ressourceBois = (ressourceBois - priceClickBoisUpgrade);
+		priceClickBoisUpgrade = priceClickBoisUpgrade*2;
+		Affichage();
 	}
 	else {
 		alert('Pas assez de $clicks$ !');
 	}
 }
 
-// Fonction clicker auto
-function timerClick() {
-	if (nbTotal >= priceAuto){
-		nbTotal = (nbTotal - priceAuto);
-		autoClick++;
-		priceAuto = parseInt(priceAuto*1.5);
-		updateNb();
-		setInterval(addClick, 1000);
+// Fonction clicker auto bois
+function CabaneBucheron() {
+	if (ressourceBois >= PrixBatimentBucheron){
+		ressourceBois = (ressourceBois - PrixBatimentBucheron);
+		autoClickBois++;
+		PrixBatimentBucheron = parseInt(PrixBatimentBucheron*1.5);
+		Affichage();
+		setInterval(ClickManuelBois, 1000);
 	}
 	else {
 		alert('Pas assez de $clicks$ !');
@@ -63,9 +75,14 @@ function timerClick() {
 }
 
 document.getElementById('jeu').onclick = checkDiv;				// Cliquer sur une div pour obtenir son ID
-document.getElementById('autoClick').onclick = timerClick; 		// Acheter un Auto clicker
-document.getElementById('btnClick').onclick = addClick;			// Cliquer manuellement
-document.getElementById('upgradeClick').onclick = upgradeClick; // Améliorer le click
+document.getElementById('autoClickBois').onclick = CabaneBucheron; 		// Acheter un Auto clicker
+document.getElementById('btnClickManuelBois').onclick = ClickManuelBois;			// Cliquer manuellement
+document.getElementById('upgradeClickBois').onclick = UpgradeBois; // Améliorer le click
 
 
-updateNb();		// Affichage
+Affichage();		// Affichage
+
+
+
+
+// Fin Compteur et Bonus BOIS.
