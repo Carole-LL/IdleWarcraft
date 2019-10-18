@@ -1,0 +1,33 @@
+html, body {
+	/* Le jeu prend la page entière du navigateur */
+	height: 100%;
+	width: 100%;
+}
+
+body {
+}
+
+#jeu {	/* Map du jeu */
+	position: absolute;
+	left: 275px;
+	display: grid;
+	grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+	grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+}
+
+#jeu div { /* Border temporaire pour déterminer les divs */
+	border: 1px solid;
+}
+
+.boutons { /* Boutons d'améliorations - achats */
+}
+
+.infos { /* Texte d'information des compteurs */
+}
+
+#btnClick { /* Le bouton principal Clicker */
+
+}
+
+#btnClick:hover { /* Lorque la souris passe dessus */
+}
