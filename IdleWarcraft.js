@@ -16,9 +16,16 @@ var batimentMine;
 var rempart;
 var piege;
 var ennemi;
-var caserne = document.getElementById('y5x4'); // correspond à la div de la construction caserne
-var batimentDefense = document.getElementById('y2x11');//correspond à la div du construction batiment de défense
 
+
+// Sons
+
+ function bruitPierre(){
+    var sonPierre = new Audio();
+    sonPierre.src = "./Sons/pierre.mp3";
+    sonPierre.play();
+
+}
 
 
 // Fonction cliquer sur une div
@@ -29,21 +36,20 @@ function checkDiv(e) {
 // Fonction mise à jour de l'affichage des compteurs Pour le bois et pierre.
 function Affichage() {
 	// Bois 
-
-
-	document.getElementById('nbClickBois').innerHTML = 'Compte de $clicks$: Bois '+ressourceBois;
+	document.getElementById('nbClickBois').innerHTML = 'Bois '+ressourceBois;
 	document.getElementById('autoClickBois').innerHTML = 'Acheter clicker auto  Bois$'+PrixBatimentBucheron+'clicks$';
-	document.getElementById('clickerAutoBois').innerHTML = 'Nombre de clicker auto Bois (1 click/s): '+autoClickBois;
+	document.getElementById('clickerAutoBois').innerHTML = 'Nombre de bucherons (1 click/s): '+autoClickBois;
 	document.getElementById('btnClickManuelBois').innerHTML = clickBois+' $clicks$ Bois';
 	document.getElementById('upgradeClickBois').innerHTML = 'Améliorer clicks Bois $'+priceClickBoisUpgrade+'clicks$';
 	// Pierre 
-	document.getElementById('nbClickPierre').innerHTML = 'Compte de $clicks$: Pierre '+ressourcePierre;
+	document.getElementById('nbClickPierre').innerHTML = 'Pierre '+ressourcePierre;
 	document.getElementById('autoClickPierre').innerHTML = 'Acheter clicker auto Pierre $'+PrixBatimentMine+'clicks$';
-	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de clicker auto Pierre (1 click/s): '+autoClickPierre;
-
+	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs (1 click/s): '+autoClickPierre;
 	document.getElementById('btnClickManuelPierre').innerHTML = clickPierre+' $clicks$ Pierre';
 	document.getElementById('upgradeClickPierre').innerHTML = 'Améliorer clicks Pierre'+priceClickPierreUpgrade+'clicks$';
 }
+
+
 
 
 
@@ -52,10 +58,15 @@ function Affichage() {
 
 
 
+
+
+
+
 // Fonction click manuel bois
 function ClickManuelBois() {
 	ressourceBois = ressourceBois + clickBois;
 	Affichage();
+	
 }
 
 // Fonction amélioration du click (multiplicateur)
@@ -98,7 +109,6 @@ Affichage();		// Affichage
 
 
 
-
 //Compteur et Bonus pierre
 
 
@@ -106,8 +116,10 @@ Affichage();		// Affichage
 
 // Fonction click manuel Pierre
 function ClickManuelPierre() {
+	
 	ressourcePierre = ressourcePierre + clickPierre;
 	Affichage();
+	
 }
 
 // Fonction amélioration du click (multiplicateur)
@@ -137,49 +149,6 @@ function MinePierre() {
 	}
 }
 
-
-
-
-
-document.getElementById('jeu').onclick = checkDiv;				// Cliquer sur une div pour obtenir son ID
-document.getElementById('autoClickPierre').onclick = MinePierre; 		// Acheter un Auto clicker
-document.getElementById('btnClickManuelPierre').onclick = ClickManuelPierre;			// Cliquer manuellement
-document.getElementById('upgradeClickPierre').onclick = UpgradePierre; // Améliorer le click
-document.getElementById('batimentSoldat').onclick = construireCaserne // construire une caserne
-document.getElementById('batimentDefense').onclick = construireBatimentDefense // construire la défense
-
-Affichage();		// Affichage
-// Fin Compteur et Bonus PIERRE.
-
-
-
-
-// Construire Batiment Soldat
-
-function construireCaserne() {
-	if (ressourceBois > 5 && ressourcePierre > 5) {
-		caserne.style.backgroundColor = "Yellow";
-	}
-	else alert ( "Augmentez vos ressources Bois et Pierre");
-}
-
-// fin Construire Batiment Soldat
-
-
-// Construire Batiment Défense
-
-function construireBatimentDefense () {
-	if (ressourceBois > 20 && ressourcePierre > 20) {
-		batimentDefense.style.backgroundColor = "green";
-	}
-	else alert ("Augmentez vos ressources Bois et Pierre");
-}
-
-
-
-// fin Construire Batiment Soldat
-
-
 document.getElementById('jeu').onclick = checkDiv;				// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickPierre').onclick = MinePierre; 		// Acheter un Auto clicker
 document.getElementById('btnClickManuelPierre').onclick = ClickManuelPierre;			// Cliquer manuellement
@@ -187,5 +156,3 @@ document.getElementById('upgradeClickPierre').onclick = UpgradePierre; // Améli
 
 
 Affichage();		// Affichage
-
-

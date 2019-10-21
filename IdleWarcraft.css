@@ -38,7 +38,7 @@ body {
 	position: absolute;
 	left: 0;
 	height: 900px;
-	width: 245px;
+	width: 253px;
 	display: flex;
 	flex-wrap: wrap;
 	background-image: url(./Images/TexRock.jpg);
@@ -57,11 +57,12 @@ body {
 }
 
 #BasHudBonus {
-	
+	padding-left: 6px;
 	display: flex;
 	width: 100%;
 	height: 690px;
 	flex-wrap: wrap;
+
 	
 	}
 
@@ -69,60 +70,100 @@ body {
 	
 	width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 #ItemBonus2 {
 	
 	width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 #ItemBonus3 {
-	
-	width: 100%;
+		width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 #ItemBonus4 {
 	
 	width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 #ItemBonus5 {
 	
+	
 	width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 #ItemBonus6 {
 	
 	width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 #ItemBonus7 {
 	
 	width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 #ItemBonus8 {
 	
 	width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 #ItemBonus9 {
 	
 	width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 #ItemBonus10 {
 	
 	width: 100%;
 	height: 60px;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
 
 }
 
@@ -135,7 +176,7 @@ body {
 	width: 250px;
 	display: flex;
 	flex-wrap: wrap;
-	background-image: url(./Images/TexDirt.jpg);
+	background-image: url(./Images/TexRock.jpg);
 	background-size: cover;
 }
 
@@ -152,7 +193,7 @@ body {
 }
 
 #BasHudRessources {
-	
+	padding-left: 5px;
 	display: flex;
 	width: 100%;
 	height: 690px;
@@ -160,29 +201,62 @@ body {
 }
 
 #Ressource1 {
-	
+	padding-left: 15px;
+	color: white;
 	display: flex;
 	width: 100%;
-	height: 150px;
+	height: 60px;
 	flex-wrap: wrap;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
 
 }
 
 #Ressource2 {
-	
+	padding-left: 15px;
+	color: white;
 	display: flex;
 	width: 100%;
-	height: 150px;
+	height: 60px;
 	flex-wrap: wrap;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
 	
 }
 
 #Ressource3 {
-	
+	padding-left: 15px;
+	color: white;
 	display: flex;
 	width: 100%;
-	height: 150px;
+	height: 60px;
 	flex-wrap: wrap;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	
+}
+
+#Ressource4 {
+	padding-left: 15px;
+	color: white;
+	display: flex;
+	width: 100%;
+	height: 60px;
+	flex-wrap: wrap;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	
+}
+
+#Ressource4 {
+	padding-left: 15px;
+	color: white;
+	display: flex;
+	width: 100%;
+	height: 60px;
+	flex-wrap: wrap;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
 	
 }
 
@@ -285,8 +359,7 @@ padding-left: 0;
 
 }
 #y2x11 {
-/* test couleur Placement batiment défense y2x11*/
- background-color: purple;
+
 }
 #y2x12 {
 
@@ -391,7 +464,7 @@ padding-left: 0;
 
 }
 
-#y5x4  { /* test couleur Placement batiment soldat y5x4*/
+#y5x4  {
 
 }
 
