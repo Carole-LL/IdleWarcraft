@@ -16,6 +16,9 @@ var batimentMine;
 var rempart;
 var piege;
 var ennemi;
+var caserne = document.getElementById('y5x4'); // correspond à la div de la construction caserne
+var batimentDefense = document.getElementById('y2x11');//correspond à la div du construction batiment de défense
+
 
 
 // Fonction cliquer sur une div
@@ -42,12 +45,7 @@ function Affichage() {
 
 
 
-
-
 //Compteur et Bonus BOIS.
-
-
-
 
 
 
@@ -136,11 +134,45 @@ function MinePierre() {
 	}
 }
 
+
+
+
+
 document.getElementById('jeu').onclick = checkDiv;				// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickPierre').onclick = MinePierre; 		// Acheter un Auto clicker
 document.getElementById('btnClickManuelPierre').onclick = ClickManuelPierre;			// Cliquer manuellement
 document.getElementById('upgradeClickPierre').onclick = UpgradePierre; // Améliorer le click
-
+document.getElementById('batimentSoldat').onclick = construireCaserne // construire une caserne
+document.getElementById('batimentDefense').onclick = construireBatimentDefense // construire la défense
 
 Affichage();		// Affichage
+// Fin Compteur et Bonus PIERRE.
 
+
+
+
+// Construire Batiment Soldat
+
+function construireCaserne() {
+	if (ressourceBois > 5 && ressourcePierre > 5) {
+		caserne.style.backgroundColor = "Yellow";
+	}
+	else alert ( "Augmentez vos ressources Bois et Pierre");
+}
+
+// fin Construire Batiment Soldat
+
+
+// Construire Batiment Défense
+
+function construireBatimentDefense () {
+	if (ressourceBois > 20 && ressourcePierre > 20) {
+		batimentDefense.style.backgroundColor = "green";
+	}
+	else alert ("Augmentez vos ressources Bois et Pierre");
+}
+
+
+// fin Construire Batiment Soldat
+
+	// body...
