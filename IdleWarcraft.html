@@ -17,7 +17,7 @@
 
 		<div id="HudBonus">
 
-				<div id="HautHudBonus">Vos Bonus</div>
+			<div id="HautHudBonus">Vos Bonus</div>
 			
 
 				<div id="BasHudBonus">
@@ -38,6 +38,7 @@
 						<button id="batimentSoldat">Construire Caserne</button>
 					</div>
 					<div id="ItemBonus6">
+
 						<button id="batimentDefense">Construire Batiment Défense</button>
 					</div>
 					<div id="ItemBonus7">
@@ -46,10 +47,13 @@
 					<div id="ItemBonus8"></div>
 					<div id="ItemBonus9"></div>
 					<div id="ItemBonus10"></div>
+
+				</div>
 					
 				
-				</div>
-		</div>
+				
+			</div>
+
 
 
 <!-- fin interface bonus -->
@@ -65,11 +69,11 @@
 	<div id="y1x4"></div>
 	<div id="y1x5"></div>
 	<div id="y1x6"></div>
-	<div id="y1x7"><button id="btnClickManuelBois"></button></div>
-	<div id="y1x8"></div>
-	<div id="y1x9"></div>
-	<div id="y1x10"></div>
-	<div id="y1x11"></div>
+	<div id="y1x7" class="rock"></div>
+	<div id="y1x8" class="rock"></div>
+	<div id="y1x9" class="rock"></div>
+	<div id="y1x10" class="rock"></div>
+	<div id="y1x11" class="rock"></div>
 	<div id="y1x12"></div>
 	<div id="y1x13"></div>
 	<div id="y1x14"></div>
@@ -78,11 +82,11 @@
 	<div id="y2x3"></div>
 	<div id="y2x4"></div>
 	<div id="y2x5"></div>
-	<div id="y2x6"><button id="btnClickManuelPierre"></button></div>
+	<div id="y2x6"></div>
 	<div id="y2x7"></div>
-	<div id="y2x8"></div>
-	<div id="y2x9"></div>
-	<div id="y2x10"></div>
+	<div id="y2x8" class="rock"></div>
+	<div id="y2x9" class="rock"></div>
+	<div id="y2x10" class="rock"></div>
 	<div id="y2x11"></div>
 	<div id="y2x12"></div>
 	<div id="y2x13"></div>
@@ -152,7 +156,7 @@
 	<div id="y7x7"></div>
 	<div id="y7x8"></div>
 	<div id="y7x9"></div>
-	<div id="y7x10"></div>
+	<div id="y7x10" class="wood"></div>
 	<div id="y7x11"></div>
 	<div id="y7x12"></div>
 	<div id="y7x13"></div>
@@ -165,10 +169,10 @@
 	<div id="y8x6"></div>
 	<div id="y8x7"></div>
 	<div id="y8x8"></div>
-	<div id="y8x9"></div>
-	<div id="y8x10"></div>
-	<div id="y8x11"></div>
-	<div id="y8x12"></div>
+	<div id="y8x9" class="wood"></div>
+	<div id="y8x10" class="wood"></div>
+	<div id="y8x11" class="wood"></div>
+	<div id="y8x12" class="wood"></div>
 	<div id="y8x13"></div>
 	<div id="y8x14"></div>
 	<div id="y9x1"></div>
@@ -178,12 +182,12 @@
 	<div id="y9x5"></div>
 	<div id="y9x6"></div>
 	<div id="y9x7"></div>
-	<div id="y9x8"></div>
-	<div id="y9x9"></div>
-	<div id="y9x10"></div>
-	<div id="y9x11"></div>
-	<div id="y9x12"></div>
-	<div id="y9x13"></div>
+	<div id="y9x8" class="wood"></div>
+	<div id="y9x9" class="wood"></div>
+	<div id="y9x10" class="wood"></div>
+	<div id="y9x11" class="wood"></div>
+	<div id="y9x12" class="wood"></div>
+	<div id="y9x13" class="wood"></div>
 	<div id="y9x14"></div>
 </div>
 
@@ -200,16 +204,24 @@
 				<div id="Ressource1">
 					
 					<p id="nbClickBois"></p>
-					<p id="clickerAutoBois"></p>
+					
 
 				</div>
 				<div id="Ressource2">
 					
 					<p id="nbClickPierre"></p>
-					<p id="clickerAutoPierre"></p>
 
 				</div>
-				<div id="Ressource3"></div>
+
+				<div id="Ressource3">
+					<p id="clickerAutoBois"></p>
+				</div>
+
+				<div id="Ressource4">
+					<p id="clickerAutoPierre"></p>
+				</div>
+
+				<div id="Ressource5"></div>
 			</div>
 
 		</div>
@@ -222,6 +234,7 @@
 			<button id="btnClickManuelBois"></button>
 			<button id="autoClickBois"></button>
 
+
 			
 
 		
@@ -231,7 +244,10 @@
 			<p id="clickerAutoBois"></p>
 			<p id="nbClickPierre"></p>
 			<p id="clickerAutoPierre"></p>
+
 		</div>
+
+
 
 	<script type="text/javascript" src="IdleWarcraft.js"></script>
 </body>
