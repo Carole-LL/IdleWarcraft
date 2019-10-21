@@ -38,7 +38,12 @@ var armee=0;
 
 // Fonction cliquer sur une div
 function checkDiv(e) {
-	alert(e.target.id);
+	if (e.target.classList.contains("wood"))		// Vérifie si la div est du Bois
+		ClickManuelBois();
+	else if (e.target.classList.contains("rock"))	// Vérifie si la div est de la Pierre
+		ClickManuelPierre();
+	else
+		alert(e.target.id);
 }
 
 // Fonction mise à jour de l'affichage des compteurs Pour le bois et pierre.
@@ -208,10 +213,8 @@ console.log(armee);
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
-document.getElementById('btnClickManuelBois').onclick = ClickManuelBois;		// Cliquer manuellement sur Bois
 document.getElementById('upgradeClickBois').onclick = UpgradeBois; 				// Améliorer le click du bois
 document.getElementById('autoClickPierre').onclick = MinePierre; 				// Acheter un Auto clicker
-document.getElementById('btnClickManuelPierre').onclick = ClickManuelPierre;	// Cliquer manuellement sur Pierre
 document.getElementById('upgradeClickPierre').onclick = UpgradePierre;			// Améliorer le click de la pierre
 document.getElementById('batimentSoldat').onclick = construireCaserne 			// construire une caserne
 document.getElementById('batimentDefense').onclick = construireBatimentDefense 	// construire la défense	
