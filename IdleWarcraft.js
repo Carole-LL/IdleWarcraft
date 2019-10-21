@@ -16,8 +16,8 @@ var batimentMine;
 var rempart;
 var piege;
 var ennemi;
-var caserne = document.getElementById('y5x4'); // correspond à la div de la construction caserne
-var batimentDefense = document.getElementById('y2x11');//correspond à la div du construction batiment de défense
+var caserne = document.getElementById('y6x6'); // correspond à la div de la construction caserne
+var batimentDefense = document.getElementById('y5x7');//correspond à la div du construction batiment de défense
 var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
 var caseSoldat = document.getElementById('y1x1');
 var caserneConstruite=false;
@@ -32,6 +32,13 @@ var armee=0;
     var sonPierre = new Audio();
     sonPierre.src = "./Sons/pierre.mp3";
     sonPierre.play();
+
+}
+
+function bruitConstruction(){
+    var sonConstruction = new Audio();
+    sonConstruction.src = "./Sons/construction.mp3";
+    sonConstruction.play();
 
 }
 
@@ -159,6 +166,10 @@ function construireCaserne() {
 	if (ressourceBois > 5 && ressourcePierre > 5) {
 		caserne.style.backgroundImage = "url(./Images/Orc_Barracks.gif)";
 		caserneConstruite=true;
+		ressourceBois = ressourceBois-4;
+		ressourcePierre = ressourcePierre-4;
+		Affichage();
+		bruitConstruction();
 	}
 	else alert ( "Augmenter vos ressources Bois et Pierre");
 }
@@ -172,6 +183,10 @@ function construireCaserne() {
 function construireBatimentDefense () {
 	if (ressourceBois > 20 && ressourcePierre > 20) {
 		batimentDefense.style.backgroundImage = "url(./Images/Orc_Blacksmith.gif)";
+		ressourceBois = ressourceBois-4;
+		ressourcePierre = ressourcePierre-4;
+		Affichage();
+		bruitConstruction();
 	}
 	else alert ("Augmenter vos ressources Bois et Pierre");
 }
