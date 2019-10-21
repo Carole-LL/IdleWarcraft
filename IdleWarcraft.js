@@ -64,12 +64,6 @@ function Affichage() {
 
 //Compteur et Bonus BOIS.
 
-
-
-
-
-
-
 // Fonction click manuel bois
 function ClickManuelBois() {
 	ressourceBois = ressourceBois + clickBois;
@@ -104,22 +98,15 @@ function CabaneBucheron() {
 	}
 }
 
-document.getElementById('jeu').onclick = checkDiv;				// Cliquer sur une div pour obtenir son ID
-document.getElementById('autoClickBois').onclick = CabaneBucheron; 		// Acheter un Auto clicker
-document.getElementById('btnClickManuelBois').onclick = ClickManuelBois;			// Cliquer manuellement
-document.getElementById('upgradeClickBois').onclick = UpgradeBois; // Améliorer le click
-
-
-Affichage();		// Affichage
-
 // Fin Compteur et Bonus BOIS.
 
 
 
 
+
+
+
 //Compteur et Bonus pierre
-
-
 
 
 // Fonction click manuel Pierre
@@ -157,16 +144,7 @@ function MinePierre() {
 	}
 }
 
-document.getElementById('jeu').onclick = checkDiv;				// Cliquer sur une div pour obtenir son ID
-document.getElementById('autoClickPierre').onclick = MinePierre; 		// Acheter un Auto clicker
-document.getElementById('btnClickManuelPierre').onclick = ClickManuelPierre;			// Cliquer manuellement
-document.getElementById('upgradeClickPierre').onclick = UpgradePierre; // Améliorer le click
 
-document.getElementById('batimentSoldat').onclick = construireCaserne // construire une caserne
-document.getElementById('batimentDefense').onclick = construireBatimentDefense // construire la défense
-
-
-Affichage();		// Affichage
 // Fin Compteur et Bonus PIERRE.
 
 
@@ -185,6 +163,7 @@ function construireCaserne() {
 // fin Construire Batiment Soldat
 
 
+
 // Construire Batiment Défense (y2x11)
 
 function construireBatimentDefense () {
@@ -194,12 +173,11 @@ function construireBatimentDefense () {
 	else alert ("Augmenter vos ressources Bois et Pierre");
 }
 
-
-
 // fin Construire Batiment Soldat
 
-// fonction Bouton Soldat
 
+
+// fonction Bouton Soldat
 
 creerSoldat.onclick=boutonSoldat;
 
@@ -228,7 +206,14 @@ console.log(armee);
 }
 
 
-
-
+document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
+document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
+document.getElementById('btnClickManuelBois').onclick = ClickManuelBois;		// Cliquer manuellement sur Bois
+document.getElementById('upgradeClickBois').onclick = UpgradeBois; 				// Améliorer le click du bois
+document.getElementById('autoClickPierre').onclick = MinePierre; 				// Acheter un Auto clicker
+document.getElementById('btnClickManuelPierre').onclick = ClickManuelPierre;	// Cliquer manuellement sur Pierre
+document.getElementById('upgradeClickPierre').onclick = UpgradePierre;			// Améliorer le click de la pierre
+document.getElementById('batimentSoldat').onclick = construireCaserne 			// construire une caserne
+document.getElementById('batimentDefense').onclick = construireBatimentDefense 	// construire la défense	
 
 Affichage();		// Affichage

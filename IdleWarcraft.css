@@ -24,7 +24,7 @@ body {
 
 #jeu {	/* Map du jeu */
 	position: absolute;
-	background-color: white;
+	background-image: url('./Images/map.png');
 	margin-top: 40px;
 	left: 249px;
 	display: grid;
