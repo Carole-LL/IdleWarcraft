@@ -38,7 +38,7 @@ var armee=0;
 
 // Fonction cliquer sur une div
 function checkDiv(e) {
-	if (e.target.classList.contains("wood"))		// Vérifie si la div est du Bois
+	if (e.target.classList.contains("wood"))		// Vérifie si la div est du bois
 		ClickManuelBois();
 	else if (e.target.classList.contains("rock"))	// Vérifie si la div est de la Pierre
 		ClickManuelPierre();
@@ -52,13 +52,11 @@ function Affichage() {
 	document.getElementById('nbClickBois').innerHTML = 'Bois '+ressourceBois;
 	document.getElementById('autoClickBois').innerHTML = 'Acheter clicker auto  Bois$'+PrixBatimentBucheron+'clicks$';
 	document.getElementById('clickerAutoBois').innerHTML = 'Nombre de bucherons (1 click/s): '+autoClickBois;
-	document.getElementById('btnClickManuelBois').innerHTML = clickBois+' $clicks$ Bois';
 	document.getElementById('upgradeClickBois').innerHTML = 'Améliorer clicks Bois $'+priceClickBoisUpgrade+'clicks$';
 	// Pierre 
 	document.getElementById('nbClickPierre').innerHTML = 'Pierre '+ressourcePierre;
 	document.getElementById('autoClickPierre').innerHTML = 'Acheter clicker auto Pierre $'+PrixBatimentMine+'clicks$';
 	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs (1 click/s): '+autoClickPierre;
-	document.getElementById('btnClickManuelPierre').innerHTML = clickPierre+' $clicks$ Pierre';
 	document.getElementById('upgradeClickPierre').innerHTML = 'Améliorer clicks Pierre'+priceClickPierreUpgrade+'clicks$';
 }
 
