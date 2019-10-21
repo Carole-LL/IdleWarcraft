@@ -9,7 +9,7 @@ var autoClickPierre = 0;		// Nombre de clicker auto
 var priceClickBoisUpgrade = 75;	// Prix de l'amélioration du click
 var priceClickPierreUpgrade = 75;	// Prix de l'amélioration du click
 var ressourceOr;
-var soldat;
+var soldat= 0;
 var batimentBase;
 var batimentCaserne;
 var batimentMine; 
@@ -18,6 +18,10 @@ var piege;
 var ennemi;
 var caserne = document.getElementById('y5x4'); // correspond à la div de la construction caserne
 var batimentDefense = document.getElementById('y2x11');//correspond à la div du construction batiment de défense
+var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
+var caseSoldat = document.getElementById('y1x1');
+var caserneConstruite=false;
+var armee=0;
 
 
 
@@ -148,44 +152,68 @@ document.getElementById('upgradeClickPierre').onclick = UpgradePierre; // Améli
 document.getElementById('batimentSoldat').onclick = construireCaserne // construire une caserne
 document.getElementById('batimentDefense').onclick = construireBatimentDefense // construire la défense
 
+
 Affichage();		// Affichage
 // Fin Compteur et Bonus PIERRE.
 
 
 
 
-// Construire Batiment Soldat
+// Construire Batiment Soldat (y5x4)
 
 function construireCaserne() {
 	if (ressourceBois > 5 && ressourcePierre > 5) {
-		caserne.style.backgroundColor = "Yellow";
+		caserne.style.backgroundImage = "url(./Images/Orc_Barracks.gif)";
+		caserneConstruite=true;
 	}
-	else alert ( "Augmentez vos ressources Bois et Pierre");
+	else alert ( "Augmenter vos ressources Bois et Pierre");
 }
 
 // fin Construire Batiment Soldat
 
 
-// Construire Batiment Défense
+// Construire Batiment Défense (y2x11)
 
 function construireBatimentDefense () {
 	if (ressourceBois > 20 && ressourcePierre > 20) {
-		batimentDefense.style.backgroundColor = "green";
+		batimentDefense.style.backgroundImage = "url(./Images/Orc_Blacksmith.gif)";
 	}
-	else alert ("Augmentez vos ressources Bois et Pierre");
+	else alert ("Augmenter vos ressources Bois et Pierre");
 }
 
 
 
 // fin Construire Batiment Soldat
 
-
-document.getElementById('jeu').onclick = checkDiv;				// Cliquer sur une div pour obtenir son ID
-document.getElementById('autoClickPierre').onclick = MinePierre; 		// Acheter un Auto clicker
-document.getElementById('btnClickManuelPierre').onclick = ClickManuelPierre;			// Cliquer manuellement
-document.getElementById('upgradeClickPierre').onclick = UpgradePierre; // Améliorer le click
+// fonction Bouton Soldat
 
 
-Affichage();		// Affichage
+creerSoldat.onclick=boutonSoldat;
+
+function boutonSoldat(){
+	if (caserneConstruite == true){
+		creationSoldat();
+		}		
+		else {
+			alert("vous n'avez pas construit la caserne");
+		}
+		
+}
+
+
+function creationSoldat(){
+ if (ressourceBois>3 && ressourcePierre>3){
+  armee = armee+1;
+  ressourceBois= ressourceBois-4;
+  ressourcePierre=ressourcePierre-4;
+  Affichage();
+}
+	else {
+	alert("Il vous faut des ressources supplémentaires");
+	}
+console.log(armee);
+}
+
+
 
 
