@@ -185,11 +185,15 @@ function construireBatimentDefense () {
 
 // fin Construire Batiment Soldat
 
+
+
+
+
 // fonction Bouton Soldat
 
 
 creerSoldat.onclick=boutonSoldat;
-
+// condition pour pouvoir avoir des soldats (si la caserne est construite)
 function boutonSoldat(){
 	if (caserneConstruite == true){
 		creationSoldat();
@@ -200,7 +204,7 @@ function boutonSoldat(){
 		
 }
 
-
+// fonction création des soldats, conditions de ressources, diminution des ressources si on crée des soldats
 function creationSoldat(){
  if (ressourceBois>3 && ressourcePierre>3){
   armee = armee+1;
