@@ -29,6 +29,8 @@ function checkDiv(e) {
 // Fonction mise à jour de l'affichage des compteurs Pour le bois et pierre.
 function Affichage() {
 	// Bois 
+
+
 	document.getElementById('nbClickBois').innerHTML = 'Compte de $clicks$: Bois '+ressourceBois;
 	document.getElementById('autoClickBois').innerHTML = 'Acheter clicker auto  Bois$'+PrixBatimentBucheron+'clicks$';
 	document.getElementById('clickerAutoBois').innerHTML = 'Nombre de clicker auto Bois (1 click/s): '+autoClickBois;
@@ -38,6 +40,7 @@ function Affichage() {
 	document.getElementById('nbClickPierre').innerHTML = 'Compte de $clicks$: Pierre '+ressourcePierre;
 	document.getElementById('autoClickPierre').innerHTML = 'Acheter clicker auto Pierre $'+PrixBatimentMine+'clicks$';
 	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de clicker auto Pierre (1 click/s): '+autoClickPierre;
+
 	document.getElementById('btnClickManuelPierre').innerHTML = clickPierre+' $clicks$ Pierre';
 	document.getElementById('upgradeClickPierre').innerHTML = 'Améliorer clicks Pierre'+priceClickPierreUpgrade+'clicks$';
 }
@@ -46,7 +49,6 @@ function Affichage() {
 
 
 //Compteur et Bonus BOIS.
-
 
 
 
@@ -92,6 +94,7 @@ document.getElementById('upgradeClickBois').onclick = UpgradeBois; // Améliorer
 Affichage();		// Affichage
 
 // Fin Compteur et Bonus BOIS.
+
 
 
 
@@ -173,6 +176,16 @@ function construireBatimentDefense () {
 }
 
 
+
 // fin Construire Batiment Soldat
 
-	// body...
+
+document.getElementById('jeu').onclick = checkDiv;				// Cliquer sur une div pour obtenir son ID
+document.getElementById('autoClickPierre').onclick = MinePierre; 		// Acheter un Auto clicker
+document.getElementById('btnClickManuelPierre').onclick = ClickManuelPierre;			// Cliquer manuellement
+document.getElementById('upgradeClickPierre').onclick = UpgradePierre; // Améliorer le click
+
+
+Affichage();		// Affichage
+
+

@@ -5,28 +5,48 @@ html, body {
 }
 
 body {
+	background-color: grey;
+}
+
+#Titre {
+	width: 100%;
+	height: 50px;
+	color: red;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 40px;
+	display: flex;
+	justify-content: center;
+	background-image: url(./Images/TexTitre.jpg);
+	background-size: cover;
 }
 
 #jeu {	/* Map du jeu */
 	position: absolute;
-	left: 250px;
+	background-color: white;
+	margin-top: 40px;
+	left: 249px;
 	display: grid;
 	grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px;
 	grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
 }
 
 #HudBonus {
-	border: solid black;
+	margin-top: 40px;
+	
 	position: absolute;
 	left: 0;
 	height: 900px;
 	width: 245px;
 	display: flex;
 	flex-wrap: wrap;
+	background-image: url(./Images/TexRock.jpg);
+	background-size: cover;
 }
 
 #HautHudBonus {
-	border: blue solid;
+	
 	height: 200px;
 	width: 100%;
 	justify-content: center;
@@ -37,7 +57,7 @@ body {
 }
 
 #BasHudBonus {
-	border: green solid;
+	
 	display: flex;
 	width: 100%;
 	height: 690px;
@@ -46,80 +66,84 @@ body {
 	}
 
 #ItemBonus1 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 #ItemBonus2 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 #ItemBonus3 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 #ItemBonus4 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 #ItemBonus5 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 #ItemBonus6 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 #ItemBonus7 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 #ItemBonus8 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 #ItemBonus9 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 #ItemBonus10 {
-	border: solid purple;
+	
 	width: 100%;
 	height: 60px;
 
 }
 
 #HudRessources {
-	border: solid red;
+	margin-top: 40px;
+	
 	position: absolute;
 	right: 0;
 	height: 900px;
 	width: 250px;
 	display: flex;
 	flex-wrap: wrap;
+	background-image: url(./Images/TexDirt.jpg);
+	background-size: cover;
 }
 
 #HautHudRessources {
-	border: blue solid;
+	
 	height: 200px;
 	width: 100%;
+	text-align: center;
 	justify-content: center;
 	align-items: center;
 	font-size: 40px;
@@ -128,7 +152,7 @@ body {
 }
 
 #BasHudRessources {
-	border: green solid;
+	
 	display: flex;
 	width: 100%;
 	height: 690px;
@@ -136,31 +160,35 @@ body {
 }
 
 #Ressource1 {
-	border: orange solid;
+	
 	display: flex;
 	width: 100%;
 	height: 150px;
+	flex-wrap: wrap;
 
 }
 
 #Ressource2 {
-	border: orange solid;
+	
 	display: flex;
 	width: 100%;
 	height: 150px;
+	flex-wrap: wrap;
 	
 }
 
 #Ressource3 {
-	border: orange solid;
+	
 	display: flex;
 	width: 100%;
 	height: 150px;
+	flex-wrap: wrap;
 	
 }
 
 #jeu div { /* Border temporaire pour déterminer les divs */
 	border: 1px solid;
+
 }
 
 .boutons { /* Boutons d'améliorations - achats */
