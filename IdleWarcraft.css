@@ -197,12 +197,18 @@ body {
 .infos { /* Texte d'information des compteurs */
 }
 
-#btnClickManuelBois { /* Le bouton principal Clicker */
+#btnClickManuelBois { /* Le bouton principal Clicker Bois */
 
 }
 
 #btnClickManuelBois:hover { /* Lorque la souris passe dessus */
 }
+
+.boutonspierre {/*position des boutons Pierre */
+position: absolute;
+padding-left: 0;
+}
+
 
 /* Liste ID CSS*/
 
@@ -279,7 +285,8 @@ body {
 
 }
 #y2x11 {
-
+/* test couleur Placement batiment défense y2x11*/
+ background-color: purple;
 }
 #y2x12 {
 
@@ -383,9 +390,11 @@ body {
 #y5x3  {
 
 }
-#y5x4  {
+
+#y5x4  { /* test couleur Placement batiment soldat y5x4*/
 
 }
+
 #y5x5  {
 
 }
@@ -584,3 +593,4 @@ body {
 #y9x14 {
 
 }
+
