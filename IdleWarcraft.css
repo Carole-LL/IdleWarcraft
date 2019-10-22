@@ -7,6 +7,7 @@ html, body {
 @font-face {	/* Charge la police */
 	font-family: "LifeCraft_Font_0";
 	src: url('./fonts/LifeCraft_Font_0.ttf');
+
 }
 
 
@@ -28,6 +29,7 @@ body {
 	font-family: 'Josefin Sans', sans-serif;
 	background-color: grey;
 	margin: 0;
+	font-size: 20px;
 
 }
 
@@ -344,7 +346,7 @@ padding-top: 5px;
 }
 
 #jeu div { /* Border temporaire pour déterminer les divs */
-	border: 1px solid;
+	
 
 }
 
