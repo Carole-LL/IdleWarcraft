@@ -16,6 +16,7 @@ var batimentMine;
 var rempart;
 var piege;
 var ennemi = 0; //ennemi de base 
+var divEnnemi = document.getElementById('y3x2'); // emplacement des ennemies de base
 var caserne = document.getElementById('y6x6'); // correspond à la div de la construction caserne
 var batimentDefense = document.getElementById('y5x7');//correspond à la div du construction batiment de défense
 var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
@@ -49,12 +50,22 @@ function checkDiv(e) {
 		ClickManuelBois();
 	else if (e.target.classList.contains("rock"))	// Vérifie si la div est de la Pierre
 		ClickManuelPierre();
+	else if (e.target.contains(divEnnemi)) {
+		detruireEnnemi();
+	}
 	else
 		alert(e.target.id);
 }
 
 // Fonction mise à jour de l'affichage des compteurs Pour le bois et pierre.
 function Affichage() {
+
+	if (ressourcePierre<1 && ressourceBois<1) {
+		ressourcePierre=0;
+		ressourceBois=0;
+		
+	}
+
 	// Bois 
 	document.getElementById('nbClickBois').innerHTML = 'Bois '+ressourceBois;
 	document.getElementById('autoClickBois').innerHTML = 'Acheter clicker auto  Bois$'+PrixBatimentBucheron+'clicks$';
@@ -67,6 +78,10 @@ function Affichage() {
 	document.getElementById('upgradeClickPierre').innerHTML = 'Améliorer clicks Pierre'+priceClickPierreUpgrade+'clicks$';
 	//soldat
 	document.getElementById('nbSoldat').innerHTML = 'Nombre de guerriers: '+armee;
+	//ennemi
+	document.getElementById('afficheEnnemi').innerHTML = "Nombre d'ennemies: "+ennemi;
+
+	
 }
 
 
@@ -150,6 +165,7 @@ function MinePierre() {
 		PrixBatimentMine = parseInt(PrixBatimentMine*1.5);
 		Affichage();
 		setInterval(ClickManuelPierre, 1000);
+
 	}
 	else {
 		alert('Pas assez de $clicks$ !');
@@ -198,9 +214,6 @@ function construireBatimentDefense () {
 
 
 
-
-
-
 // fonction Bouton Soldat
 
 creerSoldat.onclick=boutonSoldat;
@@ -229,6 +242,64 @@ function creationSoldat(){
 console.log(armee);
 }
 
+/* l'ennemi enleve de la vie*/
+
+function enleverVieArmee () {
+	vieArmee = vieArmee-ennemi;
+}
+
+/* l'ennemi enleve des ressources*/
+
+function enleverRessources() {
+	
+	if (ressourcePierre>1 && ressourceBois>1) {
+	ressourceBois=ressourceBois-ennemi;
+	ressourcePierre=ressourcePierre-ennemi;
+	Affichage();
+	}
+
+}
+
+//creation ennemies de base
+
+function ennemiNbRandom() {
+
+	divEnnemi.style.backgroundImage="url(./Images/ennemi.png)";
+	ennemi = Math.floor((Math.random() * 20) + 1);
+	console.log(ennemi)
+		
+		if (armee>0) {
+			setInterval(enleverVieArmee, 2000);
+		}
+
+		else {
+			setInterval(enleverRessources, 4000)
+		}
+Affichage();
+}
+
+/* detruire ennemies*/
+
+function detruireEnnemi() {
+	
+	if (ennemi>0) {
+	ennemi= ennemi-1;
+	}
+	if (ennemi==0) {
+		divEnnemi.style.backgroundImage="none";
+	}
+Affichage();
+}
+
+
+
+
+
+
+
+
+
+
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
@@ -239,10 +310,3 @@ document.getElementById('batimentSoldat').onclick = construireCaserne 			// cons
 document.getElementById('batimentDefense').onclick = construireBatimentDefense 	// construire la défense	
 
 Affichage();		// Affichage
-
-
-function ennemiNbRandom() {
-	ennemi = Math.floor((Math.random() * 20) + 1);
-console.log(ennemi)
-}
-ennemiNbRandom();
