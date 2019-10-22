@@ -19,11 +19,10 @@ var ennemi = 0; //ennemi de base
 var caserne = document.getElementById('y6x6'); // correspond à la div de la construction caserne
 var batimentDefense = document.getElementById('y5x7');//correspond à la div du construction batiment de défense
 var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
-var caseSoldat = document.getElementById('y1x1');
+var caseSoldat = document.getElementById('y5x5');
 var caserneConstruite=false;
 var armee=0;
-
-
+var vieArmee=0; //incremente les pv selon la création ou la perte de soldat
 
 
 // Sons
@@ -66,7 +65,11 @@ function Affichage() {
 	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs (1 click/s): '+autoClickPierre;
 	document.getElementById('upgradeClickPierre').innerHTML = 'Améliorer clicks Pierre'+priceClickPierreUpgrade+'clicks$';
 	//soldat
-	document.getElementById('nbSoldat').innerHTML = 'Nombre de guerriers: '+armee;
+	document.getElementById('nbSoldat').innerHTML = 'Nombre de guerriers: '+armee+"</br> Vie de l'armée: "+vieArmee;
+	affichageArmee();
+	//Armée vie
+
+
 }
 
 
@@ -189,15 +192,12 @@ function construireBatimentDefense () {
 		ressourcePierre = ressourcePierre-4;
 		Affichage();
 		bruitConstruction();
+
 	}
 	else alert ("Augmenter vos ressources Bois et Pierre");
 }
 
 // fin Construire Batiment Soldat
-
-
-
-
 
 
 
@@ -221,13 +221,31 @@ function creationSoldat(){
   armee = armee+1;
   ressourceBois= ressourceBois-4;
   ressourcePierre=ressourcePierre-4;
+  vieArmee = vieArmee + 20;
   Affichage();
+  affichageArmee();
 }
 	else {
 	alert("Il vous faut des ressources supplémentaires");
 	}
 console.log(armee);
 }
+
+/* fin création soldat */
+
+/*  Affichage armée */
+
+function affichageArmee() {
+
+	if (armee > 0) {
+	caseSoldat.style.backgroundImage="url(./Images/peon.png)";
+	}
+		else if (armee<1){ 
+		caseSoldat.style.backgroundImage="none";
+
+		} 						
+}
+setInterval(affichageArmee, 2000); /* raffraichi l'affichage de la case armée */
 
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
