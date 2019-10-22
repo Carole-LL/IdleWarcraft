@@ -68,15 +68,15 @@ function Affichage() {
 
 
 	// Bois 
-	document.getElementById('nbClickBois').innerHTML = 'Bois '+ressourceBois;
-	document.getElementById('autoClickBois').innerHTML = 'Acheter clicker auto  Bois$'+PrixBatimentBucheron+'clicks$';
-	document.getElementById('clickerAutoBois').innerHTML = 'Nombre de bucherons (1 click/s): '+autoClickBois;
-	document.getElementById('upgradeClickBois').innerHTML = 'Améliorer Bois ' +priceClickBoisUpgrade+'clicks$';
+	document.getElementById('nbClickBois').innerHTML = 'Bois: '+ressourceBois;
+	document.getElementById('autoClickBois').innerHTML = 'Acheter clicker auto  Bois</br>'+PrixBatimentBucheron+'$clicks$';
+	document.getElementById('clickerAutoBois').innerHTML = 'Nombre de bucherons: '+autoClickBois+"</br>(1 click/s)";
+	document.getElementById('upgradeClickBois').innerHTML = 'Améliorer Bois </br>' +priceClickBoisUpgrade+'$clicks$';
 	// Pierre 
-	document.getElementById('nbClickPierre').innerHTML = 'Pierre '+ressourcePierre;
-	document.getElementById('autoClickPierre').innerHTML = 'Acheter clicker auto Pierre $'+PrixBatimentMine+'clicks$';
-	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs (1 click/s): '+autoClickPierre;
-	document.getElementById('upgradeClickPierre').innerHTML = 'Améliorer clicks Pierre'+priceClickPierreUpgrade+'clicks$';
+	document.getElementById('nbClickPierre').innerHTML = 'Pierre: '+ressourcePierre;
+	document.getElementById('autoClickPierre').innerHTML = 'Acheter clicker auto Pierre</br>'+PrixBatimentMine+'$clicks$';
+	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs: '+autoClickPierre+"</br>(1 click/s)";
+	document.getElementById('upgradeClickPierre').innerHTML = 'Améliorer clicks Pierre</br>'+priceClickPierreUpgrade+'$clicks$';
 	//soldat
   document.getElementById('nbSoldat').innerHTML = 'Nombre de guerriers: '+armee;
 	affichageArmee();

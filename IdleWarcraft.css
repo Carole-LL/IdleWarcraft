@@ -25,6 +25,7 @@ html, body {
 }
 
 body {
+	font-family: 'Josefin Sans', sans-serif;
 	background-color: grey;
 	margin: 0;
 
@@ -91,12 +92,25 @@ h2 {	/* Titre Ressources et Bonus */
 }
 
 #BasHudBonus {
-	padding-left: 6px;
+
+	padding-left: 30px;
 	display: flex;
 	width: 100%;
 	height: 690px;
 	flex-wrap: wrap;
-	}
+
+		}
+
+
+#BasHudBonus button {
+
+background-color: transparent;
+border: none;
+color: white;
+font-size: 0.9em;
+padding-top: 5px;
+
+}
 
 #ItemBonus1 {
 	
@@ -228,16 +242,21 @@ h2 {	/* Titre Ressources et Bonus */
 }
 
 #BasHudRessources {
-	padding-left: 5px;
+
+	padding-right:18px;
 	display: flex;
+	flex-wrap: wrap;
 	width: 100%;
 	height: 690px;
-	flex-wrap: wrap;
+	
 }
 
 #Ressource1 {
+
 	padding-left: 15px;
+	padding-top: 15px;
 	color: white;
+	font-size: 0.9em;
 	display: flex;
 	width: 100%;
 	height: 60px;
@@ -248,20 +267,26 @@ h2 {	/* Titre Ressources et Bonus */
 }
 
 #Ressource2 {
+
 	padding-left: 15px;
+	padding-top: 15px;
 	color: white;
+	font-size: 0.9em;
 	display: flex;
 	width: 100%;
 	height: 60px;
 	flex-wrap: wrap;
 	background-image: url(./Images/TexBtn.png);
 	background-size: cover;
-	
 }
 
 #Ressource3 {
+
 	padding-left: 15px;
+	padding-top: 4px;
+	padding-bottom: 6px;
 	color: white;
+	font-size: 0.9em;
 	display: flex;
 	width: 100%;
 	height: 60px;
@@ -272,8 +297,12 @@ h2 {	/* Titre Ressources et Bonus */
 }
 
 #Ressource4 {
+
 	padding-left: 15px;
+	padding-top: 4px;
+	padding-bottom: 6px;
 	color: white;
+	font-size: 0.9em;
 	display: flex;
 	width: 100%;
 	height: 60px;
@@ -284,8 +313,12 @@ h2 {	/* Titre Ressources et Bonus */
 }
 
 #Ressource5 {
+
 	padding-left: 15px;
+	padding-top: 4px;
+	padding-bottom: 6px;
 	color: white;
+	font-size: 0.9em;
 	display: flex;
 	width: 100%;
 	height: 60px;
@@ -296,8 +329,11 @@ h2 {	/* Titre Ressources et Bonus */
 }
 
 #Ressource6 {
+
 	padding-left: 15px;
+	padding-top: 15px;
 	color: white;
+	font-size: 0.9em;
 	display: flex;
 	width: 100%;
 	height: 60px;
@@ -313,6 +349,8 @@ h2 {	/* Titre Ressources et Bonus */
 }
 
 .boutons { /* Boutons d'améliorations - achats */
+
+
 }
 
 .infos { /* Texte d'information des compteurs */
