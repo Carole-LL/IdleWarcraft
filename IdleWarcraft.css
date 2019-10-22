@@ -4,11 +4,11 @@ html, body {
 	width: 100%;
 }
 
-body {
-	background-color: grey;
+@font-face {	/* Charge la police */
+	font-family: "LifeCraft_Font_0";
+	src: url('./fonts/LifeCraft_Font_0.ttf');
 }
 
-}
 
 #Titre {
 	width: 100%;
@@ -24,40 +24,70 @@ body {
 	background-size: cover;
 }
 
+body {
+	background-color: grey;
+	margin: 0;
+
+}
+
 #jeu {	/* Map du jeu */
 	position: absolute;
 	background-image: url('./Images/map.png');
-	margin-top: 40px;
-	left: 249px;
+	left: 14%;
 	display: grid;
 	grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px;
 	grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
 }
 
+h2 {	/* Titre Ressources et Bonus */
+	background: linear-gradient(to top, #ededf0 0%, #181b1f 35%, #ededf0 70%, #091014 80%, #181b1f 85%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 50px;
+} 
+
+#separationGauche { /* Barre de séparation gauche entre HUD et Map */
+	background-image: url('./Images/separationG.png');
+	position: absolute;
+	left: 13%;
+	width: 28px;
+	height: 900px;
+	z-index: 999;
+}
+
+#separationDroite { /* Barre de séparation droite entre HUD et Map */
+	background-image: url('./Images/separationD.png');
+	position: absolute;
+	right: 13%;
+	width: 28px;
+	height: 900px;
+	z-index: 999;
+}
+
 #HudBonus {
-	margin-top: 40px;
 	
 	position: absolute;
 	left: 0;
 	height: 900px;
-	width: 253px;
+	width: 14%;
 	display: flex;
 	flex-wrap: wrap;
-	background-image: url(./Images/TexRock.jpg);
+	background-image: url(./Images/hudG.png);
 	background-size: cover;
 	
 }
 
 #HautHudBonus {
 	
-	height: 200px;
+	height: 100px;
 	width: 100%;
 	justify-content: center;
 	align-items: center;
+	font-family: "LifeCraft_Font_0";
 	font-size: 40px;
 	display: flex;
 	flex-wrap: wrap;
-	content: url(./Images/TitreW.png);
+	margin-top: 100px;
 }
 
 #BasHudBonus {
@@ -66,8 +96,6 @@ body {
 	width: 100%;
 	height: 690px;
 	flex-wrap: wrap;
-
-	
 	}
 
 #ItemBonus1 {
@@ -91,7 +119,7 @@ body {
 
 }
 #ItemBonus3 {
-		width: 100%;
+	width: 100%;
 	height: 60px;
 	background-image: url(./Images/TexBtn.png);
 	background-size: cover;
@@ -172,28 +200,31 @@ body {
 }
 
 #HudRessources {
-	margin-top: 40px;
 	
 	position: absolute;
 	right: 0;
 	height: 900px;
-	width: 250px;
+	width: 13%;
 	display: flex;
 	flex-wrap: wrap;
-	background-image: url(./Images/TexRock.jpg);
+	background-image: url(./Images/hudD.png);
 	background-size: cover;
 }
 
 #HautHudRessources {
 	
-	height: 200px;
+	height: 100px;
 	width: 100%;
 	text-align: center;
 	justify-content: center;
 	align-items: center;
+	font-family: "LifeCraft_Font_0";
 	font-size: 40px;
+	color: white;
 	display: flex;
 	flex-wrap: wrap;
+	margin-right: 10px;
+	margin-top: 100px;
 }
 
 #BasHudRessources {
