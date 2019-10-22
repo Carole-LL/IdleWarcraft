@@ -24,7 +24,7 @@ var caseSoldat = document.getElementById('y5x5');
 var caserneConstruite=false;
 var armee=0;
 var vieArmee=0; //incremente les pv selon la création ou la perte de soldat
-
+var tuerArmee;
 
 // Sons
 
@@ -59,11 +59,13 @@ function checkDiv(e) {
 // Fonction mise à jour de l'affichage des compteurs Pour le bois et pierre.
 function Affichage() {
 
-	if (ressourcePierre<1 && ressourceBois<1) {
+	if (ressourcePierre<1){
 		ressourcePierre=0;
-		ressourceBois=0;
-		
 	}
+	if (ressourceBois<1) {
+		ressourceBois=0;
+	}	
+
 
 	// Bois 
 	document.getElementById('nbClickBois').innerHTML = 'Bois '+ressourceBois;
@@ -76,7 +78,7 @@ function Affichage() {
 	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs (1 click/s): '+autoClickPierre;
 	document.getElementById('upgradeClickPierre').innerHTML = 'Améliorer clicks Pierre'+priceClickPierreUpgrade+'clicks$';
 	//soldat
-  document.getElementById('nbSoldat').innerHTML = 'Nombre de guerriers: '+armee+"</br> Vie de l'armée: "+vieArmee;
+  document.getElementById('nbSoldat').innerHTML = 'Nombre de guerriers: '+armee;
 	affichageArmee();
 	//ennemi
 	document.getElementById('afficheEnnemi').innerHTML = "Nombre d'ennemies: "+ennemi;
@@ -234,7 +236,6 @@ function creationSoldat(){
   armee = armee+1;
   ressourceBois= ressourceBois-4;
   ressourcePierre=ressourcePierre-4;
-  vieArmee = vieArmee + 20;
   Affichage();
   affichageArmee();
 }
@@ -245,22 +246,39 @@ console.log(armee);
 }
 
 
-/* l'ennemi enleve de la vie*/
+/* l'ennemi enleve de la vie et tue des soldats*/
 
 function enleverVieArmee () {
-	vieArmee = vieArmee-ennemi;
+
+	if (armee>0) {}
+	armee=armee-ennemi;
+
+	if (armee<1) {
+	
+	armee=0;
+	}
+
+	Affichage();
 }
+
+/* fin création soldat */
 
 /* l'ennemi enleve des ressources*/
 
-function enleverRessources() {
+function enleverRessourcesPierre() {
 	
-	if (ressourcePierre>1 && ressourceBois>1) {
-	ressourceBois=ressourceBois-ennemi;
+	if (ressourcePierre>1) {
 	ressourcePierre=ressourcePierre-ennemi;
 	Affichage();
 	}
+}
 
+
+function enleverRessourcesBois() {
+	if (ressourceBois>1) {
+	ressourceBois=ressourceBois-ennemi;
+	Affichage();
+	}
 }
 
 //creation ennemies de base
@@ -272,11 +290,12 @@ function ennemiNbRandom() {
 	console.log(ennemi)
 		
 		if (armee>0) {
-			setInterval(enleverVieArmee, 2000);
+			setInterval(enleverVieArmee, 6000);
 		}
 
 		else {
-			setInterval(enleverRessources, 4000)
+			setInterval(enleverRessourcesPierre, 2000);
+			setInterval(enleverRessourcesBois, 2000);
 		}
 Affichage();
 }
@@ -296,14 +315,6 @@ Affichage();
 
 
 
-
-
-
-
-
-
-
-/* fin création soldat */
 
 /*  Affichage armée */
 
