@@ -43,6 +43,7 @@ body {
 	flex-wrap: wrap;
 	background-image: url(./Images/TexRock.jpg);
 	background-size: cover;
+	
 }
 
 #HautHudBonus {
@@ -54,6 +55,7 @@ body {
 	font-size: 40px;
 	display: flex;
 	flex-wrap: wrap;
+	content: url(./Images/TitreW.png);
 }
 
 #BasHudBonus {
