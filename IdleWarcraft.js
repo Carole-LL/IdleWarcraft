@@ -59,12 +59,14 @@ function Affichage() {
 	document.getElementById('nbClickBois').innerHTML = 'Bois '+ressourceBois;
 	document.getElementById('autoClickBois').innerHTML = 'Acheter clicker auto  Bois$'+PrixBatimentBucheron+'clicks$';
 	document.getElementById('clickerAutoBois').innerHTML = 'Nombre de bucherons (1 click/s): '+autoClickBois;
-	document.getElementById('upgradeClickBois').innerHTML = 'Améliorer clicks Bois $'+priceClickBoisUpgrade+'clicks$';
+	document.getElementById('upgradeClickBois').innerHTML = 'Améliorer Bois ' +priceClickBoisUpgrade+'clicks$';
 	// Pierre 
 	document.getElementById('nbClickPierre').innerHTML = 'Pierre '+ressourcePierre;
 	document.getElementById('autoClickPierre').innerHTML = 'Acheter clicker auto Pierre $'+PrixBatimentMine+'clicks$';
 	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs (1 click/s): '+autoClickPierre;
 	document.getElementById('upgradeClickPierre').innerHTML = 'Améliorer clicks Pierre'+priceClickPierreUpgrade+'clicks$';
+	//soldat
+	document.getElementById('nbSoldat').innerHTML = 'Nombre de guerriers: '+armee;
 }
 
 
@@ -195,10 +197,14 @@ function construireBatimentDefense () {
 
 
 
+
+
+
+
 // fonction Bouton Soldat
 
 creerSoldat.onclick=boutonSoldat;
-
+// condition pour pouvoir avoir des soldats (si la caserne est construite)
 function boutonSoldat(){
 	if (caserneConstruite == true){
 		creationSoldat();
@@ -209,7 +215,7 @@ function boutonSoldat(){
 		
 }
 
-
+// fonction création des soldats, conditions de ressources, diminution des ressources si on crée des soldats
 function creationSoldat(){
  if (ressourceBois>3 && ressourcePierre>3){
   armee = armee+1;
