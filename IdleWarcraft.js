@@ -244,11 +244,15 @@ function construireBatimentDefense () {
 function construireBatimentBucheron	(){
 	
 		batimentBucheron.style.backgroundImage ="url(./Images/Orc_Lumbermill.gif)";
+		bruitConstruction();
+		Affichage();
 		
 	}
 /* construire batiment bucheron (y2x11) */
 function construireBatimentMineur(){
 	batimentMine.style.backgroundImage ="url(./Images/Orc_Mine.gif)";
+	bruitConstruction();
+	Affichage();
 }
 
 

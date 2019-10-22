@@ -30,6 +30,7 @@ body {
 	background-color: grey;
 	margin: 0;
 	font-size: 20px;
+	cursor: url(./Images/cursor1.png),pointer;
 
 }
 
