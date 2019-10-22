@@ -160,7 +160,7 @@ function MinePierre() {
 
 
 
-// Construire Batiment Soldat (y5x4)
+// Construire Batiment Soldat (y6x6)
 
 function construireCaserne() {
 	if (ressourceBois > 5 && ressourcePierre > 5) {
