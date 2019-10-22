@@ -12,7 +12,8 @@ var ressourceOr;
 var soldat= 0;
 var batimentBase;
 var batimentCaserne;
-var batimentMine; 
+var batimentMine = document.getElementById ('y2x11'); // emplacement batiment mineur
+var batimentBucheron = document.getElementById('y7x11') // emplacement batiment bucheron
 var rempart;
 var piege;
 var ennemi = 0; //ennemi de base 
@@ -21,7 +22,7 @@ var caserne = document.getElementById('y6x6'); // correspond à la div de la con
 var batimentDefense = document.getElementById('y5x7');//correspond à la div du construction batiment de défense
 var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
 var caseSoldat = document.getElementById('y5x5');
-var caserneConstruite=false;
+var caserneConstruite=false; // 
 var armee=0;
 var vieArmee=0; //incremente les pv selon la création ou la perte de soldat
 var tuerArmee;
@@ -81,7 +82,7 @@ function Affichage() {
   document.getElementById('nbSoldat').innerHTML = 'Nombre de guerriers: '+armee;
 	affichageArmee();
 	//ennemi
-	document.getElementById('afficheEnnemi').innerHTML = "Nombre d'ennemies: "+ennemi;
+	document.getElementById('afficheEnnemi').innerHTML = "Nombre d'ennemis: "+ennemi;
 
 
 }
@@ -120,7 +121,9 @@ function CabaneBucheron() {
 		autoClickBois++;
 		PrixBatimentBucheron = parseInt(PrixBatimentBucheron*1.5);
 		Affichage();
+		construireBatimentBucheron();
 		setInterval(ClickManuelBois, 1000);
+		
 	}
 	else {
 		alert('Pas assez de $clicks$ !');
@@ -166,6 +169,7 @@ function MinePierre() {
 		autoClickPierre++;
 		PrixBatimentMine = parseInt(PrixBatimentMine*1.5);
 		Affichage();
+		construireBatimentMineur();
 		setInterval(ClickManuelPierre, 1000);
 
 	}
@@ -214,6 +218,16 @@ function construireBatimentDefense () {
 
 // fin Construire Batiment Soldat
 
+/* construire batiment bucheron (y7x11) */
+function construireBatimentBucheron	(){
+	
+		batimentBucheron.style.backgroundImage ="url(./Images/Orc_Lumbermill.gif)";
+		
+	}
+/* construire batiment bucheron (y2x11) */
+function construireBatimentMineur(){
+	batimentMine.style.backgroundImage ="url(./Images/Orc_Mine.gif)";
+}
 
 
 // fonction Bouton Soldat
