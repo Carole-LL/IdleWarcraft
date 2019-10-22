@@ -15,7 +15,7 @@ var batimentCaserne;
 var batimentMine; 
 var rempart;
 var piege;
-var ennemi;
+var ennemi = 0; //ennemi de base 
 var caserne = document.getElementById('y6x6'); // correspond à la div de la construction caserne
 var batimentDefense = document.getElementById('y5x7');//correspond à la div du construction batiment de défense
 var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
@@ -239,3 +239,10 @@ document.getElementById('batimentSoldat').onclick = construireCaserne 			// cons
 document.getElementById('batimentDefense').onclick = construireBatimentDefense 	// construire la défense	
 
 Affichage();		// Affichage
+
+
+function ennemiNbRandom() {
+	ennemi = Math.floor((Math.random() * 20) + 1);
+console.log(ennemi)
+}
+ennemiNbRandom();
