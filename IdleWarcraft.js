@@ -46,15 +46,36 @@ function bruitConstruction(){
 
 // Fonction cliquer sur une div
 function checkDiv(e) {
-	if (e.target.classList.contains("wood"))		// Vérifie si la div est du bois
+	if (e.target.classList.contains("wood")) {		// Vérifie si la div est du bois
 		ClickManuelBois();
-	else if (e.target.classList.contains("rock"))	// Vérifie si la div est de la Pierre
+				// Début Animation Bois cliqué 						
+				var newDiv = document.createElement("div");		// Créer une nouvelle div
+					document.body.insertBefore(newDiv, jeu);	// Insérer la nouvelle div avant "jeu"
+					newDiv.classList.add("woodAnim");			// Ajouter la class woodAnim (ce qui défini son aspect)
+					newDiv.style.left = e.pageX + 'px';			// Positionner en X la div selon le curseur du joueur
+					newDiv.style.top = e.pageY + 'px';			// Positionner en Y la div selon le curseur du joueur
+					newDiv.innerHTML = '<h5>+ '+clickBois+' Bois !</h5>';	// Ajoute le texte +X Bois 
+					var fading = setTimeout(function() { newDiv.remove(); }, 900); // Démarrer le timer pour supprimer la div
+					newDiv.className += " ressourceMove";		// Ajoute la class "ressourceMove", ce qui lance l'animation CSS
+	}
+	else if (e.target.classList.contains("rock")) {	// Vérifie si la div est de la Pierre
 		ClickManuelPierre();
+				// Début Animation Pierre cliqué 						
+				var newDiv = document.createElement("div");		// Créer une nouvelle div
+					document.body.insertBefore(newDiv, jeu);	// Insérer la nouvelle div avant "jeu"
+					newDiv.classList.add("rockAnim");			// Ajouter la class rockAnim (ce qui défini son aspect)
+					newDiv.style.left = e.pageX + 'px';			// Positionner en X la div selon le curseur du joueur
+					newDiv.style.top = e.pageY + 'px';			// Positionner en Y la div selon le curseur du joueur
+					newDiv.innerHTML = '<h5>+ '+clickPierre+' Pierre !</h5>';	// Ajoute le texte +X Pierre 
+					var fading = setTimeout(function() { newDiv.remove(); }, 900); // Démarrer le timer pour supprimer la div
+					newDiv.className += " ressourceMove";		// Ajoute la class "ressourceMove", ce qui lance l'animation CSS
+	}
 	else if (e.target.contains(divEnnemi)) {
 		detruireEnnemi();
 	}
-	else
+	else {
 		alert(e.target.id);
+	}
 }
 
 // Fonction mise à jour de l'affichage des compteurs Pour le bois et pierre.
@@ -93,6 +114,7 @@ function Affichage() {
 
 
 //Compteur et Bonus BOIS.
+
 
 // Fonction click manuel bois
 function ClickManuelBois() {

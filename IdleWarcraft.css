@@ -370,6 +370,50 @@ position: absolute;
 padding-left: 0;
 }
 
+h5 { /* Texte animation ajout Bois & Pierre */
+	font-size: 18px;
+	margin-top: -5px;
+}
+
+.woodAnim {
+	position: absolute;
+	z-index: 999;
+	height: 50px;
+	width: 100px;
+	background-image: url(./Images/wood.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
+	margin-top: -50px;
+	margin-left: -45px;
+	color: white;
+
+}
+
+.rockAnim {
+	position: absolute;
+	z-index: 999;
+	height: 50px;
+	width: 100px;
+	background-image: url(./Images/rock.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
+	margin-top: -50px;
+	margin-left: -45px;
+	color: white;
+}
+
+.ressourceMove {
+	animation-name: ressourceMove;
+	animation-duration: 1s;
+}
+
+@keyframes ressourceMove {
+	0% { transform: translateY(0px); }
+
+	100% { transform: translateY(-100px); }
+}
 
 /* Liste ID CSS*/
 
