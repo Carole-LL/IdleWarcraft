@@ -43,7 +43,7 @@ var murailles10 = document.getElementById('y5x3');	//emplacement murailles
 var murailles11 = document.getElementById('y6x3');	//emplacement murailles
 var murailles12 = document.getElementById('y7x3');	//emplacement murailles
 var murailles13 = document.getElementById('y9x2');//emplacement murailles
-var batimentDefense = document.getElementById('y5x7');//correspond à la div du construction batiment de défense
+var batimentDefense = document.getElementById('y5x7');//correspond à la div de la construction batiment de défense
 var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
 var caseSoldat = document.getElementById('y5x5');
 var caserneConstruite=false; //est ce que le batiment est construit
@@ -587,7 +587,17 @@ function tsunamiEvent(){
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/tsunami.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque TSUNAMI !!!! </strong></br><em>Cette vague détruit 50% de vos bâtiments</em>";
+	ressourceBois= parseint((ressourceBois-(ressourceBois *5/100)));
+	ressourcePierre=ressourcePierre/2;
+	armee= armee/2;
+	Affichage();
+	if (divEvents.style.display='block') {
+		setTimeout(function(){divEvents.style.display='none';}, 7000); 	
+		
+	}
 }
+
+
 
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
