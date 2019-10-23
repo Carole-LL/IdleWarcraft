@@ -19,15 +19,40 @@ var piege;
 var ennemi = 0; //ennemi de base 
 var divEnnemi = document.getElementById('y3x2'); // emplacement des ennemies de base
 var caserne = document.getElementById('y6x6'); // correspond à la div de la construction caserne
+var btDefense = false;                         //est ce que le batiment est construit
+var btMurailles = false;						//est ce que le batiment est construit
+var btCaserne = false;							//est ce que le batiment est construit
+var batimentDefenseGriser = document.getElementById('ItemBonus6');  //bouton griser
+var bucheronsGriser = document.getElementById('ItemBonus1');		//bouton griser
+var mineursGriser = document.getElementById('ItemBonus2');			//bouton griser
+var campBucheronGriser = document.getElementById('ItemBonus3');		//bouton griser
+var caserneGriser = document.getElementById('ItemBonus5');			//bouton griser
+var mineGriser = document.getElementById('ItemBonus4');				//bouton griser
+var guerriersGriser = document.getElementById('ItemBonus7');		//bouton griser
+var muraillesGriser = document.getElementById('ItemBonus8');		//bouton griser
+var murailles1 = document.getElementById('y2x7');  //emplacement murailles
+var murailles2 = document.getElementById('y2x6');	//emplacement murailles
+var murailles3 = document.getElementById('y3x5');	//emplacement murailles
+var murailles4 = document.getElementById('y4x3');	//emplacement murailles
+var murailles5 = document.getElementById('y8x2');	//emplacement murailles
+var murailles6 = document.getElementById('y3x6');	//emplacement murailles
+var murailles7 = document.getElementById('y4x5');	//emplacement murailles
+var murailles8 = document.getElementById('y8x3');	//emplacement murailles
+var murailles9 = document.getElementById('y4x4');	//emplacement murailles
+var murailles10 = document.getElementById('y5x3');	//emplacement murailles
+var murailles11 = document.getElementById('y6x3');	//emplacement murailles
+var murailles12 = document.getElementById('y7x3');	//emplacement murailles
+var murailles13 = document.getElementById('y9x2');//emplacement murailles
 var batimentDefense = document.getElementById('y5x7');//correspond à la div du construction batiment de défense
 var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
 var caseSoldat = document.getElementById('y5x5');
-var caserneConstruite=false; // 
-var armee=0;
+var caserneConstruite=false; //est ce que le batiment est construit
+var armee=0; //armee
 var vieArmee=0; //incremente les pv selon la création ou la perte de soldat
 var tuerArmee;
 var divEvents= document.getElementById('events');
-var divimgEvents=document.getElementById('imgEvents')
+var divimgEvents=document.getElementById('imgEvents');
+var btnMurailles = document.getElementById('murailles');
 
 
 // Sons
@@ -107,6 +132,91 @@ function Affichage() {
 	affichageArmee();
 	//ennemi
 	document.getElementById('afficheEnnemi').innerHTML = "Nombre d'ennemis: "+ennemi;
+	//muraille
+	document.getElementById('murailles').innerHTML = "Créer Murailles"
+	//batiments
+	document.getElementById('batimentSoldat').innerHTML = "Créer Caserne :</br>(5) de Bois / (5) de Pierre"
+	document.getElementById('batimentDefense').innerHTML = "Créer Centre de défense :</br>(20) de Bois / (20) de Pierre"
+	document.getElementById('newSoldat').innerHTML = "Créer Guerrié :</br>(4) de Bois / (4) de Pierre"
+	document.getElementById('murailles').innerHTML = "Créer Muraille :</br>(20) de Bois / (20) de Pierre"	
+
+
+
+		//boutons griser
+
+		if (ressourceBois < 5 && ressourcePierre < 5) {
+			batimentDefenseGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourceBois > 4 && ressourcePierre > 4) {
+			batimentDefenseGriser.style.opacity = '1';
+		}
+
+		if (ressourceBois <= priceClickBoisUpgrade) {
+			bucheronsGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourceBois >= priceClickBoisUpgrade) {
+			bucheronsGriser.style.opacity = '1';
+		}
+
+		if (ressourcePierre < priceClickPierreUpgrade) {
+			mineursGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourcePierre >= priceClickPierreUpgrade) {
+			mineursGriser.style.opacity = '1';
+		}
+
+		if (ressourceBois < PrixBatimentBucheron) {
+			campBucheronGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourceBois >= PrixBatimentBucheron) {
+			campBucheronGriser.style.opacity = '1';
+		}
+
+		if (ressourcePierre < PrixBatimentMine) {
+			mineGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourcePierre >= PrixBatimentMine) {
+			mineGriser.style.opacity = '1';
+		}
+
+		if (ressourceBois < 20 && ressourcePierre < 20) {
+			caserneGriser.style.opacity = '0.2'
+		}
+		else if (ressourceBois >= 20 && ressourcePierre >= 20 && caserneConstruite == false) {
+			caserneGriser.style.opacity = '1'
+		}
+		else if (caserneConstruite == true) {
+			caserneGriser.style.opacity = '0.2'
+		}
+		if (ressourcePierre<5 && ressourceBois<5) {
+			guerriersGriser.style.opacity = '0.2'
+
+		}
+		else if (ressourcePierre>4 && ressourceBois>4 && btCaserne == true) {
+			guerriersGriser.style.opacity = '1'
+		}
+
+		else if (btCaserne == false) {
+			guerriersGriser.style.opacity = '0.2'
+		}
+
+		if (ressourcePierre<20 && ressourceBois<20) {
+			muraillesGriser.style.opacity = '0.2'
+		}
+
+		else if (ressourcePierre>19 && ressourceBois>19) {
+			muraillesGriser.style.opacity = '1'
+		}
+
+
+
+
+
 
 
 }
@@ -217,6 +327,7 @@ function construireCaserne() {
 		caserneConstruite=true;
 		ressourceBois = ressourceBois-4;
 		ressourcePierre = ressourcePierre-4;
+		btCaserne = true;
 		Affichage();
 		bruitConstruction();
 	}
@@ -234,11 +345,44 @@ function construireBatimentDefense () {
 		batimentDefense.style.backgroundImage = "url(./Images/Orc_Blacksmith.gif)";
 		ressourceBois = ressourceBois-4;
 		ressourcePierre = ressourcePierre-4;
+		btDefense= true;
 		Affichage();
 		bruitConstruction();
 
 	}
 	else alert ("Augmenter vos ressources Bois et Pierre");
+}
+
+/* construire muraille */
+
+function construireMurailles() {
+	if (ressourceBois > 5 && ressourcePierre > 5 && btDefense == true && btMurailles==false) {
+	
+		murailles1.style.backgroundImage = "url(./Images/wallEndRight.png)";
+		murailles2.style.backgroundImage = "url(./Images/wallAngle.png)";
+		murailles3.style.backgroundImage = "url(./Images/wallAngle.png)";
+		murailles4.style.backgroundImage = "url(./Images/wallAngle.png)";
+		murailles5.style.backgroundImage = "url(./Images/wallAngle.png)";
+		murailles6.style.backgroundImage = "url(./Images/wallAngleInterieur.png)";
+		murailles7.style.backgroundImage = "url(./Images/wallAngleInterieur.png)";
+		murailles8.style.backgroundImage = "url(./Images/wallAngleInterieur.png)";
+		murailles9.style.backgroundImage = "url(./Images/wallHorizontal.png)";
+		murailles10.style.backgroundImage = "url(./Images/wallVertical.png)";
+		murailles11.style.backgroundImage = "url(./Images/wallVertical.png)";
+		murailles12.style.backgroundImage = "url(./Images/wallVertical.png)";
+		murailles13.style.backgroundImage = "url(./Images/wallVertical.png)";
+		ressourceBois=ressourceBois-20;
+		ressourcePierre=ressourcePierre-20;
+		btMurailles=true;
+	}
+	else if (btMurailles==true) {
+		alert('Deja Construit');
+	}
+
+	else  {
+		alert('pas de ressources');
+	}
+
 }
 
 // fin Construire Batiment Soldat
@@ -357,8 +501,6 @@ Affichage();
 }
 
 
-
-
 /*  Affichage armée */
 
 function affichageArmee() {
@@ -374,6 +516,62 @@ function affichageArmee() {
 setInterval(affichageArmee, 2000); /* raffraichi l'affichage de la case armée */
 
 
+/* EVENT SHARKNADO */
+
+function sharknado() {
+	var shark = document.createElement("div");			// Création d'une nouvelle div pour la tornade
+	document.body.insertBefore(shark, jeu);				// Insérer la div avant "jeu"
+	setTimeout(function(){ shark.style.transform = "translateX(600px)"; }, 5000) // Fixer la position de la tornade à la fin de l'animation CSS
+	shark.classList.add("tornado");						// Ajouter le class "tornado" : Lancer l'anim de déplacement CSS
+	var sharkLife = 10;									// Vie de la tornade
+	var sharkDamage = setInterval(function(){			// DEGATS DE LA TORNADE PAR SECONDE !
+		if (armee > 0) {
+			armee--;
+		} 
+		if (ressourcePierre > 0) {
+			ressourcePierre = parseInt((ressourcePierre-(ressourcePierre*5/100)));  // Enlever 5% de la pierre
+		}
+		if (ressourceBois > 0) {
+			ressourceBois = parseInt((ressourceBois-(ressourceBois*5/100))); 		// Enlever 5% du bois
+		}
+	Affichage();
+	}, 1000); // chaque seconde
+
+	shark.addEventListener('click', function destroyTornado(e) {	// Similaire au "onclick" sauf qu'il est valable en dehors de la fonction -> éxécute "destroyTornado" quand on clique sur la tornade.
+		
+
+		var newDiv = document.createElement("div");		// Créer une nouvelle div
+			document.body.insertBefore(newDiv, jeu);	// Insérer la nouvelle div avant "jeu"
+			newDiv.style.position = "absolute";			// Position absolute, pour ne pas déformer le reste du jeu
+			newDiv.style.zIndex = "999";				// Est au dessus de tout
+			newDiv.style.marginTop = "-60px";			// Pour centrer
+			newDiv.style.marginLeft = "-60px";			// le gif sur le curseur
+			newDiv.style.left = e.pageX + 'px';			// Positionner en X la div selon le curseur du joueur
+			newDiv.style.top = e.pageY + 'px';			// Positionner en Y la div selon le curseur du joueur
+			
+		var gifRnd = Math.floor(Math.random() * 2 )+ 1; // Un nombre random entre 1 et 2
+			if (gifRnd == 1) {					
+				newDiv.style.height = "130px";			// Défini la taille de la div selon le gif
+				newDiv.style.width = "150px";
+				newDiv.style.backgroundImage = "url('./Images/fx1.gif')";
+				var fading = setTimeout(function() { newDiv.remove(); }, 800); // Démarrer le timer pour supprimer la div
+			}
+			else if (gifRnd == 2) {
+				newDiv.style.height = "125px";			// Défini la taille de la div selon le gif
+				newDiv.style.width = "150px";
+				newDiv.style.backgroundImage = "url('./Images/fx2.gif')"
+				var fading = setTimeout(function() { newDiv.remove(); }, 600); // Démarrer le timer pour supprimer la div
+			}
+
+
+		sharkLife--												// Retirer 1 pv à la tornade
+		if (sharkLife <= 0) {									// Si la tornade tombe à 0 pv
+			clearInterval(sharkDamage);							// Arrêt des dégats
+			setTimeout(function(){ shark.remove(); }, 3000);	// Suppression de la div après l'animation CSS 
+			shark.classList.add("tornadoFade");					// Animation CSS de la disparition progressive de la tornade
+		}
+	})
+}
 
 /* Event Tsunami*/
 
@@ -389,7 +587,8 @@ document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Achete
 document.getElementById('upgradeClickBois').onclick = UpgradeBois; 				// Améliorer le click du bois
 document.getElementById('autoClickPierre').onclick = MinePierre; 				// Acheter un Auto clicker
 document.getElementById('upgradeClickPierre').onclick = UpgradePierre;			// Améliorer le click de la pierre
-document.getElementById('batimentSoldat').onclick = construireCaserne 			// construire une caserne
-document.getElementById('batimentDefense').onclick = construireBatimentDefense 	// construire la défense	
+document.getElementById('batimentSoldat').onclick = construireCaserne; 			// construire une caserne
+document.getElementById('batimentDefense').onclick = construireBatimentDefense; // construire la défense
+btnMurailles.onclick = construireMurailles;										// construire la muraille de base
 
 Affichage();		// Affichage
