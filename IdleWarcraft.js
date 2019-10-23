@@ -50,7 +50,10 @@ var caserneConstruite=false; //est ce que le batiment est construit
 var armee=0; //armee
 var vieArmee=0; //incremente les pv selon la création ou la perte de soldat
 var tuerArmee;
+var divEvents= document.getElementById('events');
+var divimgEvents=document.getElementById('imgEvents');
 var btnMurailles = document.getElementById('murailles');
+
 
 // Sons
 
@@ -569,6 +572,15 @@ function sharknado() {
 		}
 	})
 }
+
+/* Event Tsunami*/
+
+function tsunamiEvent(){
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/tsunami.gif)';
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque TSUNAMI !!!! </strong></br><em>Cette vague détruit 50% de vos bâtiments</em>";
+}
+
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
