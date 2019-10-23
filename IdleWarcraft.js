@@ -498,8 +498,6 @@ Affichage();
 }
 
 
-
-
 /*  Affichage armée */
 
 function affichageArmee() {
@@ -515,6 +513,62 @@ function affichageArmee() {
 setInterval(affichageArmee, 2000); /* raffraichi l'affichage de la case armée */
 
 
+/* EVENT SHARKNADO */
+
+function sharknado() {
+	var shark = document.createElement("div");			// Création d'une nouvelle div pour la tornade
+	document.body.insertBefore(shark, jeu);				// Insérer la div avant "jeu"
+	setTimeout(function(){ shark.style.transform = "translateX(600px)"; }, 5000) // Fixer la position de la tornade à la fin de l'animation CSS
+	shark.classList.add("tornado");						// Ajouter le class "tornado" : Lancer l'anim de déplacement CSS
+	var sharkLife = 10;									// Vie de la tornade
+	var sharkDamage = setInterval(function(){			// DEGATS DE LA TORNADE PAR SECONDE !
+		if (armee > 0) {
+			armee--;
+		} 
+		if (ressourcePierre > 0) {
+			ressourcePierre = parseInt((ressourcePierre-(ressourcePierre*5/100)));  // Enlever 5% de la pierre
+		}
+		if (ressourceBois > 0) {
+			ressourceBois = parseInt((ressourceBois-(ressourceBois*5/100))); 		// Enlever 5% du bois
+		}
+	Affichage();
+	}, 1000); // chaque seconde
+
+	shark.addEventListener('click', function destroyTornado(e) {	// Similaire au "onclick" sauf qu'il est valable en dehors de la fonction -> éxécute "destroyTornado" quand on clique sur la tornade.
+		
+
+		var newDiv = document.createElement("div");		// Créer une nouvelle div
+			document.body.insertBefore(newDiv, jeu);	// Insérer la nouvelle div avant "jeu"
+			newDiv.style.position = "absolute";			// Position absolute, pour ne pas déformer le reste du jeu
+			newDiv.style.zIndex = "999";				// Est au dessus de tout
+			newDiv.style.marginTop = "-60px";			// Pour centrer
+			newDiv.style.marginLeft = "-60px";			// le gif sur le curseur
+			newDiv.style.left = e.pageX + 'px';			// Positionner en X la div selon le curseur du joueur
+			newDiv.style.top = e.pageY + 'px';			// Positionner en Y la div selon le curseur du joueur
+			
+		var gifRnd = Math.floor(Math.random() * 2 )+ 1; // Un nombre random entre 1 et 2
+			if (gifRnd == 1) {					
+				newDiv.style.height = "130px";			// Défini la taille de la div selon le gif
+				newDiv.style.width = "150px";
+				newDiv.style.backgroundImage = "url('./Images/fx1.gif')";
+				var fading = setTimeout(function() { newDiv.remove(); }, 800); // Démarrer le timer pour supprimer la div
+			}
+			else if (gifRnd == 2) {
+				newDiv.style.height = "125px";			// Défini la taille de la div selon le gif
+				newDiv.style.width = "150px";
+				newDiv.style.backgroundImage = "url('./Images/fx2.gif')"
+				var fading = setTimeout(function() { newDiv.remove(); }, 600); // Démarrer le timer pour supprimer la div
+			}
+
+
+		sharkLife--												// Retirer 1 pv à la tornade
+		if (sharkLife <= 0) {									// Si la tornade tombe à 0 pv
+			clearInterval(sharkDamage);							// Arrêt des dégats
+			setTimeout(function(){ shark.remove(); }, 3000);	// Suppression de la div après l'animation CSS 
+			shark.classList.add("tornadoFade");					// Animation CSS de la disparition progressive de la tornade
+		}
+	})
+}
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
