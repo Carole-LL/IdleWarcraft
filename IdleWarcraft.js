@@ -14,7 +14,6 @@ var batimentBase;
 var batimentCaserne;
 var batimentMine = document.getElementById ('y2x11'); // emplacement batiment mineur
 var batimentBucheron = document.getElementById('y7x11') // emplacement batiment bucheron
-var rempart;
 var piege;
 var ennemi = 0; //ennemi de base 
 var divEnnemi = document.getElementById('y3x2'); // emplacement des ennemies de base
@@ -53,6 +52,15 @@ var tuerArmee;
 var divEvents= document.getElementById('events');
 var divimgEvents=document.getElementById('imgEvents');
 var btnMurailles = document.getElementById('murailles');
+var vieMurailles = 0;
+var upBatDefense = 20;
+var upBatCaserne = 5;
+var upBatGuerrier = 4;
+var upBatMurailles = 20;
+var upVieMuraille = 50;
+var vieMurailles = 0 ;
+
+
 
 
 // Sons
@@ -144,11 +152,11 @@ function Affichage() {
 
 		//boutons griser
 
-		if (ressourceBois < 20 && ressourcePierre < 20) {
+		if (ressourceBois < upBatDefense && ressourcePierre < upBatDefense) {
 			batimentDefenseGriser.style.opacity = '0.2';
 		}
 
-		else if (ressourceBois >= 20 && ressourcePierre >= 20 && btDefense ==false) {
+		else if (ressourceBois >= upBatDefense && ressourcePierre >= upBatDefense && btDefense ==false) {
 			batimentDefenseGriser.style.opacity = '1';
 		}
 
@@ -188,20 +196,20 @@ function Affichage() {
 			mineGriser.style.opacity = '1';
 		}
 
-		if (ressourceBois < 5 && ressourcePierre <5) {
+		if (ressourceBois < upBatCaserne && ressourcePierre < upBatCaserne) {
 			caserneGriser.style.opacity = '0.2'
 		}
-		else if (ressourceBois >= 5 && ressourcePierre >= 5 && caserneConstruite == false) {
+		else if (ressourceBois >= upBatCaserne && ressourcePierre >= upBatCaserne && caserneConstruite == false) {
 			caserneGriser.style.opacity = '1'
 		}
 		else if (caserneConstruite == true) {
 			caserneGriser.style.opacity = '0.2'
 		}
-		if (ressourcePierre<5 && ressourceBois<5) {
+		if (ressourcePierre<upBatGuerrier && ressourceBois<upBatGuerrier) {
 			guerriersGriser.style.opacity = '0.2'
 
 		}
-		else if (ressourcePierre>4 && ressourceBois>4 && btCaserne == true) {
+		else if (ressourcePierre>upBatGuerrier && ressourceBois>upBatGuerrier && btCaserne == true) {
 			guerriersGriser.style.opacity = '1'
 		}
 
@@ -209,11 +217,11 @@ function Affichage() {
 			guerriersGriser.style.opacity = '0.2'
 		}
 
-		if (ressourcePierre<20 && ressourceBois<20) {
+		if (ressourcePierre<upBatMurailles && ressourceBois<upBatMurailles) {
 			muraillesGriser.style.opacity = '0.2'
 		}
 
-		if (ressourcePierre>19 && ressourceBois>19 && btMurailles==false && btDefense==true) {
+		if (ressourcePierre>upBatMurailles && ressourceBois>upBatMurailles && btMurailles==false && btDefense==true) {
 			muraillesGriser.style.opacity = '1'
 		}
 		if (btMurailles==true) {
@@ -332,8 +340,8 @@ function construireCaserne() {
 	if (ressourceBois > 5 && ressourcePierre > 5) {
 		caserne.style.backgroundImage = "url(./Images/Orc_Barracks.gif)";
 		caserneConstruite=true;
-		ressourceBois = ressourceBois-4;
-		ressourcePierre = ressourcePierre-4;
+		ressourceBois = ressourceBois- upBatCaserne ;
+		ressourcePierre = ressourcePierre- upBatCaserne ;
 		btCaserne = true;
 		Affichage();
 		bruitConstruction();
@@ -350,8 +358,8 @@ function construireCaserne() {
 function construireBatimentDefense () {
 	if (ressourceBois > 20 && ressourcePierre > 20) {
 		batimentDefense.style.backgroundImage = "url(./Images/Orc_Blacksmith.gif)";
-		ressourceBois = ressourceBois-4;
-		ressourcePierre = ressourcePierre-4;
+		ressourceBois = ressourceBois - upBatDefense;
+		ressourcePierre = ressourcePierre - upBatDefense;
 		btDefense= true;
 		Affichage();
 		bruitConstruction();
@@ -381,6 +389,7 @@ function construireMurailles() {
 		ressourceBois=ressourceBois-20;
 		ressourcePierre=ressourcePierre-20;
 		btMurailles=true;
+		vieMurailles = upVieMuraille;
 	}
 	else if (btMurailles==true) {
 		alert('Deja Construit');
@@ -429,8 +438,8 @@ function boutonSoldat(){
 function creationSoldat(){
  if (ressourceBois>3 && ressourcePierre>3){
   armee = armee+1;
-  ressourceBois= ressourceBois-4;
-  ressourcePierre=ressourcePierre-4;
+  ressourceBois= ressourceBois- upBatGuerrier ;
+  ressourcePierre=ressourcePierre- upBatGuerrier ;
   Affichage();
   affichageArmee();
 }
