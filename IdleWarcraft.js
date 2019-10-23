@@ -144,12 +144,16 @@ function Affichage() {
 
 		//boutons griser
 
-		if (ressourceBois < 5 && ressourcePierre < 5) {
+		if (ressourceBois < 20 && ressourcePierre < 20) {
 			batimentDefenseGriser.style.opacity = '0.2';
 		}
 
-		else if (ressourceBois > 4 && ressourcePierre > 4) {
+		else if (ressourceBois >= 20 && ressourcePierre >= 20 && btDefense ==false) {
 			batimentDefenseGriser.style.opacity = '1';
+		}
+
+		else if (btDefense==true) {
+			batimentDefenseGriser.style.opacity = '0.2';
 		}
 
 		if (ressourceBois <= priceClickBoisUpgrade) {
@@ -184,10 +188,10 @@ function Affichage() {
 			mineGriser.style.opacity = '1';
 		}
 
-		if (ressourceBois < 20 && ressourcePierre < 20) {
+		if (ressourceBois < 5 && ressourcePierre <5) {
 			caserneGriser.style.opacity = '0.2'
 		}
-		else if (ressourceBois >= 20 && ressourcePierre >= 20 && caserneConstruite == false) {
+		else if (ressourceBois >= 5 && ressourcePierre >= 5 && caserneConstruite == false) {
 			caserneGriser.style.opacity = '1'
 		}
 		else if (caserneConstruite == true) {
@@ -209,8 +213,11 @@ function Affichage() {
 			muraillesGriser.style.opacity = '0.2'
 		}
 
-		else if (ressourcePierre>19 && ressourceBois>19) {
+		if (ressourcePierre>19 && ressourceBois>19 && btMurailles==false && btDefense==true) {
 			muraillesGriser.style.opacity = '1'
+		}
+		if (btMurailles==true) {
+			muraillesGriser.style.opacity = '0.2'
 		}
 
 
@@ -356,7 +363,7 @@ function construireBatimentDefense () {
 /* construire muraille */
 
 function construireMurailles() {
-	if (ressourceBois > 5 && ressourcePierre > 5 && btDefense == true && btMurailles==false) {
+	if (ressourceBois > 20 && ressourcePierre > 20 && btDefense == true && btMurailles==false) {
 	
 		murailles1.style.backgroundImage = "url(./Images/wallEndRight.png)";
 		murailles2.style.backgroundImage = "url(./Images/wallAngle.png)";
@@ -382,6 +389,7 @@ function construireMurailles() {
 	else  {
 		alert('pas de ressources');
 	}
+	Affichage()
 
 }
 
