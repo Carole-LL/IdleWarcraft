@@ -19,13 +19,38 @@ var piege;
 var ennemi = 0; //ennemi de base 
 var divEnnemi = document.getElementById('y3x2'); // emplacement des ennemies de base
 var caserne = document.getElementById('y6x6'); // correspond à la div de la construction caserne
+var btDefense = false;                         //est ce que le batiment est construit
+var btMurailles = false;						//est ce que le batiment est construit
+var btCaserne = false;							//est ce que le batiment est construit
+var batimentDefenseGriser = document.getElementById('ItemBonus6');  //bouton griser
+var bucheronsGriser = document.getElementById('ItemBonus1');		//bouton griser
+var mineursGriser = document.getElementById('ItemBonus2');			//bouton griser
+var campBucheronGriser = document.getElementById('ItemBonus3');		//bouton griser
+var caserneGriser = document.getElementById('ItemBonus5');			//bouton griser
+var mineGriser = document.getElementById('ItemBonus4');				//bouton griser
+var guerriersGriser = document.getElementById('ItemBonus7');		//bouton griser
+var muraillesGriser = document.getElementById('ItemBonus8');		//bouton griser
+var murailles1 = document.getElementById('y2x7');  //emplacement murailles
+var murailles2 = document.getElementById('y2x6');	//emplacement murailles
+var murailles3 = document.getElementById('y3x5');	//emplacement murailles
+var murailles4 = document.getElementById('y4x3');	//emplacement murailles
+var murailles5 = document.getElementById('y8x2');	//emplacement murailles
+var murailles6 = document.getElementById('y3x6');	//emplacement murailles
+var murailles7 = document.getElementById('y4x5');	//emplacement murailles
+var murailles8 = document.getElementById('y8x3');	//emplacement murailles
+var murailles9 = document.getElementById('y4x4');	//emplacement murailles
+var murailles10 = document.getElementById('y5x3');	//emplacement murailles
+var murailles11 = document.getElementById('y6x3');	//emplacement murailles
+var murailles12 = document.getElementById('y7x3');	//emplacement murailles
+var murailles13 = document.getElementById('y9x2');//emplacement murailles
 var batimentDefense = document.getElementById('y5x7');//correspond à la div du construction batiment de défense
 var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
 var caseSoldat = document.getElementById('y5x5');
-var caserneConstruite=false; // 
-var armee=0;
+var caserneConstruite=false; //est ce que le batiment est construit
+var armee=0; //armee
 var vieArmee=0; //incremente les pv selon la création ou la perte de soldat
 var tuerArmee;
+var btnMurailles = document.getElementById('murailles');
 
 // Sons
 
@@ -104,6 +129,91 @@ function Affichage() {
 	affichageArmee();
 	//ennemi
 	document.getElementById('afficheEnnemi').innerHTML = "Nombre d'ennemis: "+ennemi;
+	//muraille
+	document.getElementById('murailles').innerHTML = "Créer Murailles"
+	//batiments
+	document.getElementById('batimentSoldat').innerHTML = "Créer Caserne :</br>(5) de Bois / (5) de Pierre"
+	document.getElementById('batimentDefense').innerHTML = "Créer Centre de défense :</br>(20) de Bois / (20) de Pierre"
+	document.getElementById('newSoldat').innerHTML = "Créer Guerrié :</br>(4) de Bois / (4) de Pierre"
+	document.getElementById('murailles').innerHTML = "Créer Muraille :</br>(20) de Bois / (20) de Pierre"	
+
+
+
+		//boutons griser
+
+		if (ressourceBois < 5 && ressourcePierre < 5) {
+			batimentDefenseGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourceBois > 4 && ressourcePierre > 4) {
+			batimentDefenseGriser.style.opacity = '1';
+		}
+
+		if (ressourceBois <= priceClickBoisUpgrade) {
+			bucheronsGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourceBois >= priceClickBoisUpgrade) {
+			bucheronsGriser.style.opacity = '1';
+		}
+
+		if (ressourcePierre < priceClickPierreUpgrade) {
+			mineursGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourcePierre >= priceClickPierreUpgrade) {
+			mineursGriser.style.opacity = '1';
+		}
+
+		if (ressourceBois < PrixBatimentBucheron) {
+			campBucheronGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourceBois >= PrixBatimentBucheron) {
+			campBucheronGriser.style.opacity = '1';
+		}
+
+		if (ressourcePierre < PrixBatimentMine) {
+			mineGriser.style.opacity = '0.2';
+		}
+
+		else if (ressourcePierre >= PrixBatimentMine) {
+			mineGriser.style.opacity = '1';
+		}
+
+		if (ressourceBois < 20 && ressourcePierre < 20) {
+			caserneGriser.style.opacity = '0.2'
+		}
+		else if (ressourceBois >= 20 && ressourcePierre >= 20 && caserneConstruite == false) {
+			caserneGriser.style.opacity = '1'
+		}
+		else if (caserneConstruite == true) {
+			caserneGriser.style.opacity = '0.2'
+		}
+		if (ressourcePierre<5 && ressourceBois<5) {
+			guerriersGriser.style.opacity = '0.2'
+
+		}
+		else if (ressourcePierre>4 && ressourceBois>4 && btCaserne == true) {
+			guerriersGriser.style.opacity = '1'
+		}
+
+		else if (btCaserne == false) {
+			guerriersGriser.style.opacity = '0.2'
+		}
+
+		if (ressourcePierre<20 && ressourceBois<20) {
+			muraillesGriser.style.opacity = '0.2'
+		}
+
+		else if (ressourcePierre>19 && ressourceBois>19) {
+			muraillesGriser.style.opacity = '1'
+		}
+
+
+
+
+
 
 
 }
@@ -214,6 +324,7 @@ function construireCaserne() {
 		caserneConstruite=true;
 		ressourceBois = ressourceBois-4;
 		ressourcePierre = ressourcePierre-4;
+		btCaserne = true;
 		Affichage();
 		bruitConstruction();
 	}
@@ -231,11 +342,44 @@ function construireBatimentDefense () {
 		batimentDefense.style.backgroundImage = "url(./Images/Orc_Blacksmith.gif)";
 		ressourceBois = ressourceBois-4;
 		ressourcePierre = ressourcePierre-4;
+		btDefense= true;
 		Affichage();
 		bruitConstruction();
 
 	}
 	else alert ("Augmenter vos ressources Bois et Pierre");
+}
+
+/* construire muraille */
+
+function construireMurailles() {
+	if (ressourceBois > 5 && ressourcePierre > 5 && btDefense == true && btMurailles==false) {
+	
+		murailles1.style.backgroundImage = "url(./Images/wallEndRight.png)";
+		murailles2.style.backgroundImage = "url(./Images/wallAngle.png)";
+		murailles3.style.backgroundImage = "url(./Images/wallAngle.png)";
+		murailles4.style.backgroundImage = "url(./Images/wallAngle.png)";
+		murailles5.style.backgroundImage = "url(./Images/wallAngle.png)";
+		murailles6.style.backgroundImage = "url(./Images/wallAngleInterieur.png)";
+		murailles7.style.backgroundImage = "url(./Images/wallAngleInterieur.png)";
+		murailles8.style.backgroundImage = "url(./Images/wallAngleInterieur.png)";
+		murailles9.style.backgroundImage = "url(./Images/wallHorizontal.png)";
+		murailles10.style.backgroundImage = "url(./Images/wallVertical.png)";
+		murailles11.style.backgroundImage = "url(./Images/wallVertical.png)";
+		murailles12.style.backgroundImage = "url(./Images/wallVertical.png)";
+		murailles13.style.backgroundImage = "url(./Images/wallVertical.png)";
+		ressourceBois=ressourceBois-20;
+		ressourcePierre=ressourcePierre-20;
+		btMurailles=true;
+	}
+	else if (btMurailles==true) {
+		alert('Deja Construit');
+	}
+
+	else  {
+		alert('pas de ressources');
+	}
+
 }
 
 // fin Construire Batiment Soldat
@@ -431,7 +575,8 @@ document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Achete
 document.getElementById('upgradeClickBois').onclick = UpgradeBois; 				// Améliorer le click du bois
 document.getElementById('autoClickPierre').onclick = MinePierre; 				// Acheter un Auto clicker
 document.getElementById('upgradeClickPierre').onclick = UpgradePierre;			// Améliorer le click de la pierre
-document.getElementById('batimentSoldat').onclick = construireCaserne 			// construire une caserne
-document.getElementById('batimentDefense').onclick = construireBatimentDefense 	// construire la défense	
+document.getElementById('batimentSoldat').onclick = construireCaserne; 			// construire une caserne
+document.getElementById('batimentDefense').onclick = construireBatimentDefense; // construire la défense
+btnMurailles.onclick = construireMurailles;										// construire la muraille de base
 
 Affichage();		// Affichage
