@@ -416,6 +416,31 @@ h5 { /* Texte animation ajout Bois & Pierre */
 	100% { transform: translateY(-100px); }
 }
 
+/* css events */
+#imgEvents{
+	height: 70%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+#txtEvents{
+	color: white;
+	text-align: center;
+	padding-top: 20px;	
+}
+
+#events {
+	display: none;
+	background-color: black; 
+	height: 300px;
+	width: 1000px;
+	position: absolute; 
+	left: 23%;
+	right: 25%;
+	opacity: 0.9;
+
+}
+
 /* Liste ID CSS*/
 
 #y1x1  {
