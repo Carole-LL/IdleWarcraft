@@ -596,7 +596,7 @@ function tsunamiEvent(){
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/tsunami.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque TSUNAMI !!!! </strong></br><em>Cette vague détruit 50% de vos bâtiments</em>";
-	ressourceBois= parseint((ressourceBois-(ressourceBois *5/100)));
+	ressourceBois=ressourceBois/2;
 	ressourcePierre=ressourcePierre/2;
 	armee= armee/2;
 	Affichage();
@@ -606,6 +606,19 @@ function tsunamiEvent(){
 	}
 }
 
+/* Event Soucoupe*/
+
+function soucoupeEvent(){
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/ufo.gif)';
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque des martiens !!!! </strong></br><em>Cette soucoupe emmène 1 de vos soldat</em>";
+	armee=armee-1;
+	Affichage();
+	if (divEvents.style.display='block') {
+		setTimeout(function(){divEvents.style.display='none';}, 7000); 	
+		
+	}
+}
 
 
 
