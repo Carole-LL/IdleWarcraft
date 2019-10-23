@@ -390,14 +390,31 @@ function sharknado() {
 	Affichage();
 	}, 1000); // chaque seconde
 
-	shark.addEventListener('click', function destroyTornado() {	// Similaire au "onclick" sauf qu'il est valable en dehors de la fonction -> éxécute "destroyTornado" quand on clique sur la tornade.
+	shark.addEventListener('click', function destroyTornado(e) {	// Similaire au "onclick" sauf qu'il est valable en dehors de la fonction -> éxécute "destroyTornado" quand on clique sur la tornade.
 		
+
 		var newDiv = document.createElement("div");		// Créer une nouvelle div
 			document.body.insertBefore(newDiv, jeu);	// Insérer la nouvelle div avant "jeu"
+			newDiv.style.position = "absolute";			// Position absolute, pour ne pas déformer le reste du jeu
+			newDiv.style.zIndex = "999";				// Est au dessus de tout
+			newDiv.style.marginTop = "-60px";			// Pour centrer
+			newDiv.style.marginLeft = "-60px";			// le gif sur le curseur
 			newDiv.style.left = e.pageX + 'px';			// Positionner en X la div selon le curseur du joueur
 			newDiv.style.top = e.pageY + 'px';			// Positionner en Y la div selon le curseur du joueur
-			var fading = setTimeout(function() { newDiv.remove(); }, 900); // Démarrer le timer pour supprimer la div
-			newDiv.className += " ressourceMove";		// Ajoute la class "ressourceMove", ce qui lance l'animation CSS
+			
+		var gifRnd = Math.floor(Math.random() * 2 )+ 1; // Un nombre random entre 1 et 2
+			if (gifRnd == 1) {					
+				newDiv.style.height = "130px";			// Défini la taille de la div selon le gif
+				newDiv.style.width = "150px";
+				newDiv.style.backgroundImage = "url('./Images/fx1.gif')";
+				var fading = setTimeout(function() { newDiv.remove(); }, 800); // Démarrer le timer pour supprimer la div
+			}
+			else if (gifRnd == 2) {
+				newDiv.style.height = "125px";			// Défini la taille de la div selon le gif
+				newDiv.style.width = "150px";
+				newDiv.style.backgroundImage = "url('./Images/fx2.gif')"
+				var fading = setTimeout(function() { newDiv.remove(); }, 600); // Démarrer le timer pour supprimer la div
+			}
 
 
 		sharkLife--												// Retirer 1 pv à la tornade
@@ -408,9 +425,6 @@ function sharknado() {
 		}
 	})
 }
-
-
-
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
