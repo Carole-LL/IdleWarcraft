@@ -30,7 +30,6 @@ body {
 	background-color: grey;
 	margin: 0;
 	font-size: 20px;
-	cursor: url(./Images/cursor1.png),pointer;
 
 }
 
@@ -69,7 +68,7 @@ h2 {	/* Titre Ressources et Bonus */
 }
 
 #HudBonus {
-	
+	z-index: 900;
 	position: absolute;
 	left: 0;
 	height: 900px;
@@ -351,19 +350,20 @@ padding-top: 5px;
 
 }
 
-.boutons { /* Boutons d'améliorations - achats */
-
-
+.wood {
+	cursor: url(./Images/axe.png),pointer;
 }
 
-.infos { /* Texte d'information des compteurs */
+.wood:active {
+	cursor: url(./Images/axeActive.png),pointer;
 }
 
-#btnClickManuelBois { /* Le bouton principal Clicker Bois */
-
+.rock {
+	cursor: url(./Images/pickaxe.png),pointer;
 }
 
-#btnClickManuelBois:hover { /* Lorque la souris passe dessus */
+.rock:active {
+	cursor: url(./Images/pickaxeActive.png),pointer;
 }
 
 .boutonspierre {/*position des boutons Pierre */
@@ -414,6 +414,34 @@ h5 { /* Texte animation ajout Bois & Pierre */
 	0% { transform: translateY(0px); }
 
 	100% { transform: translateY(-100px); }
+}
+
+.tornado {
+	position: absolute;
+	z-index: 888;
+	top: 25%;
+	left: 0%;
+	width: 480px;
+	height: 360px;
+	background-image: url(./Images/sharknado.gif);
+	background-repeat: no-repeat;
+	animation-name: sharknado;
+	animation-duration: 5s;
+}
+
+.tornadoFade {
+	animation-name: sharknadoFade;
+	animation-duration: 3s;
+}
+
+@keyframes sharknado {
+	0% { transform: translateX(0px); }
+	100% { transform: translateX(600px); }
+}
+
+@keyframes sharknadoFade {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
 }
 
 /* Liste ID CSS*/
