@@ -648,7 +648,11 @@ function tsunamiEvent(){
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 8561fd1dcc77e4c336d1ee8eaac9ae12f661043d
 /* Event Soucoupe*/
 
 function soucoupeEvent(){
@@ -664,8 +668,11 @@ function soucoupeEvent(){
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 766c797f81cc2349a4c4f16dc028cc948aaea99c
 
+=======
+>>>>>>> 8561fd1dcc77e4c336d1ee8eaac9ae12f661043d
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
 document.getElementById('upgradeClickBois').onclick = UpgradeBois; 				// Améliorer le click du bois
