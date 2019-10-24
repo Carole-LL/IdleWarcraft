@@ -447,6 +447,7 @@ h5 { /* Texte animation ajout Bois & Pierre */
 }
 
 #events {
+	opacity: 0.8;
 	display: none;
 	background-color: black; 
 	height: 300px;
@@ -454,7 +455,7 @@ h5 { /* Texte animation ajout Bois & Pierre */
 	position: absolute; 
 	left: 33%;
 	right: 25%;
-	opacity: 0.9;
+	
 }
 
 .tornado {
