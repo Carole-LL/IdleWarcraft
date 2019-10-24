@@ -645,14 +645,15 @@ function tsunamiEvent(){
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/tsunami.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque TSUNAMI !!!! </strong></br><em>Cette vague détruit 50% de vos bâtiments</em>";
+	ressourceBois=ressourceBois/2;
+	ressourcePierre=ressourcePierre/2;
+	armee= armee/2;
+	Affichage();
+	if (divEvents.style.display='block') {
+		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
+	}
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> 8561fd1dcc77e4c336d1ee8eaac9ae12f661043d
 /* Event Soucoupe*/
 
 function soucoupeEvent(){
@@ -662,17 +663,24 @@ function soucoupeEvent(){
 	armee=parseInt(armee-(armee*3/100));
 	Affichage();
 	if (divEvents.style.display='block') {
-		setTimeout(function(){divEvents.style.display='none';}, 7000); 	
-		
+		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
 	}
 }
 
+/* Event Dragon*/
 
-<<<<<<< HEAD
->>>>>>> 766c797f81cc2349a4c4f16dc028cc948aaea99c
+function dragonEvent(){
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/dragon2.gif)';
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque du Dragon Destructeur !!!! </strong></br><em>Sa puissante attaque est inévitable, il va détruire toutes vos défenses... Oups !</em>";
+	btDefense==false;
+	btMurailles==false;
+	Affichage();
+	if (divEvents.style.display='block') {
+		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
+	}
+}
 
-=======
->>>>>>> 8561fd1dcc77e4c336d1ee8eaac9ae12f661043d
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
 document.getElementById('upgradeClickBois').onclick = UpgradeBois; 				// Améliorer le click du bois
