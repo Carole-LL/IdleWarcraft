@@ -61,8 +61,209 @@ var upBatGuerrier = 4;                                // Prix amelioration
 var upBatMurailles = 20;                                // Prix amelioration
 var upVieMuraille = 50;                                // Prix amelioration
 var nbRats = parseInt(6);		// Nombre de rats à pop pour l'évent zombiesRats
-var ratLife = [] 	// Tableau de la vie de chaque rat
-var nbRatsMorts = 0 // Nombre de rats morts (compteur pour faire disparaitre la pop UP)
+var ratLife = []; 	// Tableau de la vie de chaque rat
+var nbRatsMorts = 0; // Nombre de rats morts (compteur pour faire disparaitre la pop UP)
+var sauvegarde; // Variable pour détecter s'il y a une sauvegarde ou non
+var loading;	// Variable pour détecter si c'est en chargement  (pour contrer les bruits de construction au chargement de la sauvegarde)
+var intervalBois = []; // Pour arreter les autoclickers au reset
+var intervalPierre = []; // Pour arreter les autoclickers au reset
+
+// SAUVEGARDER
+
+function save() {
+	sauvegarde = 1;
+	localStorage.setItem('sauvegarde', sauvegarde);
+	localStorage.setItem('ressourceBois', ressourceBois);
+	localStorage.setItem('ressourcePierre', ressourcePierre);
+	localStorage.setItem('PrixBatimentBucheron', PrixBatimentBucheron);
+	localStorage.setItem('PrixBatimentMine', PrixBatimentMine);
+	localStorage.setItem('clickBois', clickBois);
+	localStorage.setItem('clickPierre', clickPierre);
+	localStorage.setItem('autoClickBois', autoClickBois);
+	localStorage.setItem('autoClickPierre', autoClickPierre);
+	localStorage.setItem('priceClickBoisUpgrade', priceClickBoisUpgrade);
+	localStorage.setItem('soldat', soldat);
+	localStorage.setItem('ennemi', ennemi);
+	localStorage.setItem('btMurailles', btMurailles);
+	localStorage.setItem('btCaserne', btCaserne);
+	localStorage.setItem('btMine', btMine);
+	localStorage.setItem('btBucheron', btBucheron);
+	localStorage.setItem('caserneConstruite', caserneConstruite);
+	localStorage.setItem('armee', armee);
+	localStorage.setItem('vieMurailles', vieMurailles);
+	localStorage.setItem('upBatDefense', upBatDefense);
+	localStorage.setItem('upBatCaserne', upBatCaserne);
+	localStorage.setItem('upBatGuerrier', upBatGuerrier);
+	localStorage.setItem('upBatMurailles', upBatMurailles);
+	localStorage.setItem('upVieMuraille', upVieMuraille);
+	console.log(sauvegarde);
+	console.log("Sauvegardé !");
+	alert("Sauvegardé !");
+}
+
+// CHARGEMENT AUTO
+
+function load() {
+	sauvegarde = localStorage.getItem('sauvegarde');
+	console.log(sauvegarde);
+	if (sauvegarde == 1) { // S'il y a une sauvegarde locale, charger les variables
+		loading = 1;
+		ressourceBois = parseInt(localStorage.getItem('ressourceBois'));
+		ressourcePierre= parseInt(localStorage.getItem('ressourcePierre'));
+		PrixBatimentBucheron = parseInt(localStorage.getItem('PrixBatimentBucheron'));
+		PrixBatimentMine = parseInt(localStorage.getItem('PrixBatimentMine'));
+		clickBois = parseInt(localStorage.getItem('clickBois'));
+		clickPierre = parseInt(localStorage.getItem('clickPierre'));
+		autoClickBois = parseInt(localStorage.getItem('autoClickBois'));
+		autoClickPierre = parseInt(localStorage.getItem('autoClickPierre'));
+		priceClickBoisUpgrade = parseInt(localStorage.getItem('priceClickBoisUpgrade'));
+		soldat = parseInt(localStorage.getItem('soldat'));
+		ennemi = parseInt(localStorage.getItem('ennemi'));
+		btMurailles = localStorage.getItem('btMurailles');
+		btCaserne = localStorage.getItem('btCaserne');
+		btMine = localStorage.getItem('btMine');
+		btBucheron = localStorage.getItem('btBucheron');
+		caserneConstruite = localStorage.getItem('caserneConstruite');
+		armee = parseInt(localStorage.getItem('armee'));
+		vieMurailles = parseInt(localStorage.getItem('vieMurailles'));
+		upBatDefense = parseInt(localStorage.getItem('upBatDefense'));
+		upBatCaserne = parseInt(localStorage.getItem('upBatCaserne'));
+		upBatGuerrier = parseInt(localStorage.getItem('upBatGuerrier'));
+		upBatMurailles = parseInt(localStorage.getItem('upBatMurailles'));
+		upVieMuraille = parseInt(localStorage.getItem('upVieMuraille'));
+		for (var i = 0; i < autoClickBois; i++) {	// Relance l'autoclick du bois un nombre "autoClickBois" de fois.
+			intervalBois[i] = setInterval(ClickManuelBois, 1000);
+		}
+		for (var i = 0; i < autoClickPierre; i++) { // Relance l'autoclick de la pierre un nombre "autoClickPierre" de fois.
+			intervalPierre[i] = setInterval(ClickManuelPierre, 1000);
+		}
+			// Reconstruction des batiments sauvegardés & remise à bien des valeurs Booleans
+		if (btMurailles = 'true') {
+			murailles1.style.backgroundImage = "url(./Images/wallEndRight.png)";
+			murailles2.style.backgroundImage = "url(./Images/wallAngle.png)";
+			murailles3.style.backgroundImage = "url(./Images/wallAngle.png)";
+			murailles4.style.backgroundImage = "url(./Images/wallAngle.png)";
+			murailles5.style.backgroundImage = "url(./Images/wallAngle.png)";
+			murailles6.style.backgroundImage = "url(./Images/wallAngleInterieur.png)";
+			murailles7.style.backgroundImage = "url(./Images/wallAngleInterieur.png)";
+			murailles8.style.backgroundImage = "url(./Images/wallAngleInterieur.png)";
+			murailles9.style.backgroundImage = "url(./Images/wallHorizontal.png)";
+			murailles10.style.backgroundImage = "url(./Images/wallVertical.png)";
+			murailles11.style.backgroundImage = "url(./Images/wallVertical.png)";
+			murailles12.style.backgroundImage = "url(./Images/wallVertical.png)";
+			murailles13.style.backgroundImage = "url(./Images/wallVertical.png)";
+			btMurailles = true;
+		}
+		else if (btMurailles = 'false') { btMurailles = false;}
+		if (btCaserne = 'true') {
+			caserne.style.backgroundImage = "url(./Images/Orc_Barracks.gif)";
+			btCaserne = true;
+		}
+		else if (btCaserne = 'false') { btCaserne = false;}
+		if (btMine = 'true') {
+			batimentMine.style.backgroundImage ="url(./Images/Orc_Mine.gif)";
+			btMine = true;
+		}
+		else if (btMine = 'false') { btMine = false;}
+		if (btBucheron = 'true') {
+			batimentBucheron.style.backgroundImage ="url(./Images/Orc_Lumbermill.gif)";
+			btBucheron = true;
+		}
+		else if (btBucheron = 'false') { btBucheron = false;}
+		if (btDefense = 'true') {
+			batimentDefense.style.backgroundImage = "url(./Images/Orc_Blacksmith.gif)";
+			btDefense = true;
+		}
+		else if (btDefense = 'false') { btDefense = false;}
+		loading = 0;
+		Affichage();
+	}
+}
+
+// IMPORTER
+
+function importer() {
+	alert("Fonction en construction ! Bientôt sur vos écrans !")
+}
+
+// EXPORTER
+
+function exporter() {
+	//data=JSON.stringify({});
+	alert("Fonction en construction ! Bientôt sur vos écrans !")
+}
+
+// RESET
+
+function reset() {
+	for (var i = 0; i < autoClickBois; i++) {	// Coupe l'autoclick du bois un nombre "autoClickBois" de fois.
+		clearInterval(intervalBois[i]);
+	}
+	for (var i = 0; i < autoClickPierre; i++) { // Coupe l'autoclick de la pierre un nombre "autoClickPierre" de fois.
+		clearInterval(intervalPierre[i]);
+	}
+	ressourceBois = parseInt(0); // Nombre total de clicks enmagasiné pour le bois.
+	ressourcePierre = parseInt(0); // Nombre total de clicks enmagasiné pour la pierre.
+	PrixBatimentBucheron = 10; // Prix du clicker auto (Cabane de bucherons) Bois.
+	PrixBatimentMine = 10; // Prix du clicker auto (Mine) Pierre.
+	clickBois = 1; // Nombre de click obtenu par click sur le Bois.
+	clickPierre =	1;// Nombre de click obtenu par click sur la pierre.
+	autoClickBois = 0;		// Nombre de clicker auto
+	autoClickPierre = 0;		// Nombre de clicker auto
+	priceClickBoisUpgrade = 75;	// Prix de l'amélioration du click
+	priceClickPierreUpgrade = 75;	// Prix de l'amélioration du click
+	soldat= 0;
+	batimentMine = document.getElementById ('y2x11'); // emplacement batiment mineur
+	batimentBucheron = document.getElementById('y7x11') // emplacement batiment bucheron
+	ennemi = parseInt(0); //ennemi de base 
+	divEnnemi = document.getElementById('y3x2'); // emplacement des ennemies de base
+	caserne = document.getElementById('y6x6'); // correspond à la div de la construction caserne
+	btDefense = false;                         //est ce que le batiment est construit
+	btMurailles = false;						//est ce que le batiment est construit
+	btCaserne = false;							//est ce que le batiment est construit
+	btMine = false;								//est ce que le batiment est construit
+	btBucheron = false;							//est ce que le batiment est construit
+	batimentDefenseGriser = document.getElementById('ItemBonus6');  //bouton griser
+	bucheronsGriser = document.getElementById('ItemBonus1');		//bouton griser
+	mineursGriser = document.getElementById('ItemBonus2');			//bouton griser
+	campBucheronGriser = document.getElementById('ItemBonus3');		//bouton griser
+	caserneGriser = document.getElementById('ItemBonus5');			//bouton griser
+	mineGriser = document.getElementById('ItemBonus4');				//bouton griser
+	guerriersGriser = document.getElementById('ItemBonus7');		//bouton griser
+	muraillesGriser = document.getElementById('ItemBonus8');		//bouton griser
+	murailles1 = document.getElementById('y2x7');  //emplacement murailles
+	murailles2 = document.getElementById('y2x6');	//emplacement murailles
+	murailles3 = document.getElementById('y3x5');	//emplacement murailles
+	murailles4 = document.getElementById('y4x3');	//emplacement murailles
+	murailles5 = document.getElementById('y8x2');	//emplacement murailles
+	murailles6 = document.getElementById('y3x6');	//emplacement murailles
+	murailles7 = document.getElementById('y4x5');	//emplacement murailles
+	murailles8 = document.getElementById('y8x3');	//emplacement murailles
+	murailles9 = document.getElementById('y4x4');	//emplacement murailles
+	murailles10 = document.getElementById('y5x3');	//emplacement murailles
+	murailles11 = document.getElementById('y6x3');	//emplacement murailles
+	murailles12 = document.getElementById('y7x3');	//emplacement murailles
+	murailles13 = document.getElementById('y9x2');//emplacement murailles
+	batimentDefense = document.getElementById('y5x7');//correspond à la div du construction batiment de défense
+	creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
+	caseSoldat = document.getElementById('y5x5');
+	caserneConstruite=false; //est ce que le batiment est construit
+	armee= parseInt(0); //armee
+	vieArmee=0; //incremente les pv selon la création ou la perte de soldat
+	divEvents= document.getElementById('events');
+	divimgEvents=document.getElementById('imgEvents');
+	btnMurailles = document.getElementById('murailles');
+	vieMurailles = parseInt(0);
+	upBatDefense = 20;                                // Prix amelioration
+	upBatCaserne = 5;                                // Prix amelioration
+	upBatGuerrier = 4;                                // Prix amelioration
+	upBatMurailles = 20;                                // Prix amelioration
+	upVieMuraille = 50;                                // Prix amelioration
+	nbRats = parseInt(6);		// Nombre de rats à pop pour l'évent zombiesRats
+	ratLife = [] 	// Tableau de la vie de chaque rat
+	nbRatsMorts = 0 // Nombre de rats morts (compteur pour faire disparaitre la pop UP)
+	Affichage();
+}
 
 
 // Sons
@@ -340,7 +541,7 @@ function CabaneBucheron() {
 		autoClickBois++;
 		PrixBatimentBucheron = parseInt(PrixBatimentBucheron*1.5);
 		construireBatimentBucheron();
-		setInterval(ClickManuelBois, 1000);
+		intervalBois = setInterval(ClickManuelBois, 1000);
 		btBucheron = true;
 		bruitConstruction()
 		
@@ -390,7 +591,7 @@ function MinePierre() {
 		autoClickPierre++;
 		PrixBatimentMine = parseInt(PrixBatimentMine*1.5);
 		construireBatimentMineur();
-		setInterval(ClickManuelPierre, 1000);
+		intervalPierre = setInterval(ClickManuelPierre, 1000);
 		btMine = true;
 		bruitConstruction()
 	}
@@ -416,7 +617,9 @@ function construireCaserne() {
 		ressourcePierre = ressourcePierre- upBatCaserne ;
 		btCaserne = true;
 		Affichage();
-		bruitConstruction();
+		if (loading = 0) {
+			bruitConstruction();
+		}
 	}
 	else alert ( "Augmenter vos ressources Bois et Pierre");
 }
@@ -434,7 +637,9 @@ function construireBatimentDefense () {
 		ressourcePierre = ressourcePierre - upBatDefense;
 		btDefense= true;
 		Affichage();
-		bruitConstruction();
+		if (loading = 0) {
+			bruitConstruction();
+		}
 
 	}
 	else alert ("Augmenter vos ressources Bois et Pierre");
@@ -462,7 +667,9 @@ function construireMurailles() {
 		ressourcePierre=ressourcePierre-20;
 		btMurailles=true;
 		vieMurailles = upVieMuraille;
-		bruitConstruction();
+		if (loading = 0) {
+			bruitConstruction();
+		}
 	}
 	else if (btMurailles==true) {
 		alert('Deja Construit');
@@ -481,7 +688,9 @@ function construireMurailles() {
 function construireBatimentBucheron	(){
 	
 		batimentBucheron.style.backgroundImage ="url(./Images/Orc_Lumbermill.gif)";
-		bruitConstruction();
+		if (loading = 0) {
+			bruitConstruction();
+		}
 		btBucheron = true;
 		Affichage();
 		
@@ -489,7 +698,9 @@ function construireBatimentBucheron	(){
 /* construire batiment bucheron (y2x11) */
 function construireBatimentMineur(){
 	batimentMine.style.backgroundImage ="url(./Images/Orc_Mine.gif)";
-	bruitConstruction();
+	if (loading = 0) {
+		bruitConstruction();
+	}
 	btMine = true;
 	Affichage();
 }
@@ -852,6 +1063,10 @@ document.getElementById('upgradeClickPierre').onclick = UpgradePierre;			// Amé
 document.getElementById('batimentSoldat').onclick = construireCaserne; 			// construire une caserne
 document.getElementById('batimentDefense').onclick = construireBatimentDefense; // construire la défense
 btnMurailles.onclick = construireMurailles;										// construire la muraille de base
+document.getElementById('save').onclick = save;									// Sauvegarder la partie
+document.getElementById('load').onclick = importer;									// Importer une sauvegarde
+document.getElementById('export').onclick = exporter;								// Exporter une sauvegarde
 
+load();
 eventRnd();
 Affichage();		// Affichage
