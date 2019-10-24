@@ -1,5 +1,5 @@
-var ressourceBois = 0; // Nombre total de clicks enmagasiné pour le bois.
-var ressourcePierre = 0; // Nombre total de clicks enmagasiné pour la pierre.
+var ressourceBois = parseInt(0); // Nombre total de clicks enmagasiné pour le bois.
+var ressourcePierre = parseInt(0); // Nombre total de clicks enmagasiné pour la pierre.
 var PrixBatimentBucheron = 10; // Prix du clicker auto (Cabane de bucherons) Bois.
 var PrixBatimentMine = 10; // Prix du clicker auto (Mine) Pierre.
 var clickBois = 1; // Nombre de click obtenu par click sur le Bois.
@@ -15,7 +15,7 @@ var batimentCaserne;
 var batimentMine = document.getElementById ('y2x11'); // emplacement batiment mineur
 var batimentBucheron = document.getElementById('y7x11') // emplacement batiment bucheron
 var piege;
-var ennemi = 0; //ennemi de base 
+var ennemi = parseInt(0); //ennemi de base 
 var divEnnemi = document.getElementById('y3x2'); // emplacement des ennemies de base
 var caserne = document.getElementById('y6x6'); // correspond à la div de la construction caserne
 var btDefense = false;                         //est ce que le batiment est construit
@@ -48,19 +48,19 @@ var batimentDefense = document.getElementById('y5x7');//correspond à la div du 
 var creerSoldat = document.getElementById('newSoldat'); // bouton création soldat
 var caseSoldat = document.getElementById('y5x5');
 var caserneConstruite=false; //est ce que le batiment est construit
-var armee=0; //armee
+var armee= parseInt(0); //armee
 var vieArmee=0; //incremente les pv selon la création ou la perte de soldat
 var tuerArmee;
 var divEvents= document.getElementById('events');
 var divimgEvents=document.getElementById('imgEvents');
 var btnMurailles = document.getElementById('murailles');
-var vieMurailles = 0;
+var vieMurailles = parseInt(0);
 var upBatDefense = 20;                                // Prix amelioration
 var upBatCaserne = 5;                                // Prix amelioration
 var upBatGuerrier = 4;                                // Prix amelioration
 var upBatMurailles = 20;                                // Prix amelioration
 var upVieMuraille = 50;                                // Prix amelioration
-var nbRats = 6;		// Nombre de rats à pop pour l'évent zombiesRats
+var nbRats = parseInt(6);		// Nombre de rats à pop pour l'évent zombiesRats
 var ratLife = [] 	// Tableau de la vie de chaque rat
 
 
@@ -78,6 +78,42 @@ function bruitConstruction(){
     sonConstruction.src = "./Sons/construction.mp3";
     sonConstruction.play();
 
+}
+
+function bruitTsunami() {
+	var sonTsunami = new Audio();
+	sonTsunami.src = "./Sons/tsunami.mp3";
+	sonTsunami.play();
+}
+
+function bruitAlien() {
+	var sonAlien = new Audio();
+	sonAlien.src = "./Sons/alien.mp3";
+	sonAlien.play();
+}
+
+function bruitDragon() {
+	var sonDragon = new Audio();
+	sonDragon.src = "./Sons/dragon.mp3";
+	sonDragon.play();
+}
+
+function bruitRats() {
+	var sonRats = new Audio();
+	sonRats.src = "./Sons/rats.mp3";
+	sonRats.play();
+}
+
+function bruitCombats() {
+	var sonCombats = new Audio();
+	sonCombats.src = "./Sons/combat.mp3";
+	sonCombats.play();
+}
+
+function bruitTornade() {
+	var sonTornade = new Audio();
+	sonTornade.src = "./Sons/tornade.mp3";
+	sonTornade.play();
 }
 
 
@@ -305,6 +341,7 @@ function CabaneBucheron() {
 		construireBatimentBucheron();
 		setInterval(ClickManuelBois, 1000);
 		btBucheron = true;
+		bruitConstruction()
 		
 	}
 	else {
@@ -354,6 +391,7 @@ function MinePierre() {
 		construireBatimentMineur();
 		setInterval(ClickManuelPierre, 1000);
 		btMine = true;
+		bruitConstruction()
 	}
 	else {
 		alert('Pas assez de $clicks$ !');
@@ -423,6 +461,7 @@ function construireMurailles() {
 		ressourcePierre=ressourcePierre-20;
 		btMurailles=true;
 		vieMurailles = upVieMuraille;
+		bruitConstruction();
 	}
 	else if (btMurailles==true) {
 		alert('Deja Construit');
@@ -530,9 +569,12 @@ function enleverVieMuraille() {
 //creation ennemies de base
 
 function ennemiNbRandom() {
-
 	divEnnemi.style.backgroundImage="url(./Images/ennemi.png)";
 	ennemi = Math.floor((Math.random() * (20)) + 1);
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/ennemi.png)';
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque d'HUMAINS !!!! </strong></br><em>Il y'a "+ennemi+" humains qui vous attaques, ils détruisent vos remparts, votre armée et vos ressources !!!</em>";
+	bruitCombats()
 	console.log(ennemi)
 		
 		if (vieMurailles>0) {
@@ -637,6 +679,7 @@ function killRat(e) {
 /* EVENT SHARKNADO */
 
 function sharknado() {
+	bruitTornade();
 	var shark = document.createElement("div");			// Création d'une nouvelle div pour la tornade
 	document.body.insertBefore(shark, jeu);				// Insérer la div avant "jeu"
 	setTimeout(function(){ shark.style.transform = "translateX(600px)"; }, 5000) // Fixer la position de la tornade à la fin de l'animation CSS
@@ -694,13 +737,14 @@ function sharknado() {
 function tsunamiEvent(){
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/tsunami.gif)';
-	document.getElementById("txtEvents").innerHTML = "<strong>Attaque TSUNAMI !!!! </strong></br><em>Cette vague détruit 50% de vos bâtiments</em>";
-	ressourceBois=ressourceBois/2;
-	ressourcePierre=ressourcePierre/2;
-	armee= armee/2;
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque TSUNAMI !!!! </strong></br><em>Cette vague détruit 50% de vos ressources de bois et de pierre</em>";
+	ressourceBois=parseInt(ressourceBois/2);
+	ressourcePierre=parseInt(ressourcePierre/2);
+	armee = parseInt(armee/2);
+	bruitTsunami();
 	Affichage();
 	if (divEvents.style.display='block') {
-		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
+		setTimeout(function(){divEvents.style.display='none';}, 6000); 	
 	}
 }
 
@@ -712,6 +756,7 @@ function soucoupeEvent(){
 	divimgEvents.style.backgroundImage='url(./Images/ufo.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque des martiens !!!! </strong></br><em>Cette soucoupe emmène 1 de vos soldat</em>";
 	armee=parseInt(armee-(armee*3/100));
+	bruitAlien();
 	Affichage();
 	if (divEvents.style.display='block') {
 		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
@@ -724,8 +769,9 @@ function dragonEvent(){
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/dragon2.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque du Dragon Destructeur !!!! </strong></br><em>Sa puissante attaque est inévitable, il va détruire toutes vos défenses... Oups !</em>";
-	btDefense==false;
-	btMurailles==false;
+	btDefense=false;
+	btMurailles=false;
+	bruitDragon();
 	Affichage();
 	if (divEvents.style.display='block') {
 		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
