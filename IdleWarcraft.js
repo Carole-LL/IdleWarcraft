@@ -650,7 +650,7 @@ function zombiesRats() {
 		var ratX = Math.floor(Math.random() * (12-3 +1) )+ 3; 	// Génère un nombre random entre 3 et 12 pour déterminer le X du pop
 		var ratY = Math.floor(Math.random() * (9-2 +1) )+ 2;	// Génère un nombre random entre 2 et 9 pour déterminer le Y du pop
 			// Relancer le random si c'est en dehors des remparts ou sur une ressource cliquable
-		while ((ratY == 1) || (ratY == 2) || (ratY == 3) || (ratX == 1) || (ratX == 2) || (ratX == 3) || (ratX == 4 && ratY < 5) || (ratX == 5 && ratY < 5) || (ratX == 6 && ratY < 4) || (ratX == 8 && ratY == 9) || (ratX == 9 && ratY > 7) || (ratX == 10 && ratY > 6) || (ratX == 11 && ratY > 7) || (ratX == 12 && ratY > 7) || (ratX == 13 && ratY == 9) ) {
+		while ((ratY == 1) || (ratY == 2) || (ratY == 3) || (ratX == 1) || (ratX == 2) || (ratX == 3) || (ratX == 4 && ratY < 5) || (ratX == 5 && ratY < 5) || (ratX == 6 && ratY < 4) || (ratX == 8 && ratY == 9) || (ratX == 9 && ratY > 7) || (ratX == 10 && ratY > 6) || (ratX == 11 && ratY > 7) || (ratX == 12 && ratY > 7) || (ratX == 13 && ratY == 9) || (ratX > 12 && ratY == 6) || (ratY == 7 && ratX > 12) || (ratX == 14 && ratY == 8)) {
 				var ratX = Math.floor(Math.random() * (12-3 +1) )+ 3;
 				var ratY = Math.floor(Math.random() * (9-2 +1) )+ 2;
 		}
