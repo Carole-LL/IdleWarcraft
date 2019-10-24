@@ -704,6 +704,7 @@ function tsunamiEvent(){
 	}
 }
 
+
 /* Event Soucoupe*/
 
 function soucoupeEvent(){
@@ -730,6 +731,7 @@ function dragonEvent(){
 		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
 	}
 }
+
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
