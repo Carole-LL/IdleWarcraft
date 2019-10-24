@@ -612,7 +612,7 @@ function soucoupeEvent(){
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/ufo.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque des martiens !!!! </strong></br><em>Cette soucoupe emmène 1 de vos soldat</em>";
-	armee=armee-1;
+	armee=parseInt(armee-(armee*3/100));
 	Affichage();
 	if (divEvents.style.display='block') {
 		setTimeout(function(){divEvents.style.display='none';}, 7000); 	
