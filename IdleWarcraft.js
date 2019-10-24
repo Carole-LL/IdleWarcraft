@@ -53,6 +53,8 @@ var tuerArmee;
 var divEvents= document.getElementById('events');
 var divimgEvents=document.getElementById('imgEvents');
 var btnMurailles = document.getElementById('murailles');
+var nbRats = 6;		// Nombre de rats à pop pour l'évent zombiesRats
+var ratLife = [] 	// Tableau de la vie de chaque rat
 
 
 // Sons
@@ -83,7 +85,7 @@ function checkDiv(e) {
 					newDiv.style.left = e.pageX + 'px';			// Positionner en X la div selon le curseur du joueur
 					newDiv.style.top = e.pageY + 'px';			// Positionner en Y la div selon le curseur du joueur
 					newDiv.innerHTML = '<h5>+ '+clickBois+' Bois !</h5>';	// Ajoute le texte +X Bois 
-					var fading = setTimeout(function() { newDiv.remove(); }, 900); // Démarrer le timer pour supprimer la div
+					setTimeout(function() { newDiv.remove(); }, 900); // Démarrer le timer pour supprimer la div
 					newDiv.className += " ressourceMove";		// Ajoute la class "ressourceMove", ce qui lance l'animation CSS
 	}
 	else if (e.target.classList.contains("rock")) {	// Vérifie si la div est de la Pierre
@@ -95,14 +97,11 @@ function checkDiv(e) {
 					newDiv.style.left = e.pageX + 'px';			// Positionner en X la div selon le curseur du joueur
 					newDiv.style.top = e.pageY + 'px';			// Positionner en Y la div selon le curseur du joueur
 					newDiv.innerHTML = '<h5>+ '+clickPierre+' Pierre !</h5>';	// Ajoute le texte +X Pierre 
-					var fading = setTimeout(function() { newDiv.remove(); }, 900); // Démarrer le timer pour supprimer la div
+					setTimeout(function() { newDiv.remove(); }, 900); // Démarrer le timer pour supprimer la div
 					newDiv.className += " ressourceMove";		// Ajoute la class "ressourceMove", ce qui lance l'animation CSS
 	}
 	else if (e.target.contains(divEnnemi)) {
 		detruireEnnemi();
-	}
-	else {
-		alert(e.target.id);
 	}
 }
 
@@ -137,7 +136,7 @@ function Affichage() {
 	//batiments
 	document.getElementById('batimentSoldat').innerHTML = "Créer Caserne :</br>(5) de Bois / (5) de Pierre"
 	document.getElementById('batimentDefense').innerHTML = "Créer Centre de défense :</br>(20) de Bois / (20) de Pierre"
-	document.getElementById('newSoldat').innerHTML = "Créer Guerrié :</br>(4) de Bois / (4) de Pierre"
+	document.getElementById('newSoldat').innerHTML = "Créer Guerrier :</br>(4) de Bois / (4) de Pierre"
 	document.getElementById('murailles').innerHTML = "Créer Muraille :</br>(20) de Bois / (20) de Pierre"	
 
 
@@ -523,6 +522,61 @@ function affichageArmee() {
 }
 setInterval(affichageArmee, 2000); /* raffraichi l'affichage de la case armée */
 
+/* EVENT RATS ZOMBIES */
+
+function zombiesRats() {
+
+	for (var i = 0; i < nbRats; i++) {	// Exécute nbRats fois la boucle pour créer nbRats rats.
+		var newDiv = document.createElement("div");				// Créer une nouvelle div
+		newDiv.id = "rat"+i
+		newDiv.style.height = "37px";
+		newDiv.style.width = "36px";
+		newDiv.style.backgroundImage = "url(./Images/rat.gif)";
+		newDiv.addEventListener('click', killRat);
+
+		ratLife[i] = 3 // Assigne 3pv pour chaque rat.
+
+		/* Placement random du rat */
+		var ratX = Math.floor(Math.random() * (12-3 +1) )+ 3; 	// Génère un nombre random entre 3 et 12 pour déterminer le X du pop
+		var ratY = Math.floor(Math.random() * (9-2 +1) )+ 2;	// Génère un nombre random entre 2 et 9 pour déterminer le Y du pop
+		console.log('rat'+i+' X start: '+ratX);
+		console.log('rat'+i+' Y start: '+ratY);
+			// Relancer le random si c'est en dehors des remparts ou sur une ressource cliquable
+		while ((ratY == 1) || (ratY == 2) || (ratX == 1) || (ratX == 2) || (ratX == 3) || (ratX == 4 && ratY < 5) || (ratX == 5 && ratY < 5) || (ratX == 6 && ratY < 4) || (ratX == 8 && ratY == 9) || (ratX == 9 && ratY > 7) || (ratX == 10 && ratY > 6) || (ratX == 11 && ratY > 7) || (ratX == 12 && ratY > 7) || (ratX == 13 && ratY == 9) ) {
+				var ratX = Math.floor(Math.random() * (12-3 +1) )+ 3;
+				var ratY = Math.floor(Math.random() * (9-2 +1) )+ 2;
+				console.log('rat'+i+' X boucle: '+ratX);
+				console.log('rat'+i+' Y boucle: '+ratY);
+		}
+		document.getElementById("y"+ratY+"x"+ratX).appendChild(newDiv);
+	}
+}
+
+function killRat(e) {
+	// FX Sanglant lorsque l'on clique sur un rat
+		bloodDiv = document.createElement("div");
+		bloodDiv.style.pointerEvents = "none";
+		document.getElementById(e.target.id).appendChild(bloodDiv);
+		bloodDiv.style.height = "40px";
+		bloodDiv.style.width = "40px";
+		bloodDiv.style.position = "absolute";
+		bloodDiv.style.zIndex = "999";
+		bloodDiv.style.backgroundImage = "url(./Images/fxBloodHit.gif)";
+		setTimeout(function() { bloodDiv.remove(); }, 600);
+	// Enlever de la vie à un rat
+		for (var i = 0; i < nbRats; i++) {	// Vérifier chaque rat
+			if (e.target.id == "rat"+i) {	// Comparer si le rat cliqué est = au rat[i]
+				ratLife[i]--				// Enlever 1pv au rat i
+				if (ratLife[i] == 0) {		// Si le rat meurs
+					e.target.remove();		// Supprimer la div du rat
+					alert("rat "+i+" mort");// Donne la récompense : cerveau de rat enragé
+				}
+			}
+		}
+
+
+	
+}
 
 /* EVENT SHARKNADO */
 
@@ -532,45 +586,43 @@ function sharknado() {
 	setTimeout(function(){ shark.style.transform = "translateX(600px)"; }, 5000) // Fixer la position de la tornade à la fin de l'animation CSS
 	shark.classList.add("tornado");						// Ajouter le class "tornado" : Lancer l'anim de déplacement CSS
 	var sharkLife = 10;									// Vie de la tornade
-	var sharkDamage = setInterval(function(){			// DEGATS DE LA TORNADE PAR SECONDE !
+		var sharkDamage = setInterval(function(){		// DEGATS DE LA TORNADE PAR SECONDE !
 		if (armee > 0) {
 			armee--;
 		} 
 		if (ressourcePierre > 0) {
-			ressourcePierre = parseInt((ressourcePierre-(ressourcePierre*5/100)));  // Enlever 5% de la pierre
+			ressourcePierre = parseInt((ressourcePierre-(ressourcePierre*2/100)));  // Enlever 2% de la pierre
 		}
 		if (ressourceBois > 0) {
-			ressourceBois = parseInt((ressourceBois-(ressourceBois*5/100))); 		// Enlever 5% du bois
+			ressourceBois = parseInt((ressourceBois-(ressourceBois*2/100))); 		// Enlever 2% du bois
 		}
-	Affichage();
-	}, 1000); // chaque seconde
+		Affichage();
+		}, 1000); // chaque seconde
 
 	shark.addEventListener('click', function destroyTornado(e) {	// Similaire au "onclick" sauf qu'il est valable en dehors de la fonction -> éxécute "destroyTornado" quand on clique sur la tornade.
 		
-
 		var newDiv = document.createElement("div");		// Créer une nouvelle div
-			document.body.insertBefore(newDiv, jeu);	// Insérer la nouvelle div avant "jeu"
-			newDiv.style.position = "absolute";			// Position absolute, pour ne pas déformer le reste du jeu
-			newDiv.style.zIndex = "999";				// Est au dessus de tout
-			newDiv.style.marginTop = "-60px";			// Pour centrer
-			newDiv.style.marginLeft = "-60px";			// le gif sur le curseur
-			newDiv.style.left = e.pageX + 'px';			// Positionner en X la div selon le curseur du joueur
-			newDiv.style.top = e.pageY + 'px';			// Positionner en Y la div selon le curseur du joueur
+		document.body.insertBefore(newDiv, jeu);		// Insérer la nouvelle div avant "jeu"
+		newDiv.style.position = "absolute";				// Position absolute, pour ne pas déformer le reste du jeu
+		newDiv.style.zIndex = "999";					// Est au dessus de tout
+		newDiv.style.marginTop = "-60px";				// Pour centrer
+		newDiv.style.marginLeft = "-60px";				// le gif sur le curseur
+		newDiv.style.left = e.pageX + 'px';				// Positionner en X la div selon le curseur du joueur
+		newDiv.style.top = e.pageY + 'px';				// Positionner en Y la div selon le curseur du joueur
 			
 		var gifRnd = Math.floor(Math.random() * 2 )+ 1; // Un nombre random entre 1 et 2
-			if (gifRnd == 1) {					
-				newDiv.style.height = "130px";			// Défini la taille de la div selon le gif
-				newDiv.style.width = "150px";
-				newDiv.style.backgroundImage = "url('./Images/fx1.gif')";
-				var fading = setTimeout(function() { newDiv.remove(); }, 800); // Démarrer le timer pour supprimer la div
-			}
-			else if (gifRnd == 2) {
-				newDiv.style.height = "125px";			// Défini la taille de la div selon le gif
-				newDiv.style.width = "150px";
-				newDiv.style.backgroundImage = "url('./Images/fx2.gif')"
-				var fading = setTimeout(function() { newDiv.remove(); }, 600); // Démarrer le timer pour supprimer la div
-			}
-
+		if (gifRnd == 1) {					
+			newDiv.style.height = "130px";			// Défini la taille de la div selon le gif
+			newDiv.style.width = "150px";
+			newDiv.style.backgroundImage = "url('./Images/fx1.gif')";
+			var fading = setTimeout(function() { newDiv.remove(); }, 800); // Démarrer le timer pour supprimer la div
+		}
+		else if (gifRnd == 2) {
+			newDiv.style.height = "125px";			// Défini la taille de la div selon le gif
+			newDiv.style.width = "150px";
+			newDiv.style.backgroundImage = "url('./Images/fx2.gif')"
+			var fading = setTimeout(function() { newDiv.remove(); }, 600); // Démarrer le timer pour supprimer la div
+		}
 
 		sharkLife--												// Retirer 1 pv à la tornade
 		if (sharkLife <= 0) {									// Si la tornade tombe à 0 pv
