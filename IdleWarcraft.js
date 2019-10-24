@@ -141,7 +141,8 @@ function load() {
 			intervalPierre[i] = setInterval(ClickManuelPierre, 1000);
 		}
 			// Reconstruction des batiments sauvegardés & remise à bien des valeurs Booleans
-		if (btMurailles = 'true') {
+		if (btMurailles == 'false') { btMurailles = false; }
+		if (btMurailles == 'true') {
 			murailles1.style.backgroundImage = "url(./Images/wallEndRight.png)";
 			murailles2.style.backgroundImage = "url(./Images/wallAngle.png)";
 			murailles3.style.backgroundImage = "url(./Images/wallAngle.png)";
@@ -157,27 +158,30 @@ function load() {
 			murailles13.style.backgroundImage = "url(./Images/wallVertical.png)";
 			btMurailles = true;
 		}
-		else if (btMurailles = 'false') { btMurailles = false;}
-		if (btCaserne = 'true') {
+
+		if (btCaserne == 'false') { btCaserne = false;}
+		if (btCaserne == 'true') {
 			caserne.style.backgroundImage = "url(./Images/Orc_Barracks.gif)";
 			btCaserne = true;
 		}
-		else if (btCaserne = 'false') { btCaserne = false;}
-		if (btMine = 'true') {
+
+		if (btMine == 'false') { btMine = false; }
+		if (btMine == 'true') {
 			batimentMine.style.backgroundImage ="url(./Images/Orc_Mine.gif)";
 			btMine = true;
 		}
-		else if (btMine = 'false') { btMine = false;}
-		if (btBucheron = 'true') {
+
+		if (btBucheron == 'false') { btBucheron = false;}
+		if (btBucheron == 'true') {
 			batimentBucheron.style.backgroundImage ="url(./Images/Orc_Lumbermill.gif)";
 			btBucheron = true;
-		}
-		else if (btBucheron = 'false') { btBucheron = false;}
-		if (btDefense = 'true') {
+		} 
+
+		if (btDefense == 'false') { btDefense = false;}
+		if (btDefense == 'true') {
 			batimentDefense.style.backgroundImage = "url(./Images/Orc_Blacksmith.gif)";
 			btDefense = true;
 		}
-		else if (btDefense = 'false') { btDefense = false;}
 		loading = 0;
 		Affichage();
 	}
