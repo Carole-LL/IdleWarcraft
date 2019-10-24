@@ -364,8 +364,13 @@ padding-top: 5px;
 
 #jeu div { /* Border temporaire pour déterminer les divs */
 	
-
 }
+
+.BatimentBase {
+	background-image: url(./Images/Orc_Base.gif);
+	background-size: cover;
+}
+
 
 .wood {
 	cursor: url(./Images/axe.png),pointer;
