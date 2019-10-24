@@ -677,13 +677,13 @@ function killRat(e) {
 					nbRatsMorts++
 					e.target.remove();		// Supprimer la div du rat
 					clearInterval(ratLife[i+nbRats]); // Arrêter le malus du rat tué
-											// Donne la récompense : cerveau de rat enragé
 				}
 			}
 		}
 		if (nbRatsMorts == nbRats) {		// Si le nombre de rats morts est = au nombre de rats pops
 			divEvents.style.display='none'; // Disparaitre la POP UP
 			nbRatsMorts = 0;				// Réinitialiser les rats morts à 0
+			ratCerveauBonus();
 		}
 
 
@@ -806,10 +806,11 @@ function dragonEvent(){
 function ratCerveauBonus(){
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/brain3.png)';
-	document.getElementById("txtEvents").innerHTML = "<strong>*** BONUS *** Sales bêtes à tuer mais parfait snacks pour vos troupes</strong></br><em>Petits cerveaux très riche en energie ! Miam miam !</em>";
+	document.getElementById("txtEvents").innerHTML = "<strong>*** BONUS ***</br> Sales bêtes à tuer mais leurs petites cervelles est un parfait snacks ! Miam !!!</strong></br><em>Ca boostera la rage de vos guerriers jusqu'au prochain combat ! </em>";
+	
 	Affichage();
 	if (divEvents.style.display='block') {
-		setTimeout(function(){divEvents.style.display='none';}, 7000); 
+		setTimeout(function(){divEvents.style.display='none';}, 11000); 
 	}
 }
 
