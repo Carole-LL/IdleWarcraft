@@ -62,6 +62,7 @@ var upBatMurailles = 20;                                // Prix amelioration
 var upVieMuraille = 50;                                // Prix amelioration
 var nbRats = 6;		// Nombre de rats à pop pour l'évent zombiesRats
 var ratLife = [] 	// Tableau de la vie de chaque rat
+var nbRatsMorts = 0 // Nombre de rats morts (compteur pour faire disparaitre la pop UP)
 
 
 // Sons
@@ -581,53 +582,66 @@ setInterval(affichageArmee, 2000); /* raffraichi l'affichage de la case armée *
 /* EVENT RATS ZOMBIES */
 
 function zombiesRats() {
+	// POP UP
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/ratAlert.gif)';
+	document.getElementById("txtEvents").innerHTML = "<strong>Des rats ont envahi votre camp !!</strong></br><em>Ils rongent votre bois ! Tuez les rapidement !</em>";
 
+	// Création des rats
 	for (var i = 0; i < nbRats; i++) {	// Exécute nbRats fois la boucle pour créer nbRats rats.
 		var newDiv = document.createElement("div");				// Créer une nouvelle div
-		newDiv.id = "rat"+i
+		newDiv.id = "rat"+i					//	Ajoute une ID selon l'indice "i" à la div du rat
 		newDiv.style.height = "37px";
 		newDiv.style.width = "36px";
 		newDiv.style.backgroundImage = "url(./Images/rat.gif)";
-		newDiv.addEventListener('click', killRat);
+		newDiv.addEventListener('click', killRat);	// Lance la fonction killRat lorsqu'on clique sur ce rat
 
 		ratLife[i] = 3 // Assigne 3pv pour chaque rat.
-
+		ratLife[i+nbRats] = setInterval(function(){ // Début timer malus rat , entrer l'interval dans le tableau pour pouvoir l'arreter plus tard
+			if (ressourceBois > 0) {
+			ressourceBois = parseInt((ressourceBois-(ressourceBois*1/100)));  // Enleve 1% du bois
+			Affichage();
+			}
+		}
+		, 1000); // chaque seconde
 		/* Placement random du rat */
 		var ratX = Math.floor(Math.random() * (12-3 +1) )+ 3; 	// Génère un nombre random entre 3 et 12 pour déterminer le X du pop
 		var ratY = Math.floor(Math.random() * (9-2 +1) )+ 2;	// Génère un nombre random entre 2 et 9 pour déterminer le Y du pop
-		console.log('rat'+i+' X start: '+ratX);
-		console.log('rat'+i+' Y start: '+ratY);
 			// Relancer le random si c'est en dehors des remparts ou sur une ressource cliquable
-		while ((ratY == 1) || (ratY == 2) || (ratX == 1) || (ratX == 2) || (ratX == 3) || (ratX == 4 && ratY < 5) || (ratX == 5 && ratY < 5) || (ratX == 6 && ratY < 4) || (ratX == 8 && ratY == 9) || (ratX == 9 && ratY > 7) || (ratX == 10 && ratY > 6) || (ratX == 11 && ratY > 7) || (ratX == 12 && ratY > 7) || (ratX == 13 && ratY == 9) ) {
+		while ((ratY == 1) || (ratY == 2) || (ratY == 3) || (ratX == 1) || (ratX == 2) || (ratX == 3) || (ratX == 4 && ratY < 5) || (ratX == 5 && ratY < 5) || (ratX == 6 && ratY < 4) || (ratX == 8 && ratY == 9) || (ratX == 9 && ratY > 7) || (ratX == 10 && ratY > 6) || (ratX == 11 && ratY > 7) || (ratX == 12 && ratY > 7) || (ratX == 13 && ratY == 9) ) {
 				var ratX = Math.floor(Math.random() * (12-3 +1) )+ 3;
 				var ratY = Math.floor(Math.random() * (9-2 +1) )+ 2;
-				console.log('rat'+i+' X boucle: '+ratX);
-				console.log('rat'+i+' Y boucle: '+ratY);
 		}
-		document.getElementById("y"+ratY+"x"+ratX).appendChild(newDiv);
+		document.getElementById("y"+ratY+"x"+ratX).appendChild(newDiv); // Place la div du rat dans la case randomisée
 	}
 }
 
 function killRat(e) {
 	// FX Sanglant lorsque l'on clique sur un rat
-		bloodDiv = document.createElement("div");
-		bloodDiv.style.pointerEvents = "none";
-		document.getElementById(e.target.id).appendChild(bloodDiv);
+		bloodDiv = document.createElement("div");				// Créer une nouvelle div
+		bloodDiv.style.pointerEvents = "none";					// Désactiver la possilité de cliquer dessus
+		document.getElementById(e.target.id).appendChild(bloodDiv);	// Insérer la nouvelle div dans la div précédement cliquée
 		bloodDiv.style.height = "40px";
 		bloodDiv.style.width = "40px";
 		bloodDiv.style.position = "absolute";
-		bloodDiv.style.zIndex = "999";
+		bloodDiv.style.zIndex = "999";							// La mettre au dessus de tout
 		bloodDiv.style.backgroundImage = "url(./Images/fxBloodHit.gif)";
-		setTimeout(function() { bloodDiv.remove(); }, 600);
+		setTimeout(function() { bloodDiv.remove(); }, 600);		// Puis la faire disparaitre
 	// Enlever de la vie à un rat
-		for (var i = 0; i < nbRats; i++) {	// Vérifier chaque rat
+		for (var i = 0; i < nbRats; i++) {	// Parcours le tableau des rats
 			if (e.target.id == "rat"+i) {	// Comparer si le rat cliqué est = au rat[i]
 				ratLife[i]--				// Enlever 1pv au rat i
 				if (ratLife[i] == 0) {		// Si le rat meurs
+					nbRatsMorts++
 					e.target.remove();		// Supprimer la div du rat
-					alert("rat "+i+" mort");// Donne la récompense : cerveau de rat enragé
+					clearInterval(ratLife[i+nbRats]); // Arrêter le malus du rat tué
+											// Donne la récompense : cerveau de rat enragé
 				}
 			}
+		}
+		if (nbRatsMorts == nbRats) {		// Si le nombre de rats morts est = au nombre de rats pops
+			divEvents.style.display='none'; // Disparaitre la POP UP
+			nbRatsMorts = 0;				// Réinitialiser les rats morts à 0
 		}
 
 
@@ -637,6 +651,12 @@ function killRat(e) {
 /* EVENT SHARKNADO */
 
 function sharknado() {
+	// POP UP
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/sharknadoAlert.gif)';
+	document.getElementById("txtEvents").innerHTML = "<strong>Une sharknado est apparue !!</strong></br><em>Débarassez vous en avant qu'elle n'emporte toutes vos ressources et soldats !</em>";
+
+	// Création de la tornade	
 	var shark = document.createElement("div");			// Création d'une nouvelle div pour la tornade
 	document.body.insertBefore(shark, jeu);				// Insérer la div avant "jeu"
 	setTimeout(function(){ shark.style.transform = "translateX(600px)"; }, 5000) // Fixer la position de la tornade à la fin de l'animation CSS
@@ -644,7 +664,7 @@ function sharknado() {
 	var sharkLife = 10;									// Vie de la tornade
 		var sharkDamage = setInterval(function(){		// DEGATS DE LA TORNADE PAR SECONDE !
 		if (armee > 0) {
-			armee--;
+			armee--;									// Retirer un soldat
 		} 
 		if (ressourcePierre > 0) {
 			ressourcePierre = parseInt((ressourcePierre-(ressourcePierre*2/100)));  // Enlever 2% de la pierre
@@ -652,9 +672,10 @@ function sharknado() {
 		if (ressourceBois > 0) {
 			ressourceBois = parseInt((ressourceBois-(ressourceBois*2/100))); 		// Enlever 2% du bois
 		}
-		Affichage();
+		Affichage(); // Mettre à jour l'affichage après le retrait des ressources
 		}, 1000); // chaque seconde
 
+	// Cliquer sur la tornade
 	shark.addEventListener('click', function destroyTornado(e) {	// Similaire au "onclick" sauf qu'il est valable en dehors de la fonction -> éxécute "destroyTornado" quand on clique sur la tornade.
 		
 		var newDiv = document.createElement("div");		// Créer une nouvelle div
@@ -682,6 +703,7 @@ function sharknado() {
 
 		sharkLife--												// Retirer 1 pv à la tornade
 		if (sharkLife <= 0) {									// Si la tornade tombe à 0 pv
+			divEvents.style.display='none';						// Disparaitre la POP UP
 			clearInterval(sharkDamage);							// Arrêt des dégats
 			setTimeout(function(){ shark.remove(); }, 3000);	// Suppression de la div après l'animation CSS 
 			shark.classList.add("tornadoFade");					// Animation CSS de la disparition progressive de la tornade
