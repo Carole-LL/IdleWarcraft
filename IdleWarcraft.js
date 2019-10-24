@@ -1049,10 +1049,7 @@ function drWhoTardisDalek(){
 
 
 
-
-
-
-	if (divEvents.style.display='block') {
+if (divEvents.style.display='block') {
 		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
 	}
 }
