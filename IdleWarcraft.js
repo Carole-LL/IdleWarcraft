@@ -803,6 +803,16 @@ function dragonEvent(){
 	}
 }
 
+function ratCerveauBonus(){
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/brain3.png)';
+	document.getElementById("txtEvents").innerHTML = "<strong>*** BONUS *** Sales bêtes à tuer mais parfait snacks pour vos troupes</strong></br><em>Petits cerveaux très riche en energie ! Miam miam !</em>";
+	Affichage();
+	if (divEvents.style.display='block') {
+		setTimeout(function(){divEvents.style.display='none';}, 7000); 
+	}
+}
+
 /* EVENT POP RANDOM */
 
 function eventRnd() {
@@ -841,8 +851,6 @@ function eventRnd() {
 		eventRnd();
 	}, timerEvent)
 }
-
-
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
