@@ -836,12 +836,8 @@ function drWhoTardisDalek(){
 	ressourcePierre= parseInt(ressourcePierre -(ressourcePierre*10/100));
 	Affichage();
 
-}
 
-
-
-
-	if (divEvents.style.display='block') {
+if (divEvents.style.display='block') {
 		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
 	}
 }
