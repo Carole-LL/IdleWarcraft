@@ -450,9 +450,9 @@ h5 { /* Texte animation ajout Bois & Pierre */
 	display: none;
 	background-color: black; 
 	height: 300px;
-	width: 1000px;
+	width: 700px;
 	position: absolute; 
-	left: 23%;
+	left: 33%;
 	right: 25%;
 	opacity: 0.9;
 }
