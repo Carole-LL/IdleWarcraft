@@ -628,7 +628,7 @@ function zombiesRats() {
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/ratAlert.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Des rats ont envahi votre camp !!</strong></br><em>Ils rongent votre bois ! Tuez les rapidement !</em>";
-
+	bruitRats(); // Son de rats : Avertis le joueur de l'évent
 	// Création des rats
 	for (var i = 0; i < nbRats; i++) {	// Exécute nbRats fois la boucle pour créer nbRats rats.
 		var newDiv = document.createElement("div");				// Créer une nouvelle div
@@ -803,6 +803,46 @@ function dragonEvent(){
 	}
 }
 
+/* EVENT POP RANDOM */
+
+function eventRnd() {
+	var timerEvent = ( (Math.floor(Math.random() * (3*60) + 1))*1000 ); // Une fois toutes les 3 minutes (3*60 secondes) x1000 pour convertir en millisecondes
+	console.log("Event dans "+timerEvent/1000+" secondes.");
+	setTimeout(function () {
+		var randomizeEvent = (Math.floor(Math.random() * 100 + 1)); // Random entre 1 et 100
+		if (randomizeEvent >= 1 && randomizeEvent <= 50) {
+			// ENNEMIS
+			ennemiNbRandom();
+		}
+		else if (randomizeEvent > 50 && randomizeEvent < 60) {
+			// SOUCOUPE VOLANTE
+			soucoupeEvent();
+		}
+		else if (randomizeEvent >= 60 && randomizeEvent < 70) {
+			// RATS
+			zombiesRats();
+		}
+		else if (randomizeEvent >= 70 && randomizeEvent < 90) {
+			// DOC WHO
+			drWho();
+		}
+		else if (randomizeEvent >= 90 && randomizeEvent < 93) {
+			// DRAGON
+			dragonEvent();
+		}
+		else if (randomizeEvent >= 93 && randomizeEvent < 96) {
+			// TSUNAMI
+			tsunamiEvent();
+		}
+		else if (randomizeEvent >= 96 && randomizeEvent <= 100) {
+			// SHARKNADO
+			sharknado();
+		}
+		eventRnd();
+	}, timerEvent)
+}
+
+
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
@@ -813,4 +853,5 @@ document.getElementById('batimentSoldat').onclick = construireCaserne; 			// con
 document.getElementById('batimentDefense').onclick = construireBatimentDefense; // construire la défense
 btnMurailles.onclick = construireMurailles;										// construire la muraille de base
 
+eventRnd();
 Affichage();		// Affichage
