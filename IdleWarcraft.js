@@ -167,7 +167,7 @@ function Affichage() {
 	document.getElementById('upgradeClickBois').innerHTML = 'Bucherons plus rapides :</br> (' +priceClickBoisUpgrade+') de bois';
 	// Pierre 
 	document.getElementById('nbClickPierre').innerHTML = 'Pierre: '+ressourcePierre;
-	document.getElementById('autoClickPierre').innerHTML = 'Acheter mine :</br> ('+PrixBatimentMine+') de pierres';
+	document.getElementById('autoClickPierre').innerHTML = 'Mine :</br> ('+PrixBatimentMine+') de pierres';
 	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs: '+autoClickPierre+"</br>(1 click/s)";
 	document.getElementById('upgradeClickPierre').innerHTML = 'Mineurs plus rapides :</br> ('+priceClickPierreUpgrade+') de pierres';
 	//soldat
@@ -573,10 +573,13 @@ function ennemiNbRandom() {
 	divEnnemi.style.backgroundImage="url(./Images/ennemi.png)";
 	ennemi = Math.floor((Math.random() * (20)) + 1);
 	divEvents.style.display='block';
-	divimgEvents.style.backgroundImage='url(./Images/ennemi.png)';
+	divimgEvents.style.backgroundImage='url(./Images/warrior.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque d'HUMAINS !!!! </strong></br><em>Il y'a "+ennemi+" humains qui vous attaques, ils détruisent vos remparts, votre armée et vos ressources !!!</em>";
-	bruitCombats()
+	bruitCombats();
 	console.log(ennemi)
+		if (divEvents.style.display='block') {
+		setTimeout(function(){divEvents.style.display='none';}, 8000); 	
+		}
 		
 		if (vieMurailles>0) {
 			setInterval(enleverVieMuraille, 6000);
