@@ -836,7 +836,7 @@ function drWhoTardisDalek(){
 	ressourcePierre= parseInt(ressourcePierre -(ressourcePierre*10/100));
 	Affichage();
 
-}
+
 
 
 
