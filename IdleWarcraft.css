@@ -347,10 +347,30 @@ padding-top: 5px;
 	
 }
 
+#Ressource7 {
+
+	padding-left: 15px;
+	padding-top: 15px;
+	color: white;
+	font-size: 0.9em;
+	display: flex;
+	width: 100%;
+	height: 60px;
+	flex-wrap: wrap;
+	background-image: url(./Images/TexBtn.png);
+	background-size: cover;
+	
+}
+
 #jeu div { /* Border temporaire pour déterminer les divs */
 	
-
 }
+
+.BatimentBase {
+	background-image: url(./Images/Orc_Base.gif);
+	background-size: cover;
+}
+
 
 .wood {
 	cursor: url(./Images/axe.png),pointer;
@@ -432,14 +452,15 @@ h5 { /* Texte animation ajout Bois & Pierre */
 }
 
 #events {
+	opacity: 0.8;
 	display: none;
 	background-color: black; 
 	height: 300px;
-	width: 1000px;
+	width: 700px;
 	position: absolute; 
-	left: 23%;
+	left: 33%;
 	right: 25%;
-	opacity: 0.9;
+	
 }
 
 .tornado {
@@ -546,6 +567,7 @@ h5 { /* Texte animation ajout Bois & Pierre */
 
 }
 #y2x11 {
+	background-repeat: no-repeat;
 
 }
 #y2x12 {
@@ -662,6 +684,7 @@ h5 { /* Texte animation ajout Bois & Pierre */
 
 }
 #y5x7  {
+	background-repeat: no-repeat;
 
 }
 #y5x8  {
@@ -701,6 +724,7 @@ h5 { /* Texte animation ajout Bois & Pierre */
 
 }
 #y6x6  {
+	background-repeat: no-repeat;
 
 }
 #y6x7  {
@@ -758,6 +782,7 @@ h5 { /* Texte animation ajout Bois & Pierre */
 
 }
 #y7x11 {
+	background-repeat: no-repeat;
 
 }
 #y7x12 {
