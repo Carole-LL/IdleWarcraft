@@ -409,7 +409,7 @@ Affichage();
 // Construire Batiment Soldat (y6x6)
 
 function construireCaserne() {
-	if (ressourceBois > upBatCaserne && ressourcePierre > upBatCaserne) {
+	if (ressourceBois >= upBatCaserne && ressourcePierre >= upBatCaserne) {
 		caserne.style.backgroundImage = "url(./Images/Orc_Barracks.gif)";
 		caserneConstruite=true;
 		ressourceBois = ressourceBois- upBatCaserne ;
@@ -511,7 +511,7 @@ function boutonSoldat(){
 
 // fonction création des soldats, conditions de ressources, diminution des ressources si on crée des soldats
 function creationSoldat(){
- if (ressourceBois>upBatGuerrier && ressourcePierre>upBatGuerrier){
+ if (ressourceBois>=upBatGuerrier && ressourcePierre>=upBatGuerrier){
   armee = armee+1;
   ressourceBois= ressourceBois- upBatGuerrier ;
   ressourcePierre=ressourcePierre- upBatGuerrier ;
@@ -576,9 +576,11 @@ function ennemiNbRandom() {
 	divimgEvents.style.backgroundImage='url(./Images/warrior.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque d'HUMAINS !!!! </strong></br><em>Il y'a "+ennemi+" humains qui vous attaques, ils détruisent vos remparts, votre armée et vos ressources !!!</em>";
 	bruitCombats();
+
 	console.log(ennemi)
 		if (divEvents.style.display='block') {
 		setTimeout(function(){divEvents.style.display='none';}, 8000); 	
+
 		}
 		
 		if (vieMurailles>0) {
