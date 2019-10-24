@@ -648,6 +648,21 @@ function tsunamiEvent(){
 }
 
 
+/* Event Soucoupe*/
+
+function soucoupeEvent(){
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/ufo.gif)';
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque des martiens !!!! </strong></br><em>Cette soucoupe emmène 1 de vos soldat</em>";
+	armee=parseInt(armee-(armee*3/100));
+	Affichage();
+	if (divEvents.style.display='block') {
+		setTimeout(function(){divEvents.style.display='none';}, 7000); 	
+		
+	}
+}
+
+
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
 document.getElementById('upgradeClickBois').onclick = UpgradeBois; 				// Améliorer le click du bois
