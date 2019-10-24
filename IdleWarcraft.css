@@ -29,10 +29,48 @@ body {
 	font-family: 'Josefin Sans', sans-serif;
 	background-color: grey;
 	margin: 0;
-
 	font-size: 15px;
+}
 
+#saveBtns {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	left: 15%;
+	z-index: 666;
+	margin-top: 10px;
+}
 
+#save {
+	width: 119px;
+	height: 30px;
+	background-image: url(./Images/save.png);
+	margin-bottom: 10px;
+}
+
+#save:hover {
+	background-image: url(./Images/save-active.png);
+}
+
+#load {
+	width: 119px;
+	height: 30px;
+	background-image: url(./Images/load.png);
+	margin-bottom: 10px;
+}
+
+#load:hover {
+	background-image: url(./Images/load-active.png);
+}
+
+#export{
+	width: 119px;
+	height: 30px;
+	background-image: url(./Images/export.png);
+}
+
+#export:hover {
+	background-image: url(./Images/export-active.png);
 }
 
 #jeu {	/* Map du jeu */
