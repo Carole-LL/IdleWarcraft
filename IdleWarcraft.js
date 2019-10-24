@@ -54,6 +54,9 @@ var tuerArmee;
 var divEvents= document.getElementById('events');
 var divimgEvents=document.getElementById('imgEvents');
 var btnMurailles = document.getElementById('murailles');
+var docteur = 1;
+var dalek = 2;
+var affichageDocteur;
 var vieMurailles = parseInt(0);
 var upBatDefense = 20;                                // Prix amelioration
 var upBatCaserne = 5;                                // Prix amelioration
@@ -762,7 +765,7 @@ function sharknado() {
 	})
 }
 
-/* Event Tsunami*/
+/* Event Malus Tsunami*/
 
 function tsunamiEvent(){
 	divEvents.style.display='block';
@@ -782,12 +785,62 @@ function tsunamiEvent(){
 /* Event Soucoupe*/
 
 function soucoupeEvent(){
-	divEvents.style.display='block';
-	divimgEvents.style.backgroundImage='url(./Images/ufo.gif)';
+	divEvents.style.display="block";
+	divimgEvents.style.backgroundImage="url(./Images/ufo.gif)";
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque des martiens !!!! </strong></br><em>Cette soucoupe emmène 1 de vos soldat</em>";
 	armee=parseInt(armee-(armee*3/100));
 	bruitAlien();
 	Affichage();
+  
+	if (divEvents.style.display="block") {
+		setTimeout(function(){divEvents.style.display="none";}, 7000); 	
+		
+	}
+}
+
+/* Event Bonus Dr Who */
+
+function drWho(){
+if (btCaserne==false){
+	drWhoDebut();
+}
+	if (affichageDocteur==dalek) {
+		setTimeout(drWhoTardisDalek, 5000) ;
+	}
+	if (affichageDocteur==docteur){
+		setTimeout(drWhoTardisDoc1, 5000) ;
+	}
+
+	setTimeout(function(){divEvents.style.display="none";}, 10000);
+}	
+function drWhoDebut(){
+affichageDocteur=Math.floor(Math.random() * dalek )+ docteur;
+	console.log(affichageDocteur);
+	divEvents.style.display="block";
+	divimgEvents.style.backgroundImage="url(./Images/TardisPop.gif)";
+	document.getElementById("txtEvents").innerHTML="Attention Dr WHO arrive";
+}
+function drWhoTardisDoc1(){
+	divimgEvents.style.backgroundImage="url('./Images/TardisDoc1.gif')";
+	document.getElementById("txtEvents").innerHTML="Dr WHO vous aide et </br>vous offre 10% de ressources supplémentaires";
+	ressourceBois= parseInt(ressourceBois +(ressourceBois*10/100));
+	ressourcePierre= parseInt(ressourcePierre +(ressourcePierre*10/100));
+	Affichage();
+
+}
+
+function drWhoTardisDalek(){
+	divimgEvents.style.backgroundImage="url(./Images/TardisDalek.gif)";
+	document.getElementById("txtEvents").innerHTML="le Dalek vous prend des 10 % de vos ressources";
+	ressourceBois= parseInt(ressourceBois -(ressourceBois*10/100));
+	ressourcePierre= parseInt(ressourcePierre -(ressourcePierre*10/100));
+	Affichage();
+
+}
+
+
+
+
 	if (divEvents.style.display='block') {
 		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
 	}
