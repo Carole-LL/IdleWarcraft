@@ -601,7 +601,7 @@ function tsunamiEvent(){
 	armee= armee/2;
 	Affichage();
 	if (divEvents.style.display='block') {
-		setTimeout(function(){divEvents.style.display='none';}, 7000); 	
+		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
 		
 	}
 }
@@ -615,12 +615,24 @@ function soucoupeEvent(){
 	armee=armee-1;
 	Affichage();
 	if (divEvents.style.display='block') {
-		setTimeout(function(){divEvents.style.display='none';}, 7000); 	
+		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
 		
 	}
 }
 
+/* Event Dragon*/
 
+function dragonEvent(){
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/dragon2.gif)';
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque du Dragon Destructeur !!!! </strong></br><em>Sa puissante attaque est inévitable, il va détruire toutes vos défenses... Oups !</em>";
+	btDefense==false;
+	btMurailles==false;
+	Affichage();
+	if (divEvents.style.display='block') {
+		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
+	}
+}
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
