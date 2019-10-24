@@ -167,7 +167,7 @@ function Affichage() {
 	document.getElementById('upgradeClickBois').innerHTML = 'Bucherons plus rapides :</br> (' +priceClickBoisUpgrade+') de bois';
 	// Pierre 
 	document.getElementById('nbClickPierre').innerHTML = 'Pierre: '+ressourcePierre;
-	document.getElementById('autoClickPierre').innerHTML = 'Acheter mine :</br> ('+PrixBatimentMine+') de pierres';
+	document.getElementById('autoClickPierre').innerHTML = 'Mine :</br> ('+PrixBatimentMine+') de pierres';
 	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs: '+autoClickPierre+"</br>(1 click/s)";
 	document.getElementById('upgradeClickPierre').innerHTML = 'Mineurs plus rapides :</br> ('+priceClickPierreUpgrade+') de pierres';
 	//soldat
@@ -573,12 +573,14 @@ function ennemiNbRandom() {
 	divEnnemi.style.backgroundImage="url(./Images/ennemi.png)";
 	ennemi = Math.floor((Math.random() * (20)) + 1);
 	divEvents.style.display='block';
-	divimgEvents.style.backgroundImage='url(./Images/ennemi.png)';
+	divimgEvents.style.backgroundImage='url(./Images/warrior.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque d'HUMAINS !!!! </strong></br><em>Il y'a "+ennemi+" humains qui vous attaques, ils détruisent vos remparts, votre armée et vos ressources !!!</em>";
 	bruitCombats();
-	console.log(ennemi);
+
+	console.log(ennemi)
 		if (divEvents.style.display='block') {
-		setTimeout(function(){divEvents.style.display='none';}, 6000); 	
+		setTimeout(function(){divEvents.style.display='none';}, 8000); 	
+
 		}
 		
 		if (vieMurailles>0) {
@@ -653,7 +655,7 @@ function zombiesRats() {
 		var ratX = Math.floor(Math.random() * (12-3 +1) )+ 3; 	// Génère un nombre random entre 3 et 12 pour déterminer le X du pop
 		var ratY = Math.floor(Math.random() * (9-2 +1) )+ 2;	// Génère un nombre random entre 2 et 9 pour déterminer le Y du pop
 			// Relancer le random si c'est en dehors des remparts ou sur une ressource cliquable
-		while ((ratY == 1) || (ratY == 2) || (ratY == 3) || (ratX == 1) || (ratX == 2) || (ratX == 3) || (ratX == 4 && ratY < 5) || (ratX == 5 && ratY < 5) || (ratX == 6 && ratY < 4) || (ratX == 8 && ratY == 9) || (ratX == 9 && ratY > 7) || (ratX == 10 && ratY > 6) || (ratX == 11 && ratY > 7) || (ratX == 12 && ratY > 7) || (ratX == 13 && ratY == 9) ) {
+		while ((ratY == 1) || (ratY == 2) || (ratY == 3) || (ratX == 1) || (ratX == 2) || (ratX == 3) || (ratX == 4 && ratY < 5) || (ratX == 5 && ratY < 5) || (ratX == 6 && ratY < 4) || (ratX == 8 && ratY == 9) || (ratX == 9 && ratY > 7) || (ratX == 10 && ratY > 6) || (ratX == 11 && ratY > 7) || (ratX == 12 && ratY > 7) || (ratX == 13 && ratY == 9) || (ratX > 12 && ratY == 6) || (ratY == 7 && ratX > 12) || (ratX == 14 && ratY == 8)) {
 				var ratX = Math.floor(Math.random() * (12-3 +1) )+ 3;
 				var ratY = Math.floor(Math.random() * (9-2 +1) )+ 2;
 		}
@@ -680,13 +682,13 @@ function killRat(e) {
 					nbRatsMorts++
 					e.target.remove();		// Supprimer la div du rat
 					clearInterval(ratLife[i+nbRats]); // Arrêter le malus du rat tué
-											// Donne la récompense : cerveau de rat enragé
 				}
 			}
 		}
 		if (nbRatsMorts == nbRats) {		// Si le nombre de rats morts est = au nombre de rats pops
 			divEvents.style.display='none'; // Disparaitre la POP UP
 			nbRatsMorts = 0;				// Réinitialiser les rats morts à 0
+			ratCerveauBonus();
 		}
 
 
@@ -806,6 +808,17 @@ function dragonEvent(){
 	}
 }
 
+function ratCerveauBonus(){
+	divEvents.style.display='block';
+	divimgEvents.style.backgroundImage='url(./Images/brain3.png)';
+	document.getElementById("txtEvents").innerHTML = "<strong>*** BONUS ***</br> Sales bêtes à tuer mais leurs petites cervelles est un parfait snacks ! Miam !!!</strong></br><em>Ca boostera la rage de vos guerriers jusqu'au prochain combat ! </em>";
+	
+	Affichage();
+	if (divEvents.style.display='block') {
+		setTimeout(function(){divEvents.style.display='none';}, 11000); 
+	}
+}
+
 /* EVENT POP RANDOM */
 
 function eventRnd() {
@@ -844,8 +857,6 @@ function eventRnd() {
 		eventRnd();
 	}, timerEvent)
 }
-
-
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
