@@ -70,6 +70,8 @@ var sauvegarde; // Variable pour détecter s'il y a une sauvegarde ou non
 var loading;	// Variable pour détecter si c'est en chargement  (pour contrer les bruits de construction au chargement de la sauvegarde)
 var intervalBois = []; // Pour arreter les autoclickers au reset
 var intervalPierre = []; // Pour arreter les autoclickers au reset
+var maxEnnemi = 5;
+var minEnnemi = 2;
 
 // SAUVEGARDER
 
@@ -788,11 +790,16 @@ function enleverVieMuraille() {
 	}
 }
 
+function variablePopEnnemi(){
+	minEnnemi=minEnnemi*1.5;
+	maxEnnemi=maxEnnemi*1.5;
+}
+setInterval(variablePopEnnemi(), 100000)
 //creation ennemies de base
 
 function ennemiNbRandom() {
 	divEnnemi.style.backgroundImage="url(./Images/ennemi.png)";
-	ennemi = Math.floor((Math.random() * (ressourcePierre)) + UpgradePierre);
+	ennemi = Math.floor((Math.random() * (maxEnnemi)) + minEnnemi);
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/warrior.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque d'HUMAINS !!!! </strong></br><em>Il y'a "+ennemi+" humains qui vous attaques, ils détruisent vos remparts, votre armée et vos ressources !!!</em>";
@@ -823,11 +830,17 @@ Affichage();
 
 function detruireEnnemi() {
 	
-	if (ennemi>0) {
-	ennemi= ennemi-1;
+	if (ennemi>0 && armee>0) {
+	ennemi= ennemi-armee;
 	}
-	if (ennemi==0) {
+
+	if (ennemi>0 && armee==0) {
+		ennemi= ennemi-1;
+	}
+
+	if (ennemi<=0) {
 		divEnnemi.style.backgroundImage="none";
+		ennemi=0
 	}
 Affichage();
 }
