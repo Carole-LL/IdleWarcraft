@@ -453,11 +453,11 @@ function Affichage() {
 			guerriersGriser.style.opacity = '0.2'
 
 		}
-		else if (ressourcePierre>upBatGuerrier && ressourceBois>upBatGuerrier && btCaserne == true) {
+		if (ressourcePierre>upBatGuerrier && ressourceBois>upBatGuerrier && btCaserne == true) {
 			guerriersGriser.style.opacity = '1'
 		}
 
-		else if (btCaserne == false) {
+		if (btCaserne==false) {
 			guerriersGriser.style.opacity = '0.2'
 		}
 
