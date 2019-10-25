@@ -71,7 +71,7 @@ var nbRatsMorts = 0; // Nombre de rats morts (compteur pour faire disparaitre la
 var sauvegarde; // Variable pour détecter s'il y a une sauvegarde ou non
 var loading;	// Variable pour détecter si c'est en chargement  (pour contrer les bruits de construction au chargement de la sauvegarde)
 var intervalBois = []; // Tableau des autoclickers bois
-var intervalPierre = []; // Pour arreter les autoclickers au reset
+var intervalPierre = []; // Tableau des autoclickers pierre
 var delayEvent;	// Le Timeout des events
 var eventRat; // Est-ce que l'event rat est en cours
 var eventSharknado; // Est-ce que l'event sharknado est en cours
@@ -1193,7 +1193,7 @@ function eventRnd() {
 function alerteBienvenu(){
 	divBienvenu.style.display='block';
 	divimgBienvenu.style.backgroundImage='url(./Images/bienvenu.jpg)';
-	document.getElementById("txtBienvenu").innerHTML = "<strong>Bienvenu sur IDLE WARCRAFT !</strong></br></br> Protéger vous des attaques ennemies et de bien d'autres dangers.</br>Prosperer pour devenir le plus grand et puissant royaume au monde";
+	document.getElementById("txtBienvenu").innerHTML = "<strong>Bienvenue sur IDLE WARCRAFT !</strong></br></br> Protégez vous des attaques ennemies et de bien d'autres dangers.</br>Prosperez pour devenir le plus grand et puissant royaume au monde.";
 	Affichage();
 	if (divBienvenu.style.display='block') {
 		setTimeout(function(){divBienvenu.style.display='none';}, 15000); 	
