@@ -70,6 +70,9 @@ var sauvegarde; // Variable pour détecter s'il y a une sauvegarde ou non
 var loading;	// Variable pour détecter si c'est en chargement  (pour contrer les bruits de construction au chargement de la sauvegarde)
 var intervalBois = []; // Pour arreter les autoclickers au reset
 var intervalPierre = []; // Pour arreter les autoclickers au reset
+var delayEvent;	// Le Timeout des events
+var eventRat; // Est-ce que l'event rat est en cours
+var eventSharknado; // Est-ce que l'event sharknado est en cours
 
 // SAUVEGARDER
 
@@ -85,6 +88,7 @@ function save() {
 	localStorage.setItem('autoClickBois', autoClickBois);
 	localStorage.setItem('autoClickPierre', autoClickPierre);
 	localStorage.setItem('priceClickBoisUpgrade', priceClickBoisUpgrade);
+	localStorage.setItem('priceClickPierreUpgrade', priceClickPierreUpgrade);
 	localStorage.setItem('soldat', soldat);
 	localStorage.setItem('ennemi', ennemi);
 	localStorage.setItem('btMurailles', btMurailles);
@@ -99,6 +103,7 @@ function save() {
 	localStorage.setItem('upBatGuerrier', upBatGuerrier);
 	localStorage.setItem('upBatMurailles', upBatMurailles);
 	localStorage.setItem('upVieMuraille', upVieMuraille);
+	localStorage.setItem('eventRat', eventRat);
 	console.log(sauvegarde);
 	console.log("Sauvegardé !");
 	alert("Sauvegardé !");
@@ -108,7 +113,6 @@ function save() {
 
 function load() {
 	sauvegarde = localStorage.getItem('sauvegarde');
-	console.log(sauvegarde);
 	if (sauvegarde == 1) { // S'il y a une sauvegarde locale, charger les variables
 		loading = 1;
 		ressourceBois = parseInt(localStorage.getItem('ressourceBois'));
@@ -120,6 +124,7 @@ function load() {
 		autoClickBois = parseInt(localStorage.getItem('autoClickBois'));
 		autoClickPierre = parseInt(localStorage.getItem('autoClickPierre'));
 		priceClickBoisUpgrade = parseInt(localStorage.getItem('priceClickBoisUpgrade'));
+		priceClickPierreUpgrade = parseInt(localStorage.getItem('priceClickPierreUpgrade'));
 		soldat = parseInt(localStorage.getItem('soldat'));
 		ennemi = parseInt(localStorage.getItem('ennemi'));
 		btMurailles = localStorage.getItem('btMurailles');
@@ -160,9 +165,12 @@ function load() {
 		}
 
 		if (btCaserne == 'false') { btCaserne = false;}
+			clearTimeout(delayEvent);
 		if (btCaserne == 'true') {
 			caserne.style.backgroundImage = "url(./Images/Orc_Barracks.gif)";
 			btCaserne = true;
+			clearTimeout(delayEvent); 	// Arrete le timer des events s'il y en a
+			eventRnd();					// Si on a la caserne, démarre le timer pour les events
 		}
 
 		if (btMine == 'false') { btMine = false; }
@@ -182,6 +190,8 @@ function load() {
 			batimentDefense.style.backgroundImage = "url(./Images/Orc_Blacksmith.gif)";
 			btDefense = true;
 		}
+		if (eventRat == 'false') { eventRat = false; }
+		if (eventRat == 'true') { zombiesRats(); }
 		loading = 0;
 		Affichage();
 	}
@@ -196,8 +206,17 @@ function importer() {
 // EXPORTER
 
 function exporter() {
-	//data=JSON.stringify({});
-	alert("Fonction en construction ! Bientôt sur vos écrans !")
+	//Methode JSON
+	//data=JSON.stringify({});;
+
+	//Methode https://github.com/eligrey/FileSaver.js
+	/*
+	var filename=Game.bakeryName.replace(/[^a-zA-Z0-9]+/g,'')+'Bakery';
+	var text=Game.WriteSave(1);
+	var blob=new Blob([text],{type:'text/plain;charset=utf-8'})
+	saveAs(blob,filename+'.txt');
+	*/
+	alert("Fonction en construction ! Bientôt sur vos écrans !");
 }
 
 // RESET
@@ -267,8 +286,11 @@ function reset() {
 	upBatMurailles = 20;                                // Prix amelioration
 	upVieMuraille = 50;                                // Prix amelioration
 	nbRats = parseInt(6);		// Nombre de rats à pop pour l'évent zombiesRats
-	ratLife = [] 	// Tableau de la vie de chaque rat
-	nbRatsMorts = 0 // Nombre de rats morts (compteur pour faire disparaitre la pop UP)
+	ratLife = [];	// Tableau de la vie de chaque rat
+	nbRatsMorts = 0; // Nombre de rats morts (compteur pour faire disparaitre la pop UP)
+	eventRat = false;
+	clearTimeout(delayEvent); // Stop tout évenement à venir
+	sauvegarde = 0
 	Affichage();
 }
 
@@ -537,7 +559,7 @@ function UpgradeBois() {
 		Affichage();
 	}
 	else {
-		alert('Pas assez de $clicks$ !');
+		alert('Pas assez de bois !');
 	}
 }
 
@@ -554,7 +576,7 @@ function CabaneBucheron() {
 		
 	}
 	else {
-		alert('Pas assez de $clicks$ !');
+		alert('Pas assez de bois !');
 	}
 Affichage();
 }
@@ -587,7 +609,7 @@ function UpgradePierre() {
 		Affichage();
 	}
 	else {
-		alert('Pas assez de $clicks$ !');
+		alert('Pas assez de pierre !');
 	}
 }
 
@@ -603,7 +625,7 @@ function MinePierre() {
 		bruitConstruction()
 	}
 	else {
-		alert('Pas assez de $clicks$ !');
+		alert('Pas assez de pierre !');
 	}
 Affichage();
 }
@@ -623,12 +645,14 @@ function construireCaserne() {
 		ressourceBois = ressourceBois- upBatCaserne ;
 		ressourcePierre = ressourcePierre- upBatCaserne ;
 		btCaserne = true;
+		clearTimeout(delayEvent);
+		eventRnd();
 		Affichage();
 		if (loading = 0) {
 			bruitConstruction();
 		}
 	}
-	else alert ( "Augmenter vos ressources Bois et Pierre");
+	else alert ( "Augmenter vos ressources de Bois et Pierre");
 }
 
 // fin Construire Batiment Soldat
@@ -649,7 +673,7 @@ function construireBatimentDefense () {
 		}
 
 	}
-	else alert ("Augmenter vos ressources Bois et Pierre");
+	else alert ("Augmentez vos ressources de Bois et Pierre");
 }
 
 /* construire muraille */
@@ -679,11 +703,11 @@ function construireMurailles() {
 		}
 	}
 	else if (btMurailles==true) {
-		alert('Deja Construit');
+		alert('Déjà construite');
 	}
 
 	else  {
-		alert('pas de ressources');
+		alert('Augmentez vos ressources de Bois et Pierre');
 	}
 	Affichage()
 
@@ -849,6 +873,7 @@ setInterval(affichageArmee, 2000); /* raffraichi l'affichage de la case armée *
 function zombiesRats() {
 	// POP UP
 	divEvents.style.display='block';
+	eventRat = true;
 	divimgEvents.style.backgroundImage='url(./Images/ratAlert.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Des rats ont envahi votre camp !!</strong></br><em>Ils rongent votre bois ! Tuez les rapidement !</em>";
 	bruitRats(); // Son de rats : Avertis le joueur de l'évent
@@ -905,8 +930,9 @@ function killRat(e) {
 		}
 		if (nbRatsMorts == nbRats) {		// Si le nombre de rats morts est = au nombre de rats pops
 			divEvents.style.display='none'; // Disparaitre la POP UP
+			eventRat = false;				// L'event rat est finit
 			nbRatsMorts = 0;				// Réinitialiser les rats morts à 0
-			ratCerveauBonus();
+			ratCerveauBonus();				// Récompense
 		}
 
 
@@ -918,7 +944,7 @@ function killRat(e) {
 function sharknado() {
 
 	bruitTornade();
-
+	eventSharknado = true;
 	// POP UP
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/sharknadoAlert.gif)';
@@ -972,6 +998,7 @@ function sharknado() {
 
 		sharkLife--												// Retirer 1 pv à la tornade
 		if (sharkLife <= 0) {									// Si la tornade tombe à 0 pv
+			eventSharknado = false;
 			divEvents.style.display='none';						// Disparaitre la POP UP
 			clearInterval(sharkDamage);							// Arrêt des dégats
 			setTimeout(function(){ shark.remove(); }, 3000);	// Suppression de la div après l'animation CSS 
@@ -1088,40 +1115,60 @@ function ratCerveauBonus(){
 /* EVENT POP RANDOM */
 
 function eventRnd() {
-	var timerEvent = ( (Math.floor(Math.random() * (3*60) + 1))*1000 ); // Une fois toutes les 3 minutes (3*60 secondes) x1000 pour convertir en millisecondes
+	var timerEvent = ( (Math.floor(Math.random() * (3*60) + 60))*1000 ); // Entre une (60) et 3 minutes (3*60 secondes) x1000 pour convertir en millisecondes
 	console.log("Event dans "+timerEvent/1000+" secondes.");
-	setTimeout(function () {
-		var randomizeEvent = (Math.floor(Math.random() * 100 + 1)); // Random entre 1 et 100
+	var randomizeEvent = (Math.floor(Math.random() * 100 + 1)); // Random entre 1 et 100
+	console.log("Numéro Random Event: "+randomizeEvent);
+	
 		if (randomizeEvent >= 1 && randomizeEvent <= 50) {
 			// ENNEMIS
-			ennemiNbRandom();
+			console.log("Event: ennemis");
+			delayEvent = setTimeout(function(){ ennemiNbRandom(); eventRnd(); }, timerEvent);
 		}
 		else if (randomizeEvent > 50 && randomizeEvent < 60) {
 			// SOUCOUPE VOLANTE
-			soucoupeEvent();
+			console.log("Event: Soucoupe");
+			delayEvent = setTimeout(function(){ soucoupeEvent(); eventRnd(); }, timerEvent);
 		}
 		else if (randomizeEvent >= 60 && randomizeEvent < 70) {
 			// RATS
-			zombiesRats();
+			if (eventRat == false) {
+				console.log("Event: Rats");
+				delayEvent = setTimeout(function(){ zombiesRats(); eventRnd(); }, timerEvent);
+			}
+			else if (eventRat == true) {	// Si les rats sont en cours, relancer le random
+				console.log("Rats en cours, reRandom");
+				clearTimeout(delayEvent);
+				eventRnd();
+			}
 		}
 		else if (randomizeEvent >= 70 && randomizeEvent < 90) {
 			// DOC WHO
-			drWho();
+			console.log("Event: DocWho");
+			delayEvent = setTimeout(function(){ drWho(); eventRnd(); }, timerEvent);
 		}
 		else if (randomizeEvent >= 90 && randomizeEvent < 93) {
 			// DRAGON
-			dragonEvent();
+			console.log("Event: Dragon");
+			delayEvent = setTimeout(function(){ dragonEvent(); eventRnd(); }, timerEvent);
 		}
 		else if (randomizeEvent >= 93 && randomizeEvent < 96) {
 			// TSUNAMI
-			tsunamiEvent();
+			console.log("Event: Tsunami");
+			delayEvent = setTimeout(function(){ tsunamiEvent(); eventRnd(); }, timerEvent);
 		}
 		else if (randomizeEvent >= 96 && randomizeEvent <= 100) {
 			// SHARKNADO
-			sharknado();
+			if (eventSharknado == false) {
+				console.log("Event: Sharknado");
+				delayEvent = setTimeout(function(){ sharknado(); eventRnd(); }, timerEvent);
+			}
+			else if (eventSharknado == true) {	// Si la sharknado est en cours, relancer le random
+				console.log("Sharknado en cours, reRandom");
+				clearTimeout(delayEvent);
+				eventRnd();
+			}
 		}
-		eventRnd();
-	}, timerEvent)
 }
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
@@ -1137,5 +1184,4 @@ document.getElementById('load').onclick = importer;									// Importer une sauv
 document.getElementById('export').onclick = exporter;								// Exporter une sauvegarde
 
 load();
-eventRnd();
 Affichage();		// Affichage
