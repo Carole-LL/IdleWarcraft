@@ -213,8 +213,8 @@ function reset() {
 	clickPierre =	1;// Nombre de click obtenu par click sur la pierre.
 	autoClickBois = 0;		// Nombre de clicker auto
 	autoClickPierre = 0;		// Nombre de clicker auto
-	priceClickBoisUpgrade = 75;	// Prix de l'amélioration du click
-	priceClickPierreUpgrade = 75;	// Prix de l'amélioration du click
+	priceClickBoisUpgrade = 100;	// Prix de l'amélioration du click
+	priceClickPierreUpgrade = 100;	// Prix de l'amélioration du click
 	soldat= 0;
 	batimentMine = document.getElementById ('y2x11'); // emplacement batiment mineur
 	batimentBucheron = document.getElementById('y7x11') // emplacement batiment bucheron
