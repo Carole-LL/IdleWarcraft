@@ -1,13 +1,13 @@
 var ressourceBois = parseInt(0); // Nombre total de clicks enmagasiné pour le bois.
 var ressourcePierre = parseInt(0); // Nombre total de clicks enmagasiné pour la pierre.
-var PrixBatimentBucheron = 10; // Prix du clicker auto (Cabane de bucherons) Bois.
-var PrixBatimentMine = 10; // Prix du clicker auto (Mine) Pierre.
+var PrixBatimentBucheron = 50; // Prix du clicker auto (Cabane de bucherons) Bois.
+var PrixBatimentMine = 50; // Prix du clicker auto (Mine) Pierre.
 var clickBois = 1; // Nombre de click obtenu par click sur le Bois.
 var clickPierre =	1;// Nombre de click obtenu par click sur la pierre.
 var autoClickBois = 0;		// Nombre de clicker auto
 var autoClickPierre = 0;		// Nombre de clicker auto
-var priceClickBoisUpgrade = 75;	// Prix de l'amélioration du click
-var priceClickPierreUpgrade = 75;	// Prix de l'amélioration du click
+var priceClickBoisUpgrade = 100;	// Prix de l'amélioration du click
+var priceClickPierreUpgrade = 100;	// Prix de l'amélioration du click
 var ressourceOr;
 var soldat= 0;
 var batimentBase;
@@ -58,11 +58,11 @@ var docteur = 1;
 var dalek = 2;
 var affichageDocteur;
 var vieMurailles = parseInt(0);
-var upBatDefense = 20;                                // Prix amelioration
-var upBatCaserne = 5;                                // Prix amelioration
-var upBatGuerrier = 4;                                // Prix amelioration
-var upBatMurailles = 20;                                // Prix amelioration
-var upVieMuraille = 50;                                // Prix amelioration
+var upBatDefense = 900;                                // Prix amelioration
+var upBatCaserne = 260;                                // Prix amelioration
+var upBatGuerrier = 12;                                // Prix amelioration
+var upBatMurailles = 500;                                // Prix amelioration
+var upVieMuraille = 200;                                // Vie muraille
 var nbRats = parseInt(6);		// Nombre de rats à pop pour l'évent zombiesRats
 var ratLife = []; 	// Tableau de la vie de chaque rat
 var nbRatsMorts = 0; // Nombre de rats morts (compteur pour faire disparaitre la pop UP)
@@ -73,6 +73,8 @@ var intervalPierre = []; // Pour arreter les autoclickers au reset
 var delayEvent;	// Le Timeout des events
 var eventRat; // Est-ce que l'event rat est en cours
 var eventSharknado; // Est-ce que l'event sharknado est en cours
+var maxEnnemi = 5;
+var minEnnemi = 2;
 
 // SAUVEGARDER
 
@@ -230,14 +232,14 @@ function reset() {
 	}
 	ressourceBois = parseInt(0); // Nombre total de clicks enmagasiné pour le bois.
 	ressourcePierre = parseInt(0); // Nombre total de clicks enmagasiné pour la pierre.
-	PrixBatimentBucheron = 10; // Prix du clicker auto (Cabane de bucherons) Bois.
-	PrixBatimentMine = 10; // Prix du clicker auto (Mine) Pierre.
+	PrixBatimentBucheron = 50; // Prix du clicker auto (Cabane de bucherons) Bois.
+	PrixBatimentMine = 50; // Prix du clicker auto (Mine) Pierre.
 	clickBois = 1; // Nombre de click obtenu par click sur le Bois.
 	clickPierre =	1;// Nombre de click obtenu par click sur la pierre.
 	autoClickBois = 0;		// Nombre de clicker auto
 	autoClickPierre = 0;		// Nombre de clicker auto
-	priceClickBoisUpgrade = 75;	// Prix de l'amélioration du click
-	priceClickPierreUpgrade = 75;	// Prix de l'amélioration du click
+	priceClickBoisUpgrade = 100;	// Prix de l'amélioration du click
+	priceClickPierreUpgrade = 100;	// Prix de l'amélioration du click
 	soldat= 0;
 	batimentMine = document.getElementById ('y2x11'); // emplacement batiment mineur
 	batimentBucheron = document.getElementById('y7x11') // emplacement batiment bucheron
@@ -280,11 +282,11 @@ function reset() {
 	divimgEvents=document.getElementById('imgEvents');
 	btnMurailles = document.getElementById('murailles');
 	vieMurailles = parseInt(0);
-	upBatDefense = 20;                                // Prix amelioration
-	upBatCaserne = 5;                                // Prix amelioration
-	upBatGuerrier = 4;                                // Prix amelioration
-	upBatMurailles = 20;                                // Prix amelioration
-	upVieMuraille = 50;                                // Prix amelioration
+	upBatDefense = 900;                                // Prix amelioration
+	upBatCaserne = 260;                                // Prix amelioration
+	upBatGuerrier = 12;                                // Prix amelioration
+	upBatMurailles = 500;                                // Prix amelioration
+	upVieMuraille = 500;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            // Prix amelioration
 	nbRats = parseInt(6);		// Nombre de rats à pop pour l'évent zombiesRats
 	ratLife = [];	// Tableau de la vie de chaque rat
 	nbRatsMorts = 0; // Nombre de rats morts (compteur pour faire disparaitre la pop UP)
@@ -406,12 +408,12 @@ function Affichage() {
 	//ennemi
 	document.getElementById('afficheEnnemi').innerHTML = "Nombre d'ennemis: "+ennemi;
 	//muraille
-	document.getElementById('murailles').innerHTML = "Créer Murailles : </br>(20) de Bois / (20) de Pierre"
+	document.getElementById('murailles').innerHTML = "Créer Murailles : </br>("+upBatMurailles+") de Bois / ("+upBatMurailles+") de Pierre"
 	//batiments
-	document.getElementById('batimentSoldat').innerHTML = "Créer Caserne :</br>(5) de Bois / (5) de Pierre"
-	document.getElementById('batimentDefense').innerHTML = "Créer Centre de défense :</br>(20) de Bois / (20) de Pierre"
+	document.getElementById('batimentSoldat').innerHTML = "Créer Caserne :</br>("+upBatCaserne+") de Bois / ("+upBatCaserne+") de Pierre"
+	document.getElementById('batimentDefense').innerHTML = "Créer Centre de défense :</br>("+upBatDefense+") de Bois / ("+upBatDefense+") de Pierre"
   
-	document.getElementById('newSoldat').innerHTML = "Créer Guerrier :</br>(4) de Bois / (4) de Pierre"
+	document.getElementById('newSoldat').innerHTML = "Créer Guerrier :</br>("+upBatGuerrier+") de Bois / ("+upBatGuerrier+") de Pierre"
 	document.getElementById('afficheVieMuraille').innerHTML = "Vie Muraille : "+vieMurailles;
 
 
@@ -475,11 +477,11 @@ function Affichage() {
 			guerriersGriser.style.opacity = '0.2'
 
 		}
-		else if (ressourcePierre>upBatGuerrier && ressourceBois>upBatGuerrier && btCaserne == true) {
+		if (ressourcePierre>upBatGuerrier && ressourceBois>upBatGuerrier && btCaserne == true) {
 			guerriersGriser.style.opacity = '1'
 		}
 
-		else if (btCaserne == false) {
+		if (btCaserne==false) {
 			guerriersGriser.style.opacity = '0.2'
 		}
 
@@ -507,6 +509,11 @@ function Affichage() {
 			btMurailles = false;
 		}
 
+		if (vieMurailles<1) {
+			btMurailles=false;
+			vieMurailles=0;
+		}
+
 		if (btMurailles==false) {
 			murailles1.style.backgroundImage = 'none';
 			murailles2.style.backgroundImage = 'none';
@@ -526,12 +533,10 @@ function Affichage() {
 
 		if (btMine==false) {
 			batimentMine.style.backgroundImage = 'none';
-			PrixBatimentMine= 10;
 		}
 
 		if (btBucheron==false) {
 			batimentBucheron.style.backgroundImage = 'none';
-			PrixBatimentBucheron = 10;
 		}
 
 
@@ -809,11 +814,16 @@ function enleverVieMuraille() {
 	}
 }
 
+function variablePopEnnemi(){
+	minEnnemi=minEnnemi*1.5;
+	maxEnnemi=maxEnnemi*1.5;
+}
+setInterval(variablePopEnnemi(), 100000)
 //creation ennemies de base
 
 function ennemiNbRandom() {
 	divEnnemi.style.backgroundImage="url(./Images/ennemi.png)";
-	ennemi = Math.floor((Math.random() * (20)) + 1);
+	ennemi = Math.floor((Math.random() * (maxEnnemi)) + minEnnemi);
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/warrior.gif)';
 	document.getElementById("txtEvents").innerHTML = "<strong>Attaque d'HUMAINS !!!! </strong></br><em>Il y'a "+ennemi+" humains qui vous attaques, ils détruisent vos remparts, votre armée et vos ressources !!!</em>";
@@ -844,11 +854,17 @@ Affichage();
 
 function detruireEnnemi() {
 	
-	if (ennemi>0) {
-	ennemi= ennemi-1;
+	if (ennemi>0 && armee>0) {
+	ennemi= ennemi-armee;
 	}
-	if (ennemi==0) {
+
+	if (ennemi>0 && armee==0) {
+		ennemi= ennemi-1;
+	}
+
+	if (ennemi<=0) {
 		divEnnemi.style.backgroundImage="none";
+		ennemi=0
 	}
 Affichage();
 }
@@ -1029,7 +1045,7 @@ function tsunamiEvent(){
 function soucoupeEvent(){
 	divEvents.style.display="block";
 	divimgEvents.style.backgroundImage="url(./Images/ufo.gif)";
-	document.getElementById("txtEvents").innerHTML = "<strong>Attaque des martiens !!!! </strong></br><em>Cette soucoupe emmène 1 de vos soldat</em>";
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque des martiens !!!! </strong></br><em>Cette soucoupe emmène un tiers de vos soldats</em>";
 	armee=parseInt(armee-(armee*3/100));
 	bruitAlien();
 	Affichage();
@@ -1080,8 +1096,7 @@ function drWhoTardisDalek(){
 
 
 
-
-	if (divEvents.style.display='block') {
+if (divEvents.style.display='block') {
 		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
 	}
 }
