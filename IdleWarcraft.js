@@ -70,7 +70,7 @@ var ratLife = []; 	// Tableau de la vie de chaque rat
 var nbRatsMorts = 0; // Nombre de rats morts (compteur pour faire disparaitre la pop UP)
 var sauvegarde; // Variable pour détecter s'il y a une sauvegarde ou non
 var loading;	// Variable pour détecter si c'est en chargement  (pour contrer les bruits de construction au chargement de la sauvegarde)
-var intervalBois = []; // Pour arreter les autoclickers au reset
+var intervalBois = []; // Tableau des autoclickers bois
 var intervalPierre = []; // Pour arreter les autoclickers au reset
 var delayEvent;	// Le Timeout des events
 var eventRat; // Est-ce que l'event rat est en cours
@@ -574,10 +574,10 @@ function UpgradeBois() {
 function CabaneBucheron() {
 	if (ressourceBois >= PrixBatimentBucheron){
 		ressourceBois = (ressourceBois - PrixBatimentBucheron);
+		intervalBois[autoClickBois] = setInterval(ClickManuelBois, 1000);
 		autoClickBois++;
 		PrixBatimentBucheron = parseInt(PrixBatimentBucheron*1.5);
 		construireBatimentBucheron();
-		intervalBois = setInterval(ClickManuelBois, 1000);
 		btBucheron = true;
 		bruitConstruction()
 		
@@ -624,10 +624,10 @@ function UpgradePierre() {
 function MinePierre() {
 	if (ressourcePierre >= PrixBatimentMine){
 		ressourcePierre = (ressourcePierre - PrixBatimentMine);
+		intervalPierre[autoClickPierre] = setInterval(ClickManuelPierre, 1000);
 		autoClickPierre++;
 		PrixBatimentMine = parseInt(PrixBatimentMine*1.5);
 		construireBatimentMineur();
-		intervalPierre = setInterval(ClickManuelPierre, 1000);
 		btMine = true;
 		bruitConstruction()
 	}
