@@ -25,6 +25,10 @@ html, body {
 	background-size: 85px;
 }
 
+a {
+	color: #26efff;
+}
+
 a:visited {
 	color: #26efff;
 }
