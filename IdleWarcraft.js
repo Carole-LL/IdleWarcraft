@@ -53,6 +53,8 @@ var vieArmee=0; //incremente les pv selon la création ou la perte de soldat
 var tuerArmee;
 var divEvents= document.getElementById('events');
 var divimgEvents=document.getElementById('imgEvents');
+var divBienvenu= document.getElementById('bienvenu');
+var divimgBienvenu=document.getElementById('imgBienvenu');
 var btnMurailles = document.getElementById('murailles');
 var docteur = 1;
 var dalek = 2;
@@ -826,7 +828,7 @@ function ennemiNbRandom() {
 	ennemi = Math.floor((Math.random() * (maxEnnemi)) + minEnnemi);
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/warrior.gif)';
-	document.getElementById("txtEvents").innerHTML = "<strong>Attaque d'HUMAINS !!!! </strong></br><em>Il y'a "+ennemi+" humains qui vous attaques, ils détruisent vos remparts, votre armée et vos ressources !!!</em>";
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque d'HUMAINS !!!! </strong></br><em>Il y'a "+ennemi+" humains qui vous attaquent, ils détruisent vos remparts, votre armée et vos ressources !</br>A vos cliques !!!!</em>";
 	bruitCombats();
 
 	console.log(ennemi)
@@ -891,7 +893,7 @@ function zombiesRats() {
 	divEvents.style.display='block';
 	eventRat = true;
 	divimgEvents.style.backgroundImage='url(./Images/ratAlert.gif)';
-	document.getElementById("txtEvents").innerHTML = "<strong>Des rats ont envahi votre camp !!</strong></br><em>Ils rongent votre bois ! Tuez les rapidement !</em>";
+	document.getElementById("txtEvents").innerHTML = "<strong>Des rats ont envahi votre camp !!!</strong></br><em>Ils rongent votre réserve de bois !</br>Trouvez-les et tuez-les tous !</em>";
 	bruitRats(); // Son de rats : Avertis le joueur de l'évent
 	// Création des rats
 	for (var i = 0; i < nbRats; i++) {	// Exécute nbRats fois la boucle pour créer nbRats rats.
@@ -964,7 +966,7 @@ function sharknado() {
 	// POP UP
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/sharknadoAlert.gif)';
-	document.getElementById("txtEvents").innerHTML = "<strong>Une sharknado est apparue !!</strong></br><em>Débarassez vous en avant qu'elle n'emporte toutes vos ressources et soldats !</em>";
+	document.getElementById("txtEvents").innerHTML = "<strong>Une Sharknado est apparue !!!</strong></br><em>Elle va emporter toutes vos ressources et vos soldats ! Débarassez-vous en vite !</br> Cliquez !!!</em>";
 
 	// Création de la tornade	
 
@@ -1028,14 +1030,14 @@ function sharknado() {
 function tsunamiEvent(){
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/tsunami.gif)';
-	document.getElementById("txtEvents").innerHTML = "<strong>Attaque TSUNAMI !!!! </strong></br><em>Cette vague détruit 50% de vos ressources de bois et de pierre</em>";
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque TSUNAMI !!!! </strong></br><em>Cette vague détruit 50% de vos ressources de bois et de pierre !</br>Aucune action ne peut être faite...</em>";
 	ressourceBois=parseInt(ressourceBois/2);
 	ressourcePierre=parseInt(ressourcePierre/2);
 	armee = parseInt(armee/2);
 	bruitTsunami();
 	Affichage();
 	if (divEvents.style.display='block') {
-		setTimeout(function(){divEvents.style.display='none';}, 6000); 	
+		setTimeout(function(){divEvents.style.display='none';}, 9000); 	
 	}
 }
 
@@ -1045,13 +1047,13 @@ function tsunamiEvent(){
 function soucoupeEvent(){
 	divEvents.style.display="block";
 	divimgEvents.style.backgroundImage="url(./Images/ufo.gif)";
-	document.getElementById("txtEvents").innerHTML = "<strong>Attaque des martiens !!!! </strong></br><em>Cette soucoupe emmène un tiers de vos soldats</em>";
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque des martiens !!!! </strong></br><em>Cette soucoupe emmène 1/3 de vos soldats !</br>Leur technologie est trop avancée pour vous défendre, il n'y a rien à faire...</em>";
 	armee=parseInt(armee-(armee*3/100));
 	bruitAlien();
 	Affichage();
   
 	if (divEvents.style.display="block") {
-		setTimeout(function(){divEvents.style.display="none";}, 7000); 	
+		setTimeout(function(){divEvents.style.display="none";}, 10000); 	
 		
 	}
 }
@@ -1063,24 +1065,24 @@ if (btCaserne==false){
 	drWhoDebut();
 }
 	if (affichageDocteur==dalek) {
-		setTimeout(drWhoTardisDalek, 5000) ;
+		setTimeout(drWhoTardisDalek, 6000) ;
 	}
 	if (affichageDocteur==docteur){
-		setTimeout(drWhoTardisDoc1, 5000) ;
+		setTimeout(drWhoTardisDoc1, 6000) ;
 	}
 
-	setTimeout(function(){divEvents.style.display="none";}, 10000);
+	setTimeout(function(){divEvents.style.display="none";}, 12000);
 }	
 function drWhoDebut(){
 affichageDocteur=Math.floor(Math.random() * dalek )+ docteur;
 	console.log(affichageDocteur);
 	divEvents.style.display="block";
 	divimgEvents.style.backgroundImage="url(./Images/TardisPop.gif)";
-	document.getElementById("txtEvents").innerHTML="Attention Dr WHO arrive";
+	document.getElementById("txtEvents").innerHTML="Attention Dr WHO arrive !</br>Patientez un peu...";
 }
 function drWhoTardisDoc1(){
 	divimgEvents.style.backgroundImage="url('./Images/TardisDoc1.gif')";
-	document.getElementById("txtEvents").innerHTML="Dr WHO vous aide et </br>vous offre 10% de ressources supplémentaires";
+	document.getElementById("txtEvents").innerHTML="Dr WHO vous aide cette fois-ci ! </br>Il vous offre 10% de ressources supplémentaires !</br>Trop cool !!!";
 	ressourceBois= parseInt(ressourceBois +(ressourceBois*10/100));
 	ressourcePierre= parseInt(ressourcePierre +(ressourcePierre*10/100));
 	Affichage();
@@ -1089,7 +1091,7 @@ function drWhoTardisDoc1(){
 
 function drWhoTardisDalek(){
 	divimgEvents.style.backgroundImage="url(./Images/TardisDalek.gif)";
-	document.getElementById("txtEvents").innerHTML="le Dalek vous prend des 10 % de vos ressources";
+	document.getElementById("txtEvents").innerHTML="Malheureusement le Dalek vous prend des 10 % de vos ressources ! C'est injuste mais c'est comme ça...";
 	ressourceBois= parseInt(ressourceBois -(ressourceBois*10/100));
 	ressourcePierre= parseInt(ressourcePierre -(ressourcePierre*10/100));
 	Affichage();
@@ -1097,7 +1099,7 @@ function drWhoTardisDalek(){
 
 
 if (divEvents.style.display='block') {
-		setTimeout(function(){divEvents.style.display='none';}, 10000); 	
+		setTimeout(function(){divEvents.style.display='none';}, 12000); 	
 	}
 }
 
@@ -1106,7 +1108,7 @@ if (divEvents.style.display='block') {
 function dragonEvent(){
 	divEvents.style.display='block';
 	divimgEvents.style.backgroundImage='url(./Images/dragon2.gif)';
-	document.getElementById("txtEvents").innerHTML = "<strong>Attaque du Dragon Destructeur !!!! </strong></br><em>Sa puissante attaque est inévitable, il va détruire toutes vos défenses... Oups !</em>";
+	document.getElementById("txtEvents").innerHTML = "<strong>Attaque du Dragon Destructeur !!!! </strong></br><em>Attaque inévitable ! Il va détruire toutes vos défenses et vous ne pouvez rien faire... Oups !</em>";
 	btDefense=false;
 	btMurailles=false;
 	bruitDragon();
@@ -1184,6 +1186,18 @@ function eventRnd() {
 				eventRnd();
 			}
 		}
+}
+
+/* Alerte Bienvenu*/
+
+function alerteBienvenu(){
+	divBienvenu.style.display='block';
+	divimgBienvenu.style.backgroundImage='url(./Images/bienvenu.jpg)';
+	document.getElementById("txtBienvenu").innerHTML = "<strong>Bienvenu sur IDLE WARCRAFT !</strong>";
+	Affichage();
+	if (divBienvenu.style.display='block') {
+		setTimeout(function(){divBienvenu.style.display='none';}, 15000); 	
+	}
 }
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID

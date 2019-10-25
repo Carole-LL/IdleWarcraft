@@ -30,7 +30,7 @@ body {
 	background-color: grey;
 	margin: 0;
 	font-size: 15px;
-	background-image: url(./Images/feu.gif);
+	background-image: url(./Images/wood2.jpg);
 	background-size: 85px;
 }
 
@@ -513,6 +513,31 @@ h5 { /* Texte animation ajout Bois & Pierre */
 	display: none;
 	background-color: black; 
 	height: 300px;
+	width: 700px;
+	position: absolute; 
+	left: 33%;
+	right: 25%;
+	
+}
+
+/* css alerte bienvenu */
+#imgBienvenu{
+	height: 70%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+#txtBienvenu{
+	color: white;
+	text-align: center;
+	padding-top: 20px;	
+}
+
+#bienvenu {
+	opacity: 0.8;
+	display: none;
+	background-color: black; 
+	height: 700px;
 	width: 700px;
 	position: absolute; 
 	left: 33%;
