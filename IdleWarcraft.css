@@ -10,19 +10,32 @@ html, body {
 
 }
 
-
-#Titre {
+#footer {
 	width: 100%;
-	height: 50px;
-	color: red;
-	position: absolute;
-	top: 0;
+	height: 30px;
+	color: #95dd22;
+	position: fixed;
+	bottom: 0;
 	left: 0;
-	font-size: 40px;
+	font-size: 15px;
 	display: flex;
 	justify-content: center;
-	background-image: url(./Images/TexTitre.jpg);
-	background-size: cover;
+	align-items: center;
+	background-image: url(./Images/wood2.jpg);
+	background-size: 85px;
+}
+
+a:visited {
+	color: #26efff;
+}
+
+a:hover {
+	color: #ff3a26;
+}
+
+#gameVersion {
+	position: absolute;
+	right: 14%;
 }
 
 body {
@@ -162,6 +175,8 @@ h2 {	/* Titre Ressources et Bonus */
 #BasHudBonus button {
 
 background-color: transparent;
+display: block;
+width: 100%;
 border: none;
 color: white;
 font-size: 0.9em;
@@ -280,6 +295,7 @@ padding-top: 5px;
 	right: 0;
 	height: 900px;
 	width: 13%;
+	z-index: 555;
 	display: flex;
 	flex-wrap: wrap;
 	background-image: url(./Images/hudD.png);
