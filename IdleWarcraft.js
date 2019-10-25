@@ -1193,12 +1193,14 @@ function eventRnd() {
 function alerteBienvenu(){
 	divBienvenu.style.display='block';
 	divimgBienvenu.style.backgroundImage='url(./Images/bienvenu.jpg)';
-	document.getElementById("txtBienvenu").innerHTML = "<strong>Bienvenu sur IDLE WARCRAFT !</strong>";
+	document.getElementById("txtBienvenu").innerHTML = "<strong>Bienvenu sur IDLE WARCRAFT !</strong></br></br> Protéger vous des attaques ennemies et de bien d'autres dangers.</br>Prosperer pour devenir le plus grand et puissant royaume au monde";
 	Affichage();
 	if (divBienvenu.style.display='block') {
 		setTimeout(function(){divBienvenu.style.display='none';}, 15000); 	
 	}
 }
+
+alerteBienvenu();
 
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
