@@ -505,12 +505,10 @@ function Affichage() {
 
 		if (btMine==false) {
 			batimentMine.style.backgroundImage = 'none';
-			PrixBatimentMine= 10;
 		}
 
 		if (btBucheron==false) {
 			batimentBucheron.style.backgroundImage = 'none';
-			PrixBatimentBucheron = 10;
 		}
 
 
