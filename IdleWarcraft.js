@@ -53,8 +53,8 @@ var vieArmee=0; //incremente les pv selon la création ou la perte de soldat
 var tuerArmee;
 var divEvents= document.getElementById('events');
 var divimgEvents=document.getElementById('imgEvents');
-var divBienvenu= document.getElementById('bienvenu');
-var divimgBienvenu=document.getElementById('imgBienvenu');
+var divBienvenue= document.getElementById('bienvenue');
+var divimgBienvenue=document.getElementById('imgBienvenue');
 var btnMurailles = document.getElementById('murailles');
 var docteur = 1;
 var dalek = 2;
@@ -1192,20 +1192,22 @@ function eventRnd() {
 		}
 }
 
-/* Alerte Bienvenu*/
+/* Alerte Bienvenue*/
 
-function alerteBienvenu(){
-	divBienvenu.style.display='block';
-	divimgBienvenu.style.backgroundImage='url(./Images/bienvenu.jpg)';
-	document.getElementById("txtBienvenu").innerHTML = "<strong>Bienvenue sur IDLE WARCRAFT !</strong></br></br> Protégez vous des attaques ennemies et de bien d'autres dangers.</br>Prosperez pour devenir le plus grand et puissant royaume au monde.";
+function alerteBienvenue(){
+	divBienvenue.style.display='block';
+	divimgBienvenue.style.backgroundImage='url(./Images/bienvenu.jpg)';
+	document.getElementById("txtBienvenue").innerHTML = "<strong>Bienvenue sur IDLE WARCRAFT !</strong></br></br> Protégez vous des attaques ennemies et de bien d'autres dangers.</br>Prosperez pour devenir le plus grand et puissant royaume au monde.";
 	Affichage();
-	if (divBienvenu.style.display='block') {
-		setTimeout(function(){divBienvenu.style.display='none';}, 15000); 	
-	}
 }
 
-alerteBienvenu();
+function fermerBienvenue (){
+divBienvenue.style.display="none";
+}
 
+alerteBienvenue();
+
+document.getElementById('boutonBienvenue').onclick = fermerBienvenue
 document.getElementById('jeu').onclick = checkDiv;								// Cliquer sur une div pour obtenir son ID
 document.getElementById('autoClickBois').onclick = CabaneBucheron; 				// Acheter un Auto clicker
 document.getElementById('upgradeClickBois').onclick = UpgradeBois; 				// Améliorer le click du bois
