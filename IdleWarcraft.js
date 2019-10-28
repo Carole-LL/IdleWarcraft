@@ -31,6 +31,8 @@ var caserneGriser = document.getElementById('ItemBonus5');			//bouton griser
 var mineGriser = document.getElementById('ItemBonus4');				//bouton griser
 var guerriersGriser = document.getElementById('ItemBonus7');		//bouton griser
 var muraillesGriser = document.getElementById('ItemBonus8');		//bouton griser
+var itemBonus9 = document.getElementById('ItemBonus9');				//bouton grisé
+var itemBonus10 = document.getElementById('ItemBonus10');			//bouton grisé
 var murailles1 = document.getElementById('y2x7');  //emplacement murailles
 var murailles2 = document.getElementById('y2x6');	//emplacement murailles
 var murailles3 = document.getElementById('y3x5');	//emplacement murailles
@@ -397,6 +399,8 @@ function Affichage() {
 	// Bois 
 	document.getElementById('nbClickBois').innerHTML = 'Bois: '+ressourceBois;
 	document.getElementById('autoClickBois').innerHTML = 'Camp de bucherons :</br> ('+PrixBatimentBucheron+') de bois';
+	document.getElementById('woodFaster').innerHTML = '<img src="./Images/wood.png"/><br>Améliore le nombre de bois que vous coupez. <br> Amélioré <strong>'+(clickBois-1)+'</strong> fois. <br>Vos bucherons coupent <strong>'+clickBois+'</strong> bois par clic.'; // Tooltip Bucherons plus rapide (bonus 1)
+	document.getElementById('lumberjack').innerHTML = '<img src="./Images/wood.png"/><br>Crée un nouveau péon bucheron !<br><strong>'+autoClickBois+'</strong> péons coupent du bois pour vous !'; // Tooltip Camp de bucheron (bonus 3)
 	document.getElementById('clickerAutoBois').innerHTML = 'Nombre de bucherons: '+autoClickBois+"</br>(1 click/s)";
 	document.getElementById('upgradeClickBois').innerHTML = 'Bucherons plus rapides :</br> (' +priceClickBoisUpgrade+') de bois';
 	// Pierre 
@@ -404,6 +408,8 @@ function Affichage() {
 	document.getElementById('autoClickPierre').innerHTML = 'Mine :</br> ('+PrixBatimentMine+') de pierres';
 	document.getElementById('clickerAutoPierre').innerHTML = 'Nombre de mineurs: '+autoClickPierre+"</br>(1 click/s)";
 	document.getElementById('upgradeClickPierre').innerHTML = 'Mineurs plus rapides :</br> ('+priceClickPierreUpgrade+') de pierres';
+	document.getElementById('rockFaster').innerHTML = '<img class="Resize" src="./Images/rock.png"/><br>Améliore le nombre de pierres que vous minez. <br> Amélioré <strong>'+(clickPierre-1)+'</strong> fois. <br>Vos mineurs minent <strong>'+clickPierre+'</strong> pierres par clic.'; // Tooltip Mineurs plus rapide (bonus 2)
+	document.getElementById('minors').innerHTML = '<img class="Resize" src="./Images/rock.png"/><br>Crée un nouveau péon mineur !<br><strong>'+autoClickPierre+'</strong> péons minent de la pierre pour vous !'; // Tooltip Camp de mineur (bonus 4)
 	//soldat
   document.getElementById('nbSoldat').innerHTML = 'Nombre de guerriers: '+armee;
 	affichageArmee();
@@ -412,6 +418,10 @@ function Affichage() {
 	//muraille
 	document.getElementById('murailles').innerHTML = "Créer Murailles : </br>("+upBatMurailles+") de Bois / ("+upBatMurailles+") de Pierre"
 	//batiments
+	document.getElementById('caserne').innerHTML = '<img class="Resize" src="./Images/Orc_Barracks.gif"/><br>Crée une caserne !<br>Cela vous permet la création des guerriers pour vous défendre !'; // Tooltip Caserne (bonus 5)
+	document.getElementById('defenseCenter').innerHTML = '<img class="Resize" src="./Images/Orc_Blacksmith.gif"/><br>Crée le centre de défense !<br>Cela vous permet de créer une muraille pour gagner du temps face aux ennemis !'; // Tooltip Centre de défense (bonus 6)
+	document.getElementById('soldiers').innerHTML = '<img class="Resize" src="./Images/26-OrcGrunt.gif"/><br>Crée un guerrier !<br>Ils augmentent vos dégâts sur vos ennemis !<br> Vos clics infligent <strong>'+armee+'</strong> dégâts aux ennemis !'; // Tooltip Créer Soldat (bonus 7)
+	document.getElementById('walls').innerHTML = '<img src="./Images/wallsIcon.png"/><br>Bâtit une muraille !<br>Elle vous gagne du temps face aux ennemis.<br> Attention, elle n\'est pas indestructible...'; // Tooltip Créer Soldat (bonus 8)
 	document.getElementById('batimentSoldat').innerHTML = "Créer Caserne :</br>("+upBatCaserne+") de Bois / ("+upBatCaserne+") de Pierre"
 	document.getElementById('batimentDefense').innerHTML = "Créer Centre de défense :</br>("+upBatDefense+") de Bois / ("+upBatDefense+") de Pierre"
   
@@ -421,81 +431,102 @@ function Affichage() {
 
 
 		//boutons griser
+		itemBonus9.style.opacity = '0.2';
+		itemBonus10.style.opacity = '0.2';
 
 		if (ressourceBois < upBatDefense && ressourcePierre < upBatDefense) {
-			batimentDefenseGriser.style.opacity = '0.2';
+			batimentDefenseGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('batimentDefense').style.opacity = '0.2';
 		}
 
 		else if (ressourceBois >= upBatDefense && ressourcePierre >= upBatDefense && btDefense ==false) {
-			batimentDefenseGriser.style.opacity = '1';
+			batimentDefenseGriser.style.background = 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('batimentDefense').style.opacity = '1';
 		}
 
 		else if (btDefense==true) {
-			batimentDefenseGriser.style.opacity = '0.2';
+			batimentDefenseGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('batimentDefense').style.opacity = '0.2';
 		}
 
 		if (ressourceBois <= priceClickBoisUpgrade) {
-			bucheronsGriser.style.opacity = '0.2';
+			bucheronsGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('upgradeClickBois').style.opacity = '0.2';
 		}
 
 		else if (ressourceBois >= priceClickBoisUpgrade) {
-			bucheronsGriser.style.opacity = '1';
+			bucheronsGriser.style.background = 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('upgradeClickBois').style.opacity = '1';
 		}
 
 		if (ressourcePierre < priceClickPierreUpgrade) {
-			mineursGriser.style.opacity = '0.2';
+			mineursGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('upgradeClickPierre').style.opacity = '0.2';
 		}
 
 		else if (ressourcePierre >= priceClickPierreUpgrade) {
-			mineursGriser.style.opacity = '1';
+			mineursGriser.style.background = 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('upgradeClickPierre').style.opacity = '1';
 		}
 
 		if (ressourceBois < PrixBatimentBucheron) {
-			campBucheronGriser.style.opacity = '0.2';
+			campBucheronGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('autoClickBois').style.opacity = '0.2';
 		}
 
 		else if (ressourceBois >= PrixBatimentBucheron) {
-			campBucheronGriser.style.opacity = '1';
+			campBucheronGriser.style.background = 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('autoClickBois').style.opacity = '1';
 		}
 
 		if (ressourcePierre < PrixBatimentMine) {
-			mineGriser.style.opacity = '0.2';
+			mineGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('autoClickPierre').style.opacity = '0.2';
 		}
 
 		else if (ressourcePierre >= PrixBatimentMine) {
-			mineGriser.style.opacity = '1';
+			mineGriser.style.background = 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('autoClickPierre').style.opacity = '1';
 		}
 
 		if (ressourceBois < upBatCaserne && ressourcePierre < upBatCaserne) {
-			caserneGriser.style.opacity = '0.2'
+			caserneGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('batimentSoldat').style.opacity = '0.2';
 		}
 		else if (ressourceBois >= upBatCaserne && ressourcePierre >= upBatCaserne && caserneConstruite == false) {
-			caserneGriser.style.opacity = '1'
+			caserneGriser.style.background = 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('batimentSoldat').style.opacity = '1';
 		}
 		else if (caserneConstruite == true) {
-			caserneGriser.style.opacity = '0.2'
+			caserneGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('batimentSoldat').style.opacity = '0.2';
 		}
 		if (ressourcePierre<upBatGuerrier && ressourceBois<upBatGuerrier) {
-			guerriersGriser.style.opacity = '0.2'
-
+			guerriersGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('newSoldat').style.opacity = '0.2';
 		}
 		if (ressourcePierre>upBatGuerrier && ressourceBois>upBatGuerrier && btCaserne == true) {
-			guerriersGriser.style.opacity = '1'
+			guerriersGriser.style.background = 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('newSoldat').style.opacity = '1';
 		}
 
 		if (btCaserne==false) {
-			guerriersGriser.style.opacity = '0.2'
+			guerriersGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('newSoldat').style.opacity = '0.2';
 		}
 
 		if (ressourcePierre<upBatMurailles && ressourceBois<upBatMurailles) {
-			muraillesGriser.style.opacity = '0.2'
+			muraillesGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('murailles').style.opacity = '0.2';
 		}
 
 		if (ressourcePierre>upBatMurailles && ressourceBois>upBatMurailles && btMurailles==false && btDefense==true) {
-			muraillesGriser.style.opacity = '1'
+			muraillesGriser.style.background = 'linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('murailles').style.opacity = '1';
 		}
 		if (btMurailles==true) {
-			muraillesGriser.style.opacity = '0.2'
+			muraillesGriser.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(\'./Images/TexBtn.png\')';
+			document.getElementById('murailles').style.opacity = '0.2';
 		}
 
 		//Destruction batiments
