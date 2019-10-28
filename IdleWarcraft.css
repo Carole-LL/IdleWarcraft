@@ -540,20 +540,20 @@ h5 { /* Texte animation ajout Bois & Pierre */
 	
 }
 
-/* css alerte bienvenu */
-#imgBienvenu{
+/* css alerte bienvenue */
+#imgBienvenue{
 	height: 70%;
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center;
 }
-#txtBienvenu{
+#txtBienvenue{
 	color: white;
 	text-align: center;
 	padding-top: 20px;	
 }
 
-#bienvenu {
+#bienvenue {
 	opacity: 0.8;
 	display: none;
 	background-color: black; 
@@ -563,6 +563,14 @@ h5 { /* Texte animation ajout Bois & Pierre */
 	left: 33%;
 	right: 25%;
 	
+}
+
+#boutonBienvenue {
+	display: block;
+	font-weight: bolder;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top:3.5em;
 }
 
 .tornado {
