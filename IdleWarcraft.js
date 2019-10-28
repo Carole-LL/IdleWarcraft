@@ -1092,9 +1092,7 @@ function soucoupeEvent(){
 /* Event Bonus Dr Who */
 
 function drWho(){
-if (btCaserne==false){
 	drWhoDebut();
-}
 	if (affichageDocteur==dalek) {
 		setTimeout(drWhoTardisDalek, 6000) ;
 	}
