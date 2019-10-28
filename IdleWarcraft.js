@@ -1131,6 +1131,10 @@ function ratCerveauBonus(){
 
 /* EVENT POP RANDOM */
 
+function reDoEventRnd() {
+	eventRnd();	
+}
+
 function eventRnd() {
 	var timerEvent = ( (Math.floor(Math.random() * (3*60) + 60))*1000 ); // Entre une (60) et 3 minutes (3*60 secondes) x1000 pour convertir en millisecondes
 	console.log("Event dans "+timerEvent/1000+" secondes.");
@@ -1156,7 +1160,7 @@ function eventRnd() {
 			else if (eventRat == true) {	// Si les rats sont en cours, relancer le random
 				console.log("Rats en cours, reRandom");
 				clearTimeout(delayEvent);
-				eventRnd();
+				reDoEventRnd();
 			}
 		}
 		else if (randomizeEvent >= 70 && randomizeEvent < 90) {
@@ -1183,7 +1187,7 @@ function eventRnd() {
 			else if (eventSharknado == true) {	// Si la sharknado est en cours, relancer le random
 				console.log("Sharknado en cours, reRandom");
 				clearTimeout(delayEvent);
-				eventRnd();
+				reDoEventRnd();
 			}
 		}
 }
@@ -1211,8 +1215,8 @@ document.getElementById('batimentSoldat').onclick = construireCaserne; 			// con
 document.getElementById('batimentDefense').onclick = construireBatimentDefense; // construire la défense
 btnMurailles.onclick = construireMurailles;										// construire la muraille de base
 document.getElementById('save').onclick = save;									// Sauvegarder la partie
-document.getElementById('load').onclick = importer;									// Importer une sauvegarde
-document.getElementById('export').onclick = exporter;								// Exporter une sauvegarde
+document.getElementById('load').onclick = load;									// Charger une sauvegarde
+//document.getElementById('export').onclick = exporter;								// Exporter une sauvegarde
 
 load();
 Affichage();		// Affichage
